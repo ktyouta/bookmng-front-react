@@ -6,20 +6,21 @@ import { NotFound } from "../../NotFound/Component/NotFound";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 
 const Parent = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  padding-top: 1%;
+  flex: 1;
+  padding-top: 100px;
+  box-sizing:border-box;
+  margin-top:1%;
 `;
 
 export function Content() {
 
-    console.log("Content render");
+  console.log("Content render");
 
-    useContent();
+  useContent();
 
-    return (
-        <Parent>
+  return (
+    <Parent>
 
-        </Parent>
-    );
+    </Parent>
+  );
 }

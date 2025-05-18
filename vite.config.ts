@@ -7,4 +7,8 @@ export default defineConfig({
     react(),
     checker({ typescript: true })
   ],
+  server: {
+    // ブラウザを自動で開く
+    open: true,
+  },
 })

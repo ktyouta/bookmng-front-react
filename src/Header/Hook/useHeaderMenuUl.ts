@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { IsLoginContext } from "../../QueryApp";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 export function useHeaderMenuUl() {
 
@@ -8,7 +9,7 @@ export function useHeaderMenuUl() {
     // 現在のパス
     const [nowPath, setNowPath] = useState<string>();
     // ログインフラグ
-    const isLogin = IsLoginContext.useCtx();
+    const isLogin = useSelector((state: RootState) => state.isLoginReducer);
 
     /**
      * URL切り替え時のイベント

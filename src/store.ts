@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import isLoginReducer from './Login/Features/isLoginSlice';
+
 
 export const store = configureStore({
     reducer: {
+        isLoginReducer
     },
 });
 

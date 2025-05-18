@@ -8,7 +8,8 @@ import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBa
 import type { LoginUserInfoType } from "../../Common/Type/LoginUserInfoType";
 import type { LoginRequestType } from "../Type/LoginRequestType";
 import ENV from "../../env.json";
-
+import { on } from "../Features/isLoginSlice";
+import { useDispatch } from "react-redux";
 
 export function useLogin() {
 
@@ -18,8 +19,6 @@ export function useLogin() {
     const userPasswordRef = useRef<refType>(null);
     // ルーティング用
     const navigate = useNavigate();
-    // ログインフラグ
-    const setIsLogin = SetIsLoginContext.useCtx();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
     // ログインユーザー情報(setter)
@@ -28,6 +27,9 @@ export function useLogin() {
     const [backPath, setBackPath] = useState(ROUTER_PATH.HOME);
     // 遷移先(ログイン後)
     const [nextPath, setNextPath] = useState(ROUTER_PATH.HOME);
+    const dispatch = useDispatch();
+    // ログイン
+    const setLoggedIn = () => dispatch(on());
 
     useEffect(() => {
 
@@ -62,7 +64,7 @@ export function useLogin() {
             const loginUserInfo: LoginUserInfoType = res.data;
 
             setLoginUserInfo(loginUserInfo);
-            setIsLogin(true);
+            setLoggedIn();
             navigate(nextPath);
         },
         // 失敗後の処理
