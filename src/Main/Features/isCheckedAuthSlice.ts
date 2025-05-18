@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// ログイン済みフラグ
-const isLoginSlice = createSlice({
-    name: 'isLogin',
+// 認証チェック済みフラグ
+const isCheckedAuthSlice = createSlice({
+    name: 'isCheckedAuth',
     initialState: false,
     reducers: {
         on(state) {
@@ -14,5 +14,5 @@ const isLoginSlice = createSlice({
     },
 });
 
-export const { on, off } = isLoginSlice.actions;
-export default isLoginSlice.reducer;
+export const { on, off } = isCheckedAuthSlice.actions;
+export default isCheckedAuthSlice.reducer;

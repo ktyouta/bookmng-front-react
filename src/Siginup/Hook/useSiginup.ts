@@ -4,12 +4,14 @@ import useSwitch from '../../Common/Hook/useSwitch';
 import { useRef, useState, type RefObject } from 'react';
 import type { refType } from '../../Common/Component/BaseTextbox';
 import { useNavigate } from 'react-router-dom';
-import { SetIsLoginContext, SetLoginUserInfoContext } from '../../QueryApp';
+import { SetLoginUserInfoContext } from '../../QueryApp';
 import { useCreateYearList } from '../../Common/Hook/useCreateYearList';
 import useMutationWrapper from '../../Common/Hook/useMutationWrapper';
 import type { errResType, resType } from '../../Common/Hook/useMutationWrapperBase';
 import type { LoginUserInfoType } from '../../Common/Type/LoginUserInfoType';
 import type { SiginupRequestType } from '../Type/SiginupRequestType';
+import { useDispatch } from 'react-redux';
+import { on } from '../../Login/Features/isLoginSlice';
 
 
 export function useSiginup() {
@@ -26,8 +28,6 @@ export function useSiginup() {
     const userBirthdayDayRef = useRef<refType>(null);
     // ルーティング用
     const navigate = useNavigate();
-    // ログインフラグ
-    const setIsLogin = SetIsLoginContext.useCtx();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
     // ログインユーザー情報(setter)
@@ -36,6 +36,9 @@ export function useSiginup() {
     const yearCoomboList = useCreateYearList();
     // 確認モーダルの表示フラグ
     const { flag: isOpenModal, on: openModal, off: closeModal } = useSwitch();
+    const dispatch = useDispatch();
+    // ログインフラグ
+    const setLoggedIn = () => dispatch(on());
 
     /**
      * 登録リクエスト
@@ -49,7 +52,7 @@ export function useSiginup() {
             const loginUserInfo = res.data;
 
             setLoginUserInfo(loginUserInfo);
-            setIsLogin(true);
+            setLoggedIn();
             navigate(ROUTER_PATH.HOME);
         },
         // 失敗後の処理
@@ -126,12 +129,12 @@ export function useSiginup() {
 
         const userName = userNameRef.current?.refValue as string;
         const password = userPasswordRef.current?.refValue as string;
-        const userBirthday = `${userBirthdayYearRef.current?.refValue}${userBirthdayMonthRef.current?.refValue}${userBirthdayDayRef.current?.refValue}`;
+        const birthday = `${userBirthdayYearRef.current?.refValue}${userBirthdayMonthRef.current?.refValue}${userBirthdayDayRef.current?.refValue}`;
 
         const body: SiginupRequestType = {
             userName,
             password,
-            userBirthday,
+            birthday,
         };
 
         // 登録リクエスト呼び出し

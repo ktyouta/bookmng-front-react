@@ -106,11 +106,11 @@ export function useUpdateUserInfo() {
     function executeUpdate() {
 
         const userName = userNameRef.current?.refValue as string;
-        const userBirthday = `${userBirthdayYearRef.current?.refValue}${userBirthdayMonthRef.current?.refValue}${userBirthdayDayRef.current?.refValue}`;
+        const birthday = `${userBirthdayYearRef.current?.refValue}${userBirthdayMonthRef.current?.refValue}${userBirthdayDayRef.current?.refValue}`;
 
         const body: UpdateUserInfoRequestType = {
             userName,
-            userBirthday,
+            birthday,
         };
 
         // 更新リクエスト呼び出し

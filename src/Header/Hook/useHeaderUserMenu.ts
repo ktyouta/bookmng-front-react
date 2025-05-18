@@ -29,7 +29,6 @@ export function useHeaderUserMenu() {
     // 認証チェック済みフラグ
     const isCheckedAuth = IsCheckedAuthContext.useCtx();
 
-
     /**
      * ログアウトリクエスト
      */

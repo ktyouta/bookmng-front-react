@@ -31,7 +31,8 @@ export function useMain() {
             afErrorFn: (res) => {
                 setIsLogin(false);
                 setIsCheckedAuth(true);
-            }
+            },
+            method: "POST",
         }
     );
 

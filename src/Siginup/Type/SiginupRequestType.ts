@@ -2,5 +2,5 @@
 export type SiginupRequestType = {
     userName: string,
     password: string,
-    userBirthday: string,
+    birthday: string,
 }
