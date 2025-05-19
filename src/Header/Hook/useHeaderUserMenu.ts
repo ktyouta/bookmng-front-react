@@ -8,7 +8,8 @@ import { IsLoginContext, LoginUserInfoContext, SetIsLoginContext, SetLoginUserIn
 import { LOGIN_USER_INFO_INIT } from "../../Common/Const/CommonConst";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
-import { IsCheckedAuthContext } from "../../Main/Component/Main";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 
 export function useHeaderUserMenu() {
@@ -27,7 +28,7 @@ export function useHeaderUserMenu() {
     // ログインユーザー情報(setter)
     const setLoginUserInfo = SetLoginUserInfoContext.useCtx();
     // 認証チェック済みフラグ
-    const isCheckedAuth = IsCheckedAuthContext.useCtx();
+    const isCheckedAuth = useSelector((state: RootState) => state.isCheckedAuthReducer);
 
     /**
      * ログアウトリクエスト

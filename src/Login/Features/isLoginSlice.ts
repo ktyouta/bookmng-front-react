@@ -6,10 +6,10 @@ const isLoginSlice = createSlice({
     initialState: false,
     reducers: {
         on(state) {
-            state = true;
+            return true;
         },
         off(state) {
-            state = false;
+            return false;
         },
     },
 });
