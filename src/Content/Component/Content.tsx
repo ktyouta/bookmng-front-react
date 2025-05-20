@@ -10,6 +10,7 @@ const Parent = styled.div`
   padding-top: 100px;
   box-sizing:border-box;
   margin-top:1%;
+  background-color:#DDE3E8;
 `;
 
 export function Content() {

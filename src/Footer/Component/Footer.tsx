@@ -9,11 +9,11 @@ const Parent = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: #444;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color:#DDE3E8;
 `;
 
 

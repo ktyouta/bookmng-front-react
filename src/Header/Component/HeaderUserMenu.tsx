@@ -14,6 +14,7 @@ const BtnDiv = styled.div`
   position:relative;
   align-items: center;
   width:47px;
+  display: flex;
 `;
 
 //ナビゲーション
@@ -35,6 +36,7 @@ const NavDiv = styled.div<{ isDisplay: boolean }>`
   color: #f1f1f1;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
   padding-left: 22px;
+  top: 50px;
 `;
 
 //コンテンツのスタイル
@@ -101,7 +103,7 @@ export function HeaderUserMenu() {
                                     <IconComponent
                                         icon={IoPersonCircleOutline}
                                         onclick={isOpenUserMenu ? closeUserMenu : oepnUserMenu}
-                                        size='100%'
+                                        size='80%'
                                     />
                                     <NavDiv
                                         isDisplay={isOpenUserMenu}
@@ -139,8 +141,8 @@ export function HeaderUserMenu() {
                                 style={{
                                     fontSize: "0.9rem",
                                     width: "7%",
-                                    height: "100%",
-                                    background: "#eb3941",
+                                    height: "40%",
+                                    background: "#B03A2E",
                                     boxShadow: "none",
                                 }}
                             />

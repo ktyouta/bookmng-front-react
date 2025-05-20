@@ -14,18 +14,18 @@ const Parent = styled.div`
   top: 0;
   left: 0;
   position: fixed;
-  background-color:#00050d;
+  background-color:#2C3E50;
   z-index: 2;
 `;
 
 const MenuNav = styled.nav`
   width: 100%;
-  height:84%;
+  height:100%;
   box-sizing: border-box;
   padding-left: 9%;
-  padding-top: 3%;
-  padding-right: 5%;
+  padding-right: 3%;
   display:flex;
+  align-items: center;
 `;
 
 

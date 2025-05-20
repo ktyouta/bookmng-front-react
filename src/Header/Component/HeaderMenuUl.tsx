@@ -9,7 +9,7 @@ const NavUl = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  height: 100%;
+  height: 40%;
   width: 70%;
 `;
 
@@ -62,7 +62,7 @@ export function HeaderMenuUl() {
                         to={ROUTER_PATH.FAVORITE}
                         style={{ color: "inherit", fontWeight: "inherit" }}
                     >
-                        お気に入り
+                        本棚
                     </Link>
                 </NavLi>
             }
