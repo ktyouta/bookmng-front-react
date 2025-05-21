@@ -1,4 +1,4 @@
-import { useState, CSSProperties } from "react";
+import type { useState, CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
 

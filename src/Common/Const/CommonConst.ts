@@ -1,8 +1,8 @@
 import ENV from "../../env.json";
 import type { LoginUserInfoType } from "../Type/LoginUserInfoType";
 
-// videomng-apiのパス
-export const VIDEO_MNG_PATH = `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}`;
+// bookmng-apiのパス
+export const BOOK_MNG_PATH = `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}`;
 //z-index設定用
 export const Z_INDEX_PARAM = {
     WAITLOADING: 1000,

@@ -4,24 +4,44 @@ import { Route, Routes } from "react-router-dom";
 import { useContent } from "../Hook/useContent";
 import { NotFound } from "../../NotFound/Component/NotFound";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
+import { Provider } from "jotai";
+import { Home } from "../../Home/Component/Home";
 
 const Parent = styled.div`
   flex: 1;
   padding-top: 100px;
   box-sizing:border-box;
-  margin-top:1%;
+  margin-top:3%;
   background-color:#DDE3E8;
+  color:black;
 `;
 
 export function Content() {
 
   console.log("Content render");
 
-  useContent();
+  const { isCheckedAuth } = useContent();
 
   return (
     <Parent>
-
+      <Routes>
+        <Route
+          path={`${ROUTER_PATH.HOME}/*`}
+          element={
+            <Provider>
+              <Home />
+            </Provider>
+          }
+        />
+        {
+          isCheckedAuth &&
+          <Route
+            key={"*"}
+            path="*"
+            element={<NotFound backUrl={`${ROUTER_PATH.HOME}`} />}
+          />
+        }
+      </Routes>
     </Parent>
   );
 }

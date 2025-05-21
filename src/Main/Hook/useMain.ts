@@ -1,4 +1,4 @@
-import { VIDEO_MNG_PATH } from "../../Common/Const/CommonConst";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
 import ENV from "../../env.json";
 import { useState } from "react";
@@ -23,7 +23,7 @@ export function useMain() {
     // 認証チェック
     useQueryWrapper(
         {
-            url: `${VIDEO_MNG_PATH}${ENV.FRONT_USER_CHECK_AUTH}`,
+            url: `${BOOK_MNG_PATH}${ENV.FRONT_USER_CHECK_AUTH}`,
             afSuccessFn: (res: resType<LoginUserInfoType>) => {
 
                 const loginUserInfo = res.data;

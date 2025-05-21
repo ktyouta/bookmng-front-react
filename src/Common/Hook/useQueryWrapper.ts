@@ -13,7 +13,11 @@ type propsType<TData, RData, PData> = {
     postData?: PData,
 }
 
-const useQueryWrapper = <TData, RData, PData>(props: propsType<TData, RData, PData>) => {
+const useQueryWrapper = <
+    TData = unknown,
+    RData = TData,
+    PData extends {} = {},
+>(props: propsType<TData, RData, PData>) => {
 
     //GET
     const getQuery = async () => {
