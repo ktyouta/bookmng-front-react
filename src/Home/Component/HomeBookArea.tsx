@@ -20,11 +20,11 @@ const BookUl = styled.ul`
   padding: 0;
   width: 100%;
   box-sizing: border-box;
-  padding-left:5%;
-  padding-right:5%;
+  padding-left:6%;
+  padding-right:2%;
   padding-top: 4%;
   --grid-container-columns: 5;
-  grid-column-gap: 4%;
+  grid-column-gap: 3%;
 `;
 
 const MessageDiv = styled.div`

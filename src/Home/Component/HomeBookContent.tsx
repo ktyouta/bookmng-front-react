@@ -9,8 +9,8 @@ import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModel
 
 
 const BookArticle = styled.article`
-    width:100%;
-    height:65%;
+    width: 71%;
+    height: 85%;
 `;
 
 const BookSection = styled.section`

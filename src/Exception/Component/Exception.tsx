@@ -7,11 +7,12 @@ import { FaHome } from "react-icons/fa";
 const Parent = styled.div`
   width: 100vw;
   height: 100vh;
-  color: white;
   font-size: 1.5rem;
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
+  background-color:#DDE3E8;
+  color:black;
 `;
 
 const HomeLinkSpan = styled.span`
