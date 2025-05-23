@@ -4,7 +4,8 @@ import { HomeMetaInfo } from "./HomeMetaInfo";
 import ComboComponent from "../../Common/Component/ComboComponent";
 import { BOOK_DETIAL_MENU_LIST, MENU_NO } from "../Const/HomeConst";
 import { useHomeBookDetailMenu } from "../Hook/useHomeBookDetailMenu";
-import type { BookDetailItemType } from "../Type/BookDetailItemType";
+import type { BookDetailType } from "../Type/BookDetailType";
+import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
 
 
 const MenuParentDiv = styled.div`
@@ -24,12 +25,12 @@ const ComboAreaDiv = styled.div`
 
 const ComboTitleSpan = styled.span`
   margin-right:2%;
-  color: black;
+  color: #2C3E50;
   font-size: 18px;
 `;
 
 type propsType = {
-  bookDetail: BookDetailItemType | undefined,
+  bookDetail: BookDetailType | undefined,
 }
 
 
@@ -48,31 +49,10 @@ export function HomeBookDetailMenu(props: propsType) {
   return (
     <React.Fragment>
       <MenuParentDiv>
-        <ComboAreaDiv>
-          <ComboTitleSpan>
-            メニュー：
-          </ComboTitleSpan>
-          <ComboComponent
-            combo={BOOK_DETIAL_MENU_LIST}
-            initValue={BOOK_DETIAL_MENU_LIST[0].value}
-            onChange={setOpenMenuNo}
-            width="50%"
-            minWidth="8%"
-            height="39px"
-            selectStyle={{
-              "backgroundColor": "rgb(24, 26, 30)",
-              "color": "white",
-            }}
-          />
-        </ComboAreaDiv>
-        {
-          // 書籍情報
-          openMenuNo === MENU_NO.INFO &&
-          <HomeMetaInfo
-            bookId={bookId}
-            bookDetail={bookDetail}
-          />
-        }
+        <HomeMetaInfo
+          bookId={bookId}
+          bookDetail={bookDetail}
+        />
       </MenuParentDiv>
     </React.Fragment>
   );

@@ -9,6 +9,8 @@ import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
 import type { BookDetailResponseType } from "../Type/BookDetailResponseType";
 import { BookDetailApiUrlModel } from "../Model/VideoDetailApiUrlModel";
+import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
+import type { BookDetailType } from "../Type/BookDetailType";
 
 export function useHomeBookDetail() {
 
@@ -26,14 +28,15 @@ export function useHomeBookDetail() {
         {
             url: bookId ? `${new BookDetailApiUrlModel(bookId).bookMngApiPath}` : ``,
             afSuccessFn: (response: BookDetailResponseType) => {
-                const items = response.data.items;
 
-                if (items.length === 0) {
+                const data: BookDetailType = response.data;
+
+                if (!data) {
                     setErrMessage(`書籍情報を取得できませんでした。`);
                     return;
                 }
 
-                setBookDetail(items[0]);
+                setBookDetail(data);
             },
             afErrorFn: (res) => {
                 const errRes = res as errResType;

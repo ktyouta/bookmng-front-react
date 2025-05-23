@@ -3,16 +3,19 @@ import { IconComponent } from "../../Common/Component/IconComponent";
 import { RxCross1 } from 'react-icons/rx';
 import styled from "styled-components";
 import AccordionComponent from "../../Common/Component/AccordionComponent";
-import type { BookDetailItemType } from "../Type/BookDetailItemType";
+import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
+import parse from "html-react-parser";
 
 
 const Parent = styled.div`
   box-sizing:border-box;
   min-height: 502px;
-  background-color: #181a1e;
-  border-radius: 1%;
+  background-color: #CAD4DB;
+  border-radius: 15px;
   border: solid 1px;
   padding:2%;
+  border-color: #A5B1BA;
+  color:#2C3E50;
 `;
 
 const ContentDiv = styled.div`
@@ -25,13 +28,20 @@ const TitleDiv = styled.div`
 
 const MetaDiv = styled.div`
   box-sizing:border-box;
-  margin-bottom:4%;
+  margin-bottom: 3%;
+`;
+
+const AuthorDiv = styled.div`
+  display: flex;
+  text-align: center;
+  width: auto;
+  align-items: center;
 `;
 
 
 type propsType = {
     bookId: string,
-    bookDetail: BookDetailItemType | undefined,
+    bookDetail: GoogleBooksDetailResponseType | undefined,
 }
 
 export function HomeMetaInfo(props: propsType) {
@@ -39,13 +49,20 @@ export function HomeMetaInfo(props: propsType) {
     console.log("HomeMetaInfo render");
 
     const bookDetail = props.bookDetail;
-    const item = bookDetail;
     // 書籍基本情報
-    const volumeInfo = item?.volumeInfo;
+    const volumeInfo = bookDetail?.volumeInfo;
     // タイトル
     const title = volumeInfo?.title;
-    // 書籍説明
-    //const description = volumeInfo?.;
+    // 著者名
+    const authors = volumeInfo?.authors;
+    // 出版社
+    const publisher = volumeInfo?.publisher;
+    // 出版日
+    const publishedDate = volumeInfo?.publishedDate;
+    // あらすじ
+    const description = parse(volumeInfo?.description ?? ``);
+    // ページ数
+    const pageCount = volumeInfo?.pageCount;
 
     return (
         <Parent>
@@ -57,28 +74,44 @@ export function HomeMetaInfo(props: propsType) {
                     {title}
                 </MetaDiv>
                 <TitleDiv>
-                    【チャンネル】
+                    【著者名】
                 </TitleDiv>
                 <MetaDiv>
-
+                    {
+                        authors?.map((e: string) => {
+                            return (
+                                <AuthorDiv
+                                    key={e}
+                                >
+                                    {e}
+                                </AuthorDiv>
+                            )
+                        })
+                    }
                 </MetaDiv>
                 <TitleDiv>
-                    【再生回数】
+                    【出版社】
                 </TitleDiv>
                 <MetaDiv>
-
+                    {publisher}
                 </MetaDiv>
                 <TitleDiv>
-                    【高評価数】
+                    【出版日】
                 </TitleDiv>
                 <MetaDiv>
-
+                    {publishedDate}
                 </MetaDiv>
                 <TitleDiv>
-                    【書籍説明】
+                    【ページ数】
                 </TitleDiv>
                 <MetaDiv>
-                    {/* {
+                    {pageCount}
+                </MetaDiv>
+                <TitleDiv>
+                    【あらすじ】
+                </TitleDiv>
+                <MetaDiv>
+                    {
                         description &&
                         <AccordionComponent
                             defaultHeight={'70px'}
@@ -91,7 +124,7 @@ export function HomeMetaInfo(props: propsType) {
                         >
                             {description}
                         </AccordionComponent>
-                    } */}
+                    }
                 </MetaDiv>
             </ContentDiv>
         </Parent>

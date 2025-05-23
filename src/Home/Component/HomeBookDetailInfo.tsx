@@ -5,16 +5,17 @@ import ButtonComponent from "../../Common/Component/ButtonComponent";
 import { MdPlayArrow } from 'react-icons/md';
 import { IconComponent } from "../../Common/Component/IconComponent";
 import { useHomeBookDetailInfo } from "../Hook/useHomeBookDetailInfo";
-import type { BookDetailItemType } from "../Type/BookDetailItemType";
+import type { BookDetailType } from "../Type/BookDetailType";
 import { FLG } from "../../Common/Const/CommonConst";
+import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
 
 const BookInfoDiv = styled.div`
   width: 25%;
 `;
 
 const BookImg = styled.img`
-    width: 92%;
-    height: 325px;
+    width: 85%;
+    height: 355px;
     border-radius: 6%;
 `;
 
@@ -22,6 +23,7 @@ const BookMetaDiv = styled.div`
 `;
 
 const BookTitle = styled.h3`
+    margin-bottom: 12%;
 `;
 
 const BtnDiv = styled.div`
@@ -32,7 +34,7 @@ const BtnDiv = styled.div`
 
 
 type propsType = {
-    bookDetail: BookDetailItemType | undefined,
+    bookDetail: BookDetailType | undefined,
 }
 
 
