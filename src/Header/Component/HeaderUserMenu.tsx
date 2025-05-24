@@ -29,7 +29,7 @@ const NavDiv = styled.div<{ isDisplay: boolean }>`
   padding-top: 14px;
   display: ${({ isDisplay }) => (isDisplay ? "block" : "none")};
   border-radius: 6px;
-  z-index:${Z_INDEX_PARAM.HEADNAV};
+  z-index:${Z_INDEX_PARAM.HEAD_NAV};
   box-sizing: border-box;
   background-color: #1c1f26;
   border: 1px solid #3a3f4b;
@@ -59,7 +59,7 @@ const OverlayDiv = styled.div`
   width: 100vw;
   height: 100vh;
   top: 0; 
-  z-index: ${Z_INDEX_PARAM.HEADOVERLAY}; 
+  z-index: ${Z_INDEX_PARAM.WAITL_OADING}; 
 `;
 
 // ユーザー名のスタイル

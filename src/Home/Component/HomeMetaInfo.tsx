@@ -41,7 +41,6 @@ const DescriptionDiv = styled.div`
 
 
 type propsType = {
-    bookId: string,
     bookDetail: GoogleBooksDetailResponseType | undefined,
 }
 

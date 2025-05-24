@@ -3,12 +3,14 @@ import type { LoginUserInfoType } from "../Type/LoginUserInfoType";
 
 // bookmng-apiのパス
 export const BOOK_MNG_PATH = `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}`;
+
 //z-index設定用
 export const Z_INDEX_PARAM = {
-    WAITLOADING: 1000,
-    HEADOVERLAY: 2000,
-    HEADNAV: 2001,
+    WAITL_OADING: 1000,
+    HEAD_OVERLAY: 2000,
+    HEAD_NAV: 2001,
     MODAL: 2002,
+    MODAL_OVERLAY: 2000,
 }
 
 // 月

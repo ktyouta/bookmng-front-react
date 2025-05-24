@@ -1,6 +1,7 @@
 import type { useState, CSSProperties } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import styled from "styled-components";
+import { Z_INDEX_PARAM } from "../Const/CommonConst";
 
 //引数の型
 type propsType = {
@@ -16,6 +17,7 @@ function LoadingBase(props: propsType) {
         position: "fixed",
         top: props.top ?? "50%",
         left: props.left ?? "50%",
+        zIndex: Z_INDEX_PARAM.WAITL_OADING,
     };
 
     return (

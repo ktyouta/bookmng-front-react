@@ -10,12 +10,11 @@ import { FLG } from "../../Common/Const/CommonConst";
 import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
 
 const BookInfoDiv = styled.div`
-  width: 25%;
+  width: 18%;
 `;
 
 const BookImg = styled.img`
-    width: 85%;
-    height: 355px;
+    width: 89%;
     border-radius: 6%;
 `;
 
@@ -25,13 +24,6 @@ const BookMetaDiv = styled.div`
 const BookTitle = styled.h3`
     margin-bottom: 12%;
 `;
-
-const BtnDiv = styled.div`
-  display:flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 
 type propsType = {
     bookDetail: BookDetailType | undefined,

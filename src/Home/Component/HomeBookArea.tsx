@@ -43,6 +43,7 @@ const NextGetBtnAreaDiv = styled.div`
   width:100%;
   box-sizing: border-box;
   margin-top: 3%;
+  margin-bottom: 1%;
 `;
 
 export function HomeBookArea() {
@@ -74,7 +75,7 @@ export function HomeBookArea() {
   // 書籍リスト
   const bookListItems = bookListData.items;
   // 書籍情報取得件数
-  const totalItems = bookListData.totalItems;
+  const totalItems = bookListItems.length;
 
   if (bookListItems.length === 0) {
     return (

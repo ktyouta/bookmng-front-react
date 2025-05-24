@@ -15,7 +15,6 @@ const Parent = styled.div`
 
 const BookContentDiv = styled.div`
   width: 100%;
-  height: 52%;
   display:flex;
   box-sizing:border-box;
   padding-left:9%;

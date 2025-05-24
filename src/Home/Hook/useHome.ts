@@ -1,6 +1,6 @@
-import { useAtomValue, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
-import { keywordAtom, selectedBookCategoryAtom, selectedBookTypeAtom } from "../Atom/HomeAtom";
+import { keywordAtom, startIndexAtom } from "../Atom/HomeAtom";
 import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
 
 export function useHome() {
@@ -9,12 +9,10 @@ export function useHome() {
     const [bookId, setBookId] = useState(``);
     // 書籍取得用URL
     const [bookApiUrl, setBookApiUrl] = useState(``);
-    // 書籍一覧検索条件選択値(種別)
-    const setSelectedBookType = useSetAtom(selectedBookTypeAtom);
-    // 書籍一覧検索条件選択値(カテゴリ)
-    const setSelectedBookCategory = useSetAtom(selectedBookCategoryAtom);
     // 検索キーワード
     const setKeyword = useSetAtom(keywordAtom);
+    // 書籍一覧検索条件選択値(書籍取得開始位置)
+    const setStartIndex = useSetAtom(startIndexAtom);
 
 
     // URL直打ち対応
@@ -36,17 +34,14 @@ export function useHome() {
 
                 const params = new URLSearchParams(query);
                 const keywordValue = params.get(`q`);
-                const bookCategoryValue = params.get(`bookcategory`);
-                const bookTypeValue = params.get(`booktype`);
+                const startIndexValue = params.get(`startIndex`);
 
                 const keyword = keywordValue !== null ? keywordValue : ``;
-                const bookCategory = bookCategoryValue !== null ? bookCategoryValue : ``;
-                const bookType = bookTypeValue !== null ? bookTypeValue : ``;
+                const startIndex = startIndexValue !== null && !isNaN(parseInt(startIndexValue)) ? startIndexValue : ``;
 
                 // 検索条件の初期値設定
                 setKeyword(keyword);
-                setSelectedBookType(bookType);
-                setSelectedBookCategory(bookCategory);
+                setStartIndex(parseInt(startIndex));
 
                 const bookListApiUrlModel = BookListApiUrlModel.reConstruct(query);
                 setBookApiUrl(bookListApiUrlModel.url);

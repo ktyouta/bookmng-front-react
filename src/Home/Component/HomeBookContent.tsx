@@ -10,7 +10,6 @@ import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModel
 
 const BookArticle = styled.article`
     width: 71%;
-    height: 78%;
 `;
 
 const BookSection = styled.section`
@@ -27,7 +26,6 @@ const BookImg = styled.img`
 
 const BookImgAreaDiv = styled.div`
     width:100%;
-    height:85%;
     font-size: 16px;
     position:relative;
 `;
@@ -38,10 +36,6 @@ const BookTitleDiv = styled.div`
 `;
 
 const DateDiv = styled.div`
-    font-size: 11px;
-`;
-
-const ChennelTitleDiv = styled.div`
     font-size: 11px;
 `;
 
