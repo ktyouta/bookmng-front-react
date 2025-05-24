@@ -40,9 +40,7 @@ export function useHomeBookDetail() {
             },
             afErrorFn: (res) => {
                 const errRes = res as errResType;
-                if (errRes.response.data.message) {
-                    toast.error(`${errRes.response.data.message}`);
-                }
+                setErrMessage(`書籍情報の取得に失敗しました。`);
             }
         }
     );

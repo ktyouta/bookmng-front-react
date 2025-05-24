@@ -73,10 +73,10 @@ export function HomeBookDetailInfo(props: propsType) {
                             {
                                 favoriteFlg === FLG.ON
                                     ?
-                                    // お気に入り登録済み
+                                    // 本棚登録済み
                                     <ButtonComponent
                                         styleTypeNumber="BASE"
-                                        title={"お気に入り登録済み"}
+                                        title={"本棚に登録済み"}
                                         onclick={() => { }}
                                         style={{
                                             "fontSize": "0.9rem",
@@ -84,14 +84,14 @@ export function HomeBookDetailInfo(props: propsType) {
                                             "width": "90%",
                                             "background": "rgb(100, 100, 100)",
                                             "color": "white",
-                                            "borderRadius": "0",
+                                            "borderRadius": "8px",
                                         }}
                                     />
                                     :
-                                    // お気に入り未登録
+                                    // 本棚未登録
                                     <ButtonComponent
                                         styleTypeNumber="BASE"
-                                        title={"お気に入りに登録する"}
+                                        title={"本棚に登録する"}
                                         onclick={addToFavorite}
                                         style={{
                                             "fontSize": "0.9rem",
@@ -99,7 +99,7 @@ export function HomeBookDetailInfo(props: propsType) {
                                             "width": "90%",
                                             "background": "#ff9f00",
                                             "color": "white",
-                                            "borderRadius": "0",
+                                            "borderRadius": "8px",
                                         }}
                                     />
                             }
@@ -108,7 +108,7 @@ export function HomeBookDetailInfo(props: propsType) {
                         // ログイン画面遷移ボタン
                         <ButtonComponent
                             styleTypeNumber="BASE"
-                            title={"ログインしてお気に入りに登録"}
+                            title={"ログインして本棚に登録"}
                             onclick={moveLogin}
                             style={{
                                 "fontSize": "0.9rem",
@@ -116,7 +116,7 @@ export function HomeBookDetailInfo(props: propsType) {
                                 "width": "90%",
                                 "background": "rgb(30, 90, 170)",
                                 "color": "white",
-                                "borderRadius": "0",
+                                "borderRadius": "8px",
                             }}
                         />
                 }

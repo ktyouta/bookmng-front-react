@@ -30,3 +30,6 @@ export const BOOK_DETIAL_MENU_LIST: comboType[] = [
         value: `2`,
     }
 ];
+
+// 書籍一覧最大取得件数
+export const BOOK_LIST_MAX_RESULT = 40;

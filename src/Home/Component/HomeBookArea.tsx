@@ -6,6 +6,7 @@ import { HomeBookContent } from "./HomeBookContent";
 import ButtonComponent from "../../Common/Component/ButtonComponent";
 import type { BookListItemType } from "../Type/BookListItemType";
 import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModelItemsType";
+import { BOOK_LIST_MAX_RESULT } from "../Const/HomeConst";
 
 const Parent = styled.div`
   width: 100%;
@@ -23,8 +24,9 @@ const BookUl = styled.ul`
   padding-left:6%;
   padding-right:2%;
   padding-top: 4%;
-  --grid-container-columns: 5;
+  --grid-container-columns: 8;
   grid-column-gap: 3%;
+  grid-row-gap: 20px;
 `;
 
 const MessageDiv = styled.div`
@@ -71,8 +73,8 @@ export function HomeBookArea() {
 
   // 書籍リスト
   const bookListItems = bookListData.items;
-  // 次データ取得用トークン
-  //const nextPageToken = bookListData.nextPageToken;
+  // 書籍情報取得件数
+  const totalItems = bookListData.totalItems;
 
   if (bookListItems.length === 0) {
     return (
@@ -100,22 +102,23 @@ export function HomeBookArea() {
           })
         }
       </BookUl>
-      {/* {
-        nextPageToken &&
+      {
+        totalItems >= BOOK_LIST_MAX_RESULT &&
         <NextGetBtnAreaDiv>
           <ButtonComponent
             styleTypeNumber="GRAD_GRAY"
             title={"もっと見る"}
             onclick={() => {
-              clickShowMore(nextPageToken);
+              clickShowMore();
             }}
             style={{
               "fontSize": "0.9rem",
               "height": "7%",
+              "background": "#5A6B7A"
             }}
           />
         </NextGetBtnAreaDiv>
-      } */}
+      }
     </Parent>
   );
 }

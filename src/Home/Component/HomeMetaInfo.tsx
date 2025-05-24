@@ -29,13 +29,14 @@ const TitleDiv = styled.div`
 const MetaDiv = styled.div`
   box-sizing:border-box;
   margin-bottom: 3%;
-`;
-
-const AuthorDiv = styled.div`
   display: flex;
   text-align: center;
-  width: auto;
   align-items: center;
+`;
+
+const DescriptionDiv = styled.div`
+  box-sizing:border-box;
+  margin-bottom: 3%;
 `;
 
 
@@ -63,54 +64,34 @@ export function HomeMetaInfo(props: propsType) {
     const description = parse(volumeInfo?.description ?? ``);
     // ページ数
     const pageCount = volumeInfo?.pageCount;
+    // ISBN
+    const isbn = volumeInfo?.industryIdentifiers;
 
     return (
         <Parent>
             <ContentDiv>
-                <TitleDiv>
-                    【タイトル】
-                </TitleDiv>
                 <MetaDiv>
-                    {title}
+                    タイトル : {title}
+                </MetaDiv>
+                <MetaDiv>
+                    著者名 : {authors?.join(`,`)}
+                </MetaDiv>
+                <MetaDiv>
+                    出版社 : {publisher}
+                </MetaDiv>
+                <MetaDiv>
+                    出版日 : {publishedDate}
+                </MetaDiv>
+                <MetaDiv>
+                    ページ数 : {pageCount}
+                </MetaDiv>
+                <MetaDiv>
+                    ISBN : {isbn?.map((e) => e.identifier).join(`,`)}
                 </MetaDiv>
                 <TitleDiv>
-                    【著者名】
+                    あらすじ
                 </TitleDiv>
-                <MetaDiv>
-                    {
-                        authors?.map((e: string) => {
-                            return (
-                                <AuthorDiv
-                                    key={e}
-                                >
-                                    {e}
-                                </AuthorDiv>
-                            )
-                        })
-                    }
-                </MetaDiv>
-                <TitleDiv>
-                    【出版社】
-                </TitleDiv>
-                <MetaDiv>
-                    {publisher}
-                </MetaDiv>
-                <TitleDiv>
-                    【出版日】
-                </TitleDiv>
-                <MetaDiv>
-                    {publishedDate}
-                </MetaDiv>
-                <TitleDiv>
-                    【ページ数】
-                </TitleDiv>
-                <MetaDiv>
-                    {pageCount}
-                </MetaDiv>
-                <TitleDiv>
-                    【あらすじ】
-                </TitleDiv>
-                <MetaDiv>
+                <DescriptionDiv>
                     {
                         description &&
                         <AccordionComponent
@@ -125,7 +106,7 @@ export function HomeMetaInfo(props: propsType) {
                             {description}
                         </AccordionComponent>
                     }
-                </MetaDiv>
+                </DescriptionDiv>
             </ContentDiv>
         </Parent>
     );

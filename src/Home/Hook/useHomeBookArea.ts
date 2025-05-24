@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
 import type { BookListResponseType } from "../Type/BookListResponseType";
-import { keywordAtom, selectedBookCategoryAtom, selectedBookTypeAtom, showMoreDataAtom, bookListDataAtom } from "../Atom/HomeAtom";
+import { keywordAtom, selectedBookCategoryAtom, selectedBookTypeAtom, showMoreDataAtom, bookListDataAtom, startIndexAtom } from "../Atom/HomeAtom";
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
 import { isEqual } from "lodash";
 import type { ShowMoreDataType } from "../Type/ShowMoreDataType";
@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import type { GoogleBooksAPIsModelType } from "../Type/GoogleBooksAPIsModelType";
 import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModelItemsType";
 import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
+import { BOOK_LIST_MAX_RESULT } from "../Const/HomeConst";
+import { useNavigate } from "react-router-dom";
 
 
 export function useHomeBookArea() {
@@ -24,12 +26,12 @@ export function useHomeBookArea() {
     const [showMoreData, setShowMoreData] = useAtom(showMoreDataAtom);
     // 検索キーワード
     const keyword = useAtomValue(keywordAtom);
-    // 書籍一覧検索条件選択値(種別)
-    const selectedBookType = useAtomValue(selectedBookTypeAtom);
-    // 書籍一覧検索条件選択値(カテゴリ)
-    const selectedBookCategory = useAtomValue(selectedBookCategoryAtom);
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
+    // 書籍一覧検索条件選択値(書籍取得開始位置)
+    const [startIndex, setStartIndex] = useAtom(startIndexAtom);
+    //ルーティング用
+    const navigate = useNavigate();
 
 
     // 書籍一覧を取得
@@ -41,10 +43,11 @@ export function useHomeBookArea() {
                 // 書籍リスト追加読み込み情報変更チェック
                 const latestShowMoreData: ShowMoreDataType = {
                     keyword: keyword,
-                    bookType: selectedBookType,
-                    bookCategory: selectedBookCategory,
                 }
+
                 const isEqualShowMoreData = isEqual(showMoreData, latestShowMoreData);
+                // もっと見るボタン押下時はイデックスを加算
+                let nextStartIndex = isEqualShowMoreData ? startIndex + BOOK_LIST_MAX_RESULT : BOOK_LIST_MAX_RESULT;
 
                 setBookListData((e) => {
 
@@ -67,6 +70,7 @@ export function useHomeBookArea() {
                 setShowMoreData(latestShowMoreData);
                 setBookApiUrl(``);
                 setErrMessage(``);
+                setStartIndex(nextStartIndex);
             },
             afErrorFn: (res) => {
                 const errRes = res as errResType;
@@ -80,11 +84,9 @@ export function useHomeBookArea() {
     /**
      * もっと見るボタン押下
      */
-    function clickShowMore(nextPageToken: string) {
+    function clickShowMore() {
 
         const keyword = showMoreData?.keyword;
-        const bookType = showMoreData?.bookType ?? ``;
-        const bookCategory = showMoreData?.bookCategory ?? ``;
 
         if (!keyword) {
             toast.error(`書籍を取得できません`);
@@ -93,13 +95,12 @@ export function useHomeBookArea() {
 
         const bookListApiUrlModel = BookListApiUrlModel.create({
             keyword,
-            bookType,
-            nextPageToken,
-            bookCategory
+            startIndex,
         });
 
         const bookApiUrl = bookListApiUrlModel.url;
         setBookApiUrl(`${bookApiUrl}`);
+        navigate(bookListApiUrlModel.query);
     }
 
     return {

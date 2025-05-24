@@ -1,4 +1,4 @@
-import { book_TYPE_LIST } from "../Const/HomeConst";
+import { BOOK_LIST_MAX_RESULT, book_TYPE_LIST } from "../Const/HomeConst";
 import type { BookDetailType } from "../Type/BookDetailType";
 import type { GoogleBooksAPIsModelType } from "../Type/GoogleBooksAPIsModelType";
 import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
@@ -17,3 +17,5 @@ export const showMoreDataAtom = atom<ShowMoreDataType>();
 export const selectedBookTypeAtom = atom<string>(book_TYPE_LIST[0].value);
 // 書籍一覧検索条件選択値(カテゴリ)
 export const selectedBookCategoryAtom = atom<string>(``);
+// 書籍一覧検索条件選択値(書籍取得開始位置)
+export const startIndexAtom = atom<number>(0);
