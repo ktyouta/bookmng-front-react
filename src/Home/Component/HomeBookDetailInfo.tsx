@@ -8,6 +8,8 @@ import { useHomeBookDetailInfo } from "../Hook/useHomeBookDetailInfo";
 import type { BookDetailType } from "../Type/BookDetailType";
 import { FLG } from "../../Common/Const/CommonConst";
 import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
+import { FaBook } from 'react-icons/fa';
+
 
 const BookInfoDiv = styled.div`
   width: 18%;
@@ -25,10 +27,15 @@ const BookTitle = styled.h3`
     margin-bottom: 12%;
 `;
 
+const TmpImgDiv = styled.div`
+    height:306px;
+    box-sizing: border-box;
+    padding-top: 14px;
+`;
+
 type propsType = {
     bookDetail: BookDetailType | undefined,
 }
-
 
 export function HomeBookDetailInfo(props: propsType) {
 
@@ -52,9 +59,23 @@ export function HomeBookDetailInfo(props: propsType) {
 
     return (
         <BookInfoDiv>
-            <BookImg
-                src={imgUrl}
-            />
+            {
+                imgUrl
+                    ?
+                    <BookImg
+                        src={imgUrl}
+                    />
+                    :
+                    <TmpImgDiv>
+                        <IconComponent
+                            icon={FaBook}
+                            size="70%"
+                            style={{
+                                "color": "gray"
+                            }}
+                        />
+                    </TmpImgDiv>
+            }
             <BookMetaDiv>
                 <BookTitle>
                     {title}

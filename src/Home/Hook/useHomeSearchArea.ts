@@ -14,12 +14,6 @@ export function useHomeSearchArea() {
     const [keyword, setKeyword] = useAtom(keywordAtom);
     // 書籍取得用URL
     const setBookApiUrl = SetBookApiUrlContext.useCtx();
-    // 条件指定モーダルの表示フラグ
-    const { flag: isOpenFilterModal, on: openFilterModal, off: closeFilterModal } = useSwitch();
-    // 書籍一覧検索条件選択値(種別)
-    const selectedBookType = useAtomValue(selectedBookTypeAtom);
-    // 書籍一覧検索条件選択値(カテゴリ)
-    const selectedBookCategory = useAtomValue(selectedBookCategoryAtom);
     //ルーティング用
     const navigate = useNavigate();
     // 書籍リスト追加読み込み用
@@ -50,8 +44,5 @@ export function useHomeSearchArea() {
         keyword,
         setKeyword,
         clickSearchBtn,
-        isOpenFilterModal,
-        openFilterModal,
-        closeFilterModal,
     }
 }

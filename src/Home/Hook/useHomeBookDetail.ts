@@ -1,6 +1,6 @@
 import { useAtom, useAtomValue } from "jotai";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
-import { bookDetailItemAtom } from "../Atom/HomeAtom";
+import { bookDetailItemAtom, keywordAtom, startIndexAtom } from "../Atom/HomeAtom";
 import { useNavigate } from "react-router-dom";
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
 import { BookIdContext } from "../Component/Home";
@@ -11,6 +11,7 @@ import type { BookDetailResponseType } from "../Type/BookDetailResponseType";
 import { BookDetailApiUrlModel } from "../Model/VideoDetailApiUrlModel";
 import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
 import type { BookDetailType } from "../Type/BookDetailType";
+import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
 
 export function useHomeBookDetail() {
 
@@ -22,6 +23,9 @@ export function useHomeBookDetail() {
     const navigate = useNavigate();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
+    // 検索キーワード
+    const keyword = useAtomValue(keywordAtom);
+
 
     // 書籍詳細を取得
     const { isLoading } = useQueryWrapper<BookDetailResponseType>(
@@ -52,11 +56,31 @@ export function useHomeBookDetail() {
         navigate(ROUTER_PATH.HOME);
     }
 
+    /**
+     * 検索状態を維持してホーム画面(書籍一覧)に戻る
+     */
+    function backPage() {
+
+        let query = ``;
+
+        if (keyword) {
+            const bookListApiUrlModel = BookListApiUrlModel.create({
+                keyword,
+                startIndex: 0
+            });
+
+            query = bookListApiUrlModel.query;
+        }
+
+        navigate(`${ROUTER_PATH.HOME}${query}`);
+    }
+
     return {
         isLoading,
         bookDetail,
         bookId,
         errMessage,
         backHome,
+        backPage,
     };
 }

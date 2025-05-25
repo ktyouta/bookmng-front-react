@@ -6,6 +6,7 @@ import { IconComponent } from "../../Common/Component/IconComponent";
 import { FaStar } from "react-icons/fa";
 import { FLG } from "../../Common/Const/CommonConst";
 import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModelItemsType";
+import { FaBook } from 'react-icons/fa';
 
 
 const BookArticle = styled.article`
@@ -39,6 +40,13 @@ const DateDiv = styled.div`
     font-size: 11px;
 `;
 
+const TmpImgDiv = styled.div`
+    height:144px;
+    cursor:pointer;
+    box-sizing: border-box;
+    padding-top: 14px;
+`;
+
 
 type propsType = {
     data: GoogleBooksAPIsModelItemsType,
@@ -67,19 +75,34 @@ export function HomeBookContent(props: propsType) {
     return (
         <BookArticle>
             <BookSection>
-                <BookImgAreaDiv>
-                    <BookImg
-                        src={imgUrl}
-                        onClick={() => {
-                            clickBook(bookId)
-                        }}
-                    />
-                    {/* {
-                        favoriteFlg === FLG.ON &&
-                        // お気に入りアイコン
-                        <HomeBookContentFavoriteIconArea />
-                    } */}
-                </BookImgAreaDiv>
+                {
+                    imgUrl ?
+                        <BookImgAreaDiv>
+                            <BookImg
+                                src={imgUrl}
+                                onClick={() => {
+                                    clickBook(bookId)
+                                }}
+                            />
+                            {/* favoriteFlg === FLG.ON &&
+                            // お気に入りアイコン
+                            <HomeBookContentFavoriteIconArea /> */}
+                        </BookImgAreaDiv>
+                        :
+                        <TmpImgDiv
+                            onClick={() => {
+                                clickBook(bookId)
+                            }}
+                        >
+                            <IconComponent
+                                icon={FaBook}
+                                size="100"
+                                style={{
+                                    "color": "gray"
+                                }}
+                            />
+                        </TmpImgDiv>
+                }
                 <BookTitleDiv
                     onClick={() => {
                         clickBook(bookId)

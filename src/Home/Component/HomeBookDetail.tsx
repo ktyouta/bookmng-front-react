@@ -5,12 +5,15 @@ import styled from "styled-components";
 import ButtonComponent from "../../Common/Component/ButtonComponent";
 import { HomeBookDetailInfo } from "./HomeBookDetailInfo";
 import { HomeBookDetailMenu } from "./HomeBookDetailMenu";
+import { FaArrowLeft } from "react-icons/fa6";
+import { IconComponent } from "../../Common/Component/IconComponent";
 
 
 const Parent = styled.div`
   width: 100%;
   box-sizing:border-box;
   padding-top:1%;
+  position:relative;
 `;
 
 const BookContentDiv = styled.div`
@@ -41,7 +44,8 @@ export function HomeBookDetail() {
     isLoading,
     bookDetail,
     errMessage,
-    backHome, } = useHomeBookDetail();
+    backHome,
+    backPage } = useHomeBookDetail();
 
   // ローディング
   if (isLoading) {
@@ -65,6 +69,17 @@ export function HomeBookDetail() {
 
   return (
     <Parent>
+      <IconComponent
+        icon={FaArrowLeft}
+        size="25"
+        style={{
+          "color": "gray",
+          "position": "absolute",
+          "top": "-3%",
+          "left": "2%",
+        }}
+        onclick={backPage}
+      />
       <BookContentDiv>
         {/* 書籍情報 */}
         <HomeBookDetailInfo

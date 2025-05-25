@@ -46,8 +46,6 @@ export function useHomeBookArea() {
                 }
 
                 const isEqualShowMoreData = isEqual(showMoreData, latestShowMoreData);
-                // もっと見るボタン押下時はイデックスを加算
-                let nextStartIndex = isEqualShowMoreData ? startIndex + BOOK_LIST_MAX_RESULT : BOOK_LIST_MAX_RESULT;
 
                 setBookListData((e) => {
 
@@ -70,7 +68,6 @@ export function useHomeBookArea() {
                 setShowMoreData(latestShowMoreData);
                 setBookApiUrl(``);
                 setErrMessage(``);
-                setStartIndex(nextStartIndex);
             },
             afErrorFn: (res) => {
                 const errRes = res as errResType;
@@ -93,13 +90,17 @@ export function useHomeBookArea() {
             return;
         }
 
+        // 取得開始イデックスを加算
+        const nextStartIndex = startIndex + BOOK_LIST_MAX_RESULT;
+
         const bookListApiUrlModel = BookListApiUrlModel.create({
             keyword,
-            startIndex,
+            startIndex: nextStartIndex,
         });
 
         const bookApiUrl = bookListApiUrlModel.url;
         setBookApiUrl(`${bookApiUrl}`);
+        setStartIndex(nextStartIndex);
         navigate(bookListApiUrlModel.query);
     }
 

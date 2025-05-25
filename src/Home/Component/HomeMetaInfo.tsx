@@ -60,7 +60,7 @@ export function HomeMetaInfo(props: propsType) {
     // 出版日
     const publishedDate = volumeInfo?.publishedDate;
     // あらすじ
-    const description = parse(volumeInfo?.description ?? ``);
+    const description = volumeInfo?.description ? parse(volumeInfo?.description) : ``;
     // ページ数
     const pageCount = volumeInfo?.pageCount;
     // ISBN

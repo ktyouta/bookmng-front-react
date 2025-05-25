@@ -37,7 +37,7 @@ export function useHome() {
                 const startIndexValue = params.get(`startIndex`);
 
                 const keyword = keywordValue !== null ? keywordValue : ``;
-                const startIndex = startIndexValue !== null && !isNaN(parseInt(startIndexValue)) ? startIndexValue : ``;
+                const startIndex = startIndexValue !== null && !isNaN(parseInt(startIndexValue)) ? startIndexValue : `0`;
 
                 // 検索条件の初期値設定
                 setKeyword(keyword);

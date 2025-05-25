@@ -51,10 +51,7 @@ export function HomeSearchArea() {
     const {
         keyword,
         setKeyword,
-        clickSearchBtn,
-        isOpenFilterModal,
-        openFilterModal,
-        closeFilterModal, } = useHomeSearchArea();
+        clickSearchBtn, } = useHomeSearchArea();
 
     return (
         <Parent>
