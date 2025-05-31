@@ -1,4 +1,4 @@
-// お気に入り登録レスポンス
+// 本棚登録レスポンス
 export type AddToFavoriteResponseType = {
 
 }

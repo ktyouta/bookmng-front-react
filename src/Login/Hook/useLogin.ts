@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import type { refType } from "../../Common/Component/BaseTextbox";
 import { useNavigate } from "react-router-dom";
-import { SetIsLoginContext, SetLoginUserInfoContext } from "../../QueryApp";
+import { SetLoginUserInfoContext } from "../../QueryApp";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
 import type { LoginUserInfoType } from "../../Common/Type/LoginUserInfoType";
 import type { LoginRequestType } from "../Type/LoginRequestType";
 import ENV from "../../env.json";
-import { on } from "../Features/isLoginSlice";
+import { onLoginFlg } from "../Features/isLoginSlice";
 import { useDispatch } from "react-redux";
 
 export function useLogin() {
@@ -29,7 +29,7 @@ export function useLogin() {
     const [nextPath, setNextPath] = useState(ROUTER_PATH.HOME);
     const dispatch = useDispatch();
     // ログイン
-    const setLoggedIn = () => dispatch(on());
+    const setLoggedIn = () => dispatch(onLoginFlg());
 
     useEffect(() => {
 

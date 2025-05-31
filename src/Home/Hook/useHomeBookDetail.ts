@@ -15,7 +15,7 @@ import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
 
 export function useHomeBookDetail() {
 
-    // お気に入り書籍ID
+    // 本棚書籍ID
     const bookId = BookIdContext.useCtx();
     // 書籍詳細
     const [bookDetail, setBookDetail] = useAtom(bookDetailItemAtom);

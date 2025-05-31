@@ -7,10 +7,11 @@ import useSwitch from "../../Common/Hook/useSwitch";
 import { useState } from "react";
 import type { AddToFavoriteRequestType } from "../Type/AddToFavoriteRequestType";
 import type { AddToFavoriteResponseType } from "../Type/AddToFavoriteResponseType";
-import { IsLoginContext } from "../../QueryApp";
 import { BookIdContext } from "../Component/Home";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 
 
@@ -19,13 +20,13 @@ export function useHomeBookDetailInfo() {
     // ルーティング用
     const navigate = useNavigate();
     // ログインフラグ
-    const isLogin = IsLoginContext.useCtx();
-    // お気に入り書籍ID
+    const isLogin = useSelector((state: RootState) => state.isLoginReducer);
+    // 本棚書籍ID
     const bookId = BookIdContext.useCtx();
 
 
     /**
-     * お気に入り登録リクエスト
+     * 本棚登録リクエスト
      */
     const postMutation = useMutationWrapper({
         url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOKSHELF}`,
@@ -51,14 +52,14 @@ export function useHomeBookDetailInfo() {
     });
 
     /**
-     * 書籍をお気に入りに登録する
+     * 書籍を本棚に登録する
      * @param bookId 
      * @returns 
      */
     function addToFavorite() {
 
         if (!bookId) {
-            toast.error(`お気に入りに登録できません。`);
+            toast.error(`本棚に登録できません。`);
             return;
         }
 

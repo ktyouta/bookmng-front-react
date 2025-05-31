@@ -12,10 +12,6 @@ import { Siginup } from './Siginup/Component/Siginup';
 import Main from './Main/Component/Main';
 
 
-// ログインフラグ
-export const IsLoginContext = createCtx<boolean>();
-// ログインフラグ(setter)
-export const SetIsLoginContext = createCtx<React.Dispatch<React.SetStateAction<boolean>>>();
 // ログインユーザー情報
 export const LoginUserInfoContext = createCtx<LoginUserInfoType>();
 // ログインユーザー情報(setter)
@@ -28,57 +24,54 @@ function QueryApp() {
 
   const {
     isLogin,
-    setIsLogin,
     loginUserInfo,
     setLoginUserInfo, } = useApp();
 
   return (
-    <SetIsLoginContext.Provider value={setIsLogin}>
-      <IsLoginContext.Provider value={isLogin}>
-        {/* トースト */}
-        <ToastContainer
-          position="top-center"
-          autoClose={TOAST_DISPLAY_TIME}
+    <React.Fragment>
+      {/* トースト */}
+      <ToastContainer
+        position="top-center"
+        autoClose={TOAST_DISPLAY_TIME}
+      />
+      <Routes>
+        <Route path="/" element={<Navigate to={`${ROUTER_PATH.HOME}`} />} />
+        {/* ログイン */}
+        <Route
+          path={ROUTER_PATH.LOGIN}
+          element={isLogin ?
+            <Navigate to={ROUTER_PATH.HOME} />
+            :
+            <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
+              <Login />
+            </SetLoginUserInfoContext.Provider>
+          }
         />
-        <Routes>
-          <Route path="/" element={<Navigate to={`${ROUTER_PATH.HOME}`} />} />
-          {/* ログイン */}
-          <Route
-            path={ROUTER_PATH.LOGIN}
-            element={isLogin ?
+        {/* アカウント作成 */}
+        <Route
+          path={ROUTER_PATH.SIGNUP}
+          element={
+            isLogin ?
               <Navigate to={ROUTER_PATH.HOME} />
               :
               <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
-                <Login />
+                <Siginup />
               </SetLoginUserInfoContext.Provider>
-            }
-          />
-          {/* アカウント作成 */}
-          <Route
-            path={ROUTER_PATH.SIGNUP}
-            element={
-              isLogin ?
-                <Navigate to={ROUTER_PATH.HOME} />
-                :
-                <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
-                  <Siginup />
-                </SetLoginUserInfoContext.Provider>
-            }
-          />
-          {/* コンテンツ */}
-          <Route
-            path="/*"
-            element={
-              <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
-                <LoginUserInfoContext.Provider value={loginUserInfo}>
-                  <Main />
-                </LoginUserInfoContext.Provider>
-              </SetLoginUserInfoContext.Provider>
-            }
-          />
-        </Routes>
-      </IsLoginContext.Provider>
-    </SetIsLoginContext.Provider>
+          }
+        />
+        {/* コンテンツ */}
+        <Route
+          path="/*"
+          element={
+            <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
+              <LoginUserInfoContext.Provider value={loginUserInfo}>
+                <Main />
+              </LoginUserInfoContext.Provider>
+            </SetLoginUserInfoContext.Provider>
+          }
+        />
+      </Routes>
+    </React.Fragment>
   );
 }
 

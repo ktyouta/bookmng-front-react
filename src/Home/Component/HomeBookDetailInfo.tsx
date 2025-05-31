@@ -54,7 +54,7 @@ export function HomeBookDetailInfo(props: propsType) {
     const imgUrl = volumeInfo?.imageLinks?.thumbnail;
     // タイトル
     const title = volumeInfo?.title;
-    // お気に入りフラグ
+    // 本棚フラグ
     const favoriteFlg = item?.favoriteFlg;
 
     return (

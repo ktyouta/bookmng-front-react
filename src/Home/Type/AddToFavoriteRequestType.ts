@@ -1,4 +1,4 @@
-// お気に入り登録リクエスト
+// 本棚登録リクエスト
 export type AddToFavoriteRequestType = {
     bookId: string,
 }

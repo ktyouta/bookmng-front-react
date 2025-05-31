@@ -4,12 +4,13 @@ import useSwitch from "../../Common/Hook/useSwitch";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import ENV from '../../env.json';
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
-import { IsLoginContext, LoginUserInfoContext, SetIsLoginContext, SetLoginUserInfoContext } from "../../QueryApp";
+import { LoginUserInfoContext, SetLoginUserInfoContext } from "../../QueryApp";
 import { LOGIN_USER_INFO_INIT } from "../../Common/Const/CommonConst";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store";
+import { offLoginFlg } from "../../Login/Features/isLoginSlice";
 
 
 export function useHeaderUserMenu() {
@@ -17,8 +18,10 @@ export function useHeaderUserMenu() {
     //ルーティング用
     const navigate = useNavigate();
     // ログインフラグ
-    const isLogin = IsLoginContext.useCtx();
-    const setIsLogin = SetIsLoginContext.useCtx();
+    const isLogin = useSelector((state: RootState) => state.isLoginReducer);
+    const dispatch = useDispatch();
+    // ログアウト
+    const setLogout = () => dispatch(offLoginFlg());
     //ナビゲーション表示フラグ
     const { flag: isOpenUserMenu,
         on: oepnUserMenu,
@@ -40,7 +43,7 @@ export function useHeaderUserMenu() {
         afSuccessFn: () => {
 
             setLoginUserInfo(LOGIN_USER_INFO_INIT);
-            setIsLogin(false);
+            setLogout();
             navigate(ROUTER_PATH.HOME);
         },
         // 失敗後の処理

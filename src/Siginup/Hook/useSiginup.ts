@@ -11,7 +11,7 @@ import type { errResType, resType } from '../../Common/Hook/useMutationWrapperBa
 import type { LoginUserInfoType } from '../../Common/Type/LoginUserInfoType';
 import type { SiginupRequestType } from '../Type/SiginupRequestType';
 import { useDispatch } from 'react-redux';
-import { on } from '../../Login/Features/isLoginSlice';
+import { onLoginFlg } from '../../Login/Features/isLoginSlice';
 
 
 export function useSiginup() {
@@ -38,7 +38,7 @@ export function useSiginup() {
     const { flag: isOpenModal, on: openModal, off: closeModal } = useSwitch();
     const dispatch = useDispatch();
     // ログインフラグ
-    const setLoggedIn = () => dispatch(on());
+    const setLoggedIn = () => dispatch(onLoginFlg());
 
     /**
      * 登録リクエスト

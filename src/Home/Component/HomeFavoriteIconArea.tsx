@@ -52,7 +52,7 @@ export function HomeBookContentFavoriteIconArea() {
             <NavDiv
                 isDisplay={isOpenFavoriteNav}
             >
-                お気に入り登録済み
+                本棚登録済み
             </NavDiv>
         </React.Fragment>
     );

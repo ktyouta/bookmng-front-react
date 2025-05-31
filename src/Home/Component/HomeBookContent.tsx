@@ -69,7 +69,7 @@ export function HomeBookContent(props: propsType) {
     // 日付
     const dateList = volumeInfo.publishedDate?.split("T");
     const publishedDate = dateList && dateList.length > 0 ? dateList[0] : ``;
-    // お気に入りフラグ
+    // 本棚フラグ
     //const favoriteFlg = data.favoriteFlg;
 
     return (
@@ -85,7 +85,7 @@ export function HomeBookContent(props: propsType) {
                                 }}
                             />
                             {/* favoriteFlg === FLG.ON &&
-                            // お気に入りアイコン
+                            // 本棚アイコン
                             <HomeBookContentFavoriteIconArea /> */}
                         </BookImgAreaDiv>
                         :

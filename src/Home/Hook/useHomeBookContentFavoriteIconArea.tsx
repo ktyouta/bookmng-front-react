@@ -5,7 +5,7 @@ import useSwitch from "../../Common/Hook/useSwitch";
 
 export function useHomeBookContentFavoriteIconArea() {
 
-    // お気に入りナビゲーション表示フラグ
+    // 本棚ナビゲーション表示フラグ
     const { flag: isOpenFavoriteNav, on: openFavoriteNav, off: closeFavoriteNav } = useSwitch();
 
     return {
