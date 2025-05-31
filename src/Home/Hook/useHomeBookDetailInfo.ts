@@ -28,7 +28,7 @@ export function useHomeBookDetailInfo() {
      * お気に入り登録リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOK}`,
+        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOKSHELF}`,
         method: "POST",
         // 正常終了後の処理
         afSuccessFn: (res: resType<AddToFavoriteResponseType>) => {

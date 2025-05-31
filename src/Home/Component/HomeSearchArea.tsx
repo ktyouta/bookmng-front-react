@@ -7,18 +7,18 @@ import { IconComponent } from "../../Common/Component/IconComponent";
 
 const Parent = styled.div`
   width: 100%;
-  height: 10%;
+  height: 41px;
   display:flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   padding-right: 13%;
-  padding-left: 22%;
+  padding-left: 18%;
 `;
 
 const TextBoxAreaDiv = styled.div`
   width: 83%;
-  height: 100%;
+  height: 99%;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -28,8 +28,8 @@ const TextBoxAreaDiv = styled.div`
 
 const SearchIconAreaDiv = styled.div`
   background-color:#FF9900;
-  width: 6%;
-  height: 37px;
+  width: 46px;
+  height: 99%;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-top-right-radius: 15%;
@@ -57,21 +57,22 @@ export function HomeSearchArea() {
         <Parent>
             <TextBoxAreaDiv>
                 <BaseTextbox
-                    textWidth="100%"
+                    textWidth="90%"
                     placeholder="キーワード"
                     value={keyword}
                     onChange={setKeyword}
                     style={{
                         borderTopRightRadius: 0,
                         borderBottomRightRadius: 0,
-                        height: "34px",
+                        height: "99%",
+                        boxSizing: "border-box",
                     }}
                 />
                 <SearchIconAreaDiv>
                     <IconComponent
                         icon={IoSearch}
                         onclick={clickSearchBtn}
-                        size="80%"
+                        size="75%"
                     />
                 </SearchIconAreaDiv>
             </TextBoxAreaDiv>

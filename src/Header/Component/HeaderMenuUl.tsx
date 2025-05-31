@@ -56,10 +56,10 @@ export function HeaderMenuUl() {
             {
                 isLogin &&
                 <NavLi
-                    isActive={nowPath === ROUTER_PATH.FAVORITE}
+                    isActive={nowPath === ROUTER_PATH.BOOKSHELF}
                 >
                     <Link
-                        to={ROUTER_PATH.FAVORITE}
+                        to={ROUTER_PATH.BOOKSHELF}
                         style={{ color: "inherit", fontWeight: "inherit" }}
                     >
                         本棚

@@ -15,18 +15,12 @@ const Parent = styled.div`
 
 const BookUl = styled.ul`
   display: grid;
-  grid-template-columns: repeat(var(--grid-container-columns), minmax(0, 1fr));
-  margin-bottom: 0;
-  margin: 0;
-  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(121px, 1fr));
+  margin: 0px;
+  padding: 4% 5% 0px;
   width: 100%;
   box-sizing: border-box;
-  padding-left:6%;
-  padding-right:2%;
-  padding-top: 4%;
-  --grid-container-columns: 8;
-  grid-column-gap: 3%;
-  grid-row-gap: 20px;
+  gap: 20px 3%;
 `;
 
 const MessageDiv = styled.div`

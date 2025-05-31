@@ -6,6 +6,7 @@ import { NotFound } from "../../NotFound/Component/NotFound";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { Provider } from "jotai";
 import { Home } from "../../Home/Component/Home";
+import { Bookshelf } from "../../Bookshelf/Component/Bookshelf";
 
 const Parent = styled.div`
   flex: 1;
@@ -20,7 +21,9 @@ export function Content() {
 
   console.log("Content render");
 
-  const { isCheckedAuth } = useContent();
+  const {
+    isLogin,
+    isCheckedAuth, } = useContent();
 
   return (
     <Parent>
@@ -33,6 +36,17 @@ export function Content() {
             </Provider>
           }
         />
+        {
+          isLogin &&
+          <Route
+            path={`${ROUTER_PATH.BOOKSHELF}/*`}
+            element={
+              <Provider>
+                <Bookshelf />
+              </Provider>
+            }
+          />
+        }
         {
           isCheckedAuth &&
           <Route

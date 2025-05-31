@@ -3,7 +3,7 @@ export const ROUTER_PATH = {
     // ホーム画面ルートパス
     HOME: `/book`,
     // 本棚画面ルートパス
-    FAVORITE: `/bookshelf`,
+    BOOKSHELF: `/bookshelf`,
     // ログイン
     LOGIN: `/login`,
     // アカウント作成
