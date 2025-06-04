@@ -10,6 +10,7 @@ import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
 import type { UpdateUserPasswordRequestType } from "../Type/UpdateUserPasswordRequestType";
 import ENV from "../../env.json";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 
 
 export function useUpdateUserPassword() {
@@ -33,7 +34,7 @@ export function useUpdateUserPassword() {
      * 更新リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.FRONT_USER_PASSWORD}/${loginUserInfo.userId}`,
+        url: `${BOOK_MNG_PATH}${ENV.FRONT_USER_PASSWORD}/${loginUserInfo.userId}`,
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<LoginUserInfoType>) => {

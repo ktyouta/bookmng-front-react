@@ -10,6 +10,7 @@ import type { LoginUserInfoType } from './Common/Type/LoginUserInfoType';
 import { Login } from './Login/Component/Login';
 import { Siginup } from './Siginup/Component/Siginup';
 import Main from './Main/Component/Main';
+import useQueryApp from './useQueryApp';
 
 
 // ログインユーザー情報
@@ -25,7 +26,7 @@ function QueryApp() {
   const {
     isLogin,
     loginUserInfo,
-    setLoginUserInfo, } = useApp();
+    setLoginUserInfo, } = useQueryApp();
 
   return (
     <React.Fragment>

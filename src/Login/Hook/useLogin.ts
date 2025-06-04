@@ -10,6 +10,7 @@ import type { LoginRequestType } from "../Type/LoginRequestType";
 import ENV from "../../env.json";
 import { onLoginFlg } from "../Features/isLoginSlice";
 import { useDispatch } from "react-redux";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 
 export function useLogin() {
 
@@ -56,7 +57,7 @@ export function useLogin() {
      * ログインリクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.FRONT_USER_LOGIN}`,
+        url: `${BOOK_MNG_PATH}${ENV.FRONT_USER_LOGIN}`,
         method: "POST",
         // 正常終了後の処理
         afSuccessFn: (res: resType<LoginUserInfoType>) => {

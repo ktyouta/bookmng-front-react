@@ -5,7 +5,7 @@ import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import ENV from '../../env.json';
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
 import { LoginUserInfoContext, SetLoginUserInfoContext } from "../../QueryApp";
-import { LOGIN_USER_INFO_INIT } from "../../Common/Const/CommonConst";
+import { BOOK_MNG_PATH, LOGIN_USER_INFO_INIT } from "../../Common/Const/CommonConst";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,7 +37,7 @@ export function useHeaderUserMenu() {
      * ログアウトリクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.FRONT_USER_LOGOUT}`,
+        url: `${BOOK_MNG_PATH}${ENV.FRONT_USER_LOGOUT}`,
         method: "POST",
         // 正常終了後の処理
         afSuccessFn: () => {

@@ -12,6 +12,7 @@ import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 
 
 
@@ -29,7 +30,7 @@ export function useHomeBookDetailInfo() {
      * 本棚登録リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOKSHELF}`,
+        url: `${BOOK_MNG_PATH}${ENV.BOOKSHELF}`,
         method: "POST",
         // 正常終了後の処理
         afSuccessFn: (res: resType<AddToFavoriteResponseType>) => {
