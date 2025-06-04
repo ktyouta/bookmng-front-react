@@ -4,15 +4,15 @@ import useSwitch from '../../Common/Hook/useSwitch';
 import { useRef, useState, type RefObject } from 'react';
 import type { refType } from '../../Common/Component/BaseTextbox';
 import { useNavigate } from 'react-router-dom';
-import { SetLoginUserInfoContext } from '../../QueryApp';
 import { useCreateYearList } from '../../Common/Hook/useCreateYearList';
 import useMutationWrapper from '../../Common/Hook/useMutationWrapper';
 import type { errResType, resType } from '../../Common/Hook/useMutationWrapperBase';
 import type { LoginUserInfoType } from '../../Common/Type/LoginUserInfoType';
 import type { SiginupRequestType } from '../Type/SiginupRequestType';
 import { useDispatch } from 'react-redux';
-import { onLoginFlg } from '../../Login/Features/isLoginSlice';
+import { onLoginFlg } from '../../Features/isLoginSlice';
 import { BOOK_MNG_PATH } from '../../Common/Const/CommonConst';
+import { setLoginUserInfoAction } from '../../Features/loginUserInfoSlice';
 
 
 export function useSiginup() {
@@ -31,8 +31,6 @@ export function useSiginup() {
     const navigate = useNavigate();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
-    // ログインユーザー情報(setter)
-    const setLoginUserInfo = SetLoginUserInfoContext.useCtx();
     // 年リスト
     const yearCoomboList = useCreateYearList();
     // 確認モーダルの表示フラグ
@@ -52,7 +50,7 @@ export function useSiginup() {
 
             const loginUserInfo = res.data;
 
-            setLoginUserInfo(loginUserInfo);
+            dispatch(setLoginUserInfoAction(loginUserInfo));
             setLoggedIn();
             navigate(ROUTER_PATH.HOME);
         },

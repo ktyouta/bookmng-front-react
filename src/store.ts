@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import isLoginReducer from './Login/Features/isLoginSlice';
-import isCheckedAuthReducer from './Main/Features/isCheckedAuthSlice';
+import isLoginReducer from './Features/isLoginSlice';
+import isCheckedAuthReducer from './Features/isCheckedAuthSlice';
+import loginUserInfoSlice from './Features/loginUserInfoSlice';
 
 
 export const store = configureStore({
     reducer: {
         isLoginReducer,
         isCheckedAuthReducer,
+        loginUserInfoSlice,
     },
 });
 

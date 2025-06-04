@@ -13,20 +13,12 @@ import Main from './Main/Component/Main';
 import useQueryApp from './useQueryApp';
 
 
-// ログインユーザー情報
-export const LoginUserInfoContext = createCtx<LoginUserInfoType>();
-// ログインユーザー情報(setter)
-export const SetLoginUserInfoContext = createCtx<React.Dispatch<React.SetStateAction<LoginUserInfoType>>>();
-
 
 function QueryApp() {
 
   console.log(`QueryApp render`);
 
-  const {
-    isLogin,
-    loginUserInfo,
-    setLoginUserInfo, } = useQueryApp();
+  const { isLogin, } = useQueryApp();
 
   return (
     <React.Fragment>
@@ -43,9 +35,7 @@ function QueryApp() {
           element={isLogin ?
             <Navigate to={ROUTER_PATH.HOME} />
             :
-            <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
-              <Login />
-            </SetLoginUserInfoContext.Provider>
+            <Login />
           }
         />
         {/* アカウント作成 */}
@@ -55,20 +45,14 @@ function QueryApp() {
             isLogin ?
               <Navigate to={ROUTER_PATH.HOME} />
               :
-              <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
-                <Siginup />
-              </SetLoginUserInfoContext.Provider>
+              <Siginup />
           }
         />
         {/* コンテンツ */}
         <Route
           path="/*"
           element={
-            <SetLoginUserInfoContext.Provider value={setLoginUserInfo}>
-              <LoginUserInfoContext.Provider value={loginUserInfo}>
-                <Main />
-              </LoginUserInfoContext.Provider>
-            </SetLoginUserInfoContext.Provider>
+            <Main />
           }
         />
       </Routes>

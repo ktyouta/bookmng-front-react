@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import type { refType } from "../../Common/Component/BaseTextbox";
 import { useNavigate } from "react-router-dom";
-import { SetLoginUserInfoContext } from "../../QueryApp";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
 import type { LoginUserInfoType } from "../../Common/Type/LoginUserInfoType";
 import type { LoginRequestType } from "../Type/LoginRequestType";
 import ENV from "../../env.json";
-import { onLoginFlg } from "../Features/isLoginSlice";
+import { onLoginFlg } from "../../Features/isLoginSlice";
 import { useDispatch } from "react-redux";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { setLoginUserInfoAction } from "../../Features/loginUserInfoSlice";
 
 export function useLogin() {
 
@@ -22,8 +22,6 @@ export function useLogin() {
     const navigate = useNavigate();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
-    // ログインユーザー情報(setter)
-    const setLoginUserInfo = SetLoginUserInfoContext.useCtx();
     // 遷移先(戻る)
     const [backPath, setBackPath] = useState(ROUTER_PATH.HOME);
     // 遷移先(ログイン後)
@@ -64,7 +62,7 @@ export function useLogin() {
 
             const loginUserInfo: LoginUserInfoType = res.data;
 
-            setLoginUserInfo(loginUserInfo);
+            dispatch(setLoginUserInfoAction(loginUserInfo));
             setLoggedIn();
             navigate(nextPath);
         },

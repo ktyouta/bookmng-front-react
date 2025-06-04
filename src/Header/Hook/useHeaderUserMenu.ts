@@ -4,13 +4,13 @@ import useSwitch from "../../Common/Hook/useSwitch";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import ENV from '../../env.json';
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
-import { LoginUserInfoContext, SetLoginUserInfoContext } from "../../QueryApp";
 import { BOOK_MNG_PATH, LOGIN_USER_INFO_INIT } from "../../Common/Const/CommonConst";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store";
-import { offLoginFlg } from "../../Login/Features/isLoginSlice";
+import { offLoginFlg } from "../../Features/isLoginSlice";
+import { resetLoginUserInfoAction } from "../../Features/loginUserInfoSlice";
 
 
 export function useHeaderUserMenu() {
@@ -27,9 +27,9 @@ export function useHeaderUserMenu() {
         on: oepnUserMenu,
         off: closeUserMenu } = useSwitch();
     // ログインユーザー情報
-    const loginUserInfo = LoginUserInfoContext.useCtx();
-    // ログインユーザー情報(setter)
-    const setLoginUserInfo = SetLoginUserInfoContext.useCtx();
+    const loginUserInfo = useSelector((state: RootState) => state.loginUserInfoSlice);
+    // ユーザー情報リセット
+    const resetLoginUserInfo = () => dispatch(resetLoginUserInfoAction());
     // 認証チェック済みフラグ
     const isCheckedAuth = useSelector((state: RootState) => state.isCheckedAuthReducer);
 
@@ -42,7 +42,7 @@ export function useHeaderUserMenu() {
         // 正常終了後の処理
         afSuccessFn: () => {
 
-            setLoginUserInfo(LOGIN_USER_INFO_INIT);
+            resetLoginUserInfo();
             setLogout();
             navigate(ROUTER_PATH.HOME);
         },

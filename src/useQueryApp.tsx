@@ -10,13 +10,9 @@ function useQueryApp() {
 
     // ログインフラグ
     const isLogin = useSelector((state: RootState) => state.isLoginReducer);
-    // ログインユーザー情報
-    const [loginUserInfo, setLoginUserInfo] = useState<LoginUserInfoType>(LOGIN_USER_INFO_INIT);
 
     return {
         isLogin,
-        loginUserInfo,
-        setLoginUserInfo,
     }
 }
 

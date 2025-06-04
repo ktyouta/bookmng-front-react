@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { LoginUserInfoContext } from "../../QueryApp";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 export function useHeader() {
 
@@ -11,7 +12,8 @@ export function useHeader() {
     //ルーティング用
     const navigate = useNavigate();
     // ログインユーザー情報
-    const loginUserInfo = LoginUserInfoContext.useCtx();
+    const loginUserInfo = useSelector((state: RootState) => state.loginUserInfoSlice);
+
 
     /**
      * URL切り替え時のイベント

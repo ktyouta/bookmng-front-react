@@ -1,7 +1,6 @@
 import { useRef, useState, type RefObject } from "react";
 import type { refType } from "../../Common/Component/BaseTextbox";
 import { useNavigate } from "react-router-dom";
-import { LoginUserInfoContext } from "../../QueryApp";
 import useSwitch from "../../Common/Hook/useSwitch";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import type { LoginUserInfoType } from "../../Common/Type/LoginUserInfoType";
@@ -11,6 +10,8 @@ import { toast } from "react-toastify";
 import type { UpdateUserPasswordRequestType } from "../Type/UpdateUserPasswordRequestType";
 import ENV from "../../env.json";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 
 
 export function useUpdateUserPassword() {
@@ -26,7 +27,7 @@ export function useUpdateUserPassword() {
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
     // ログインユーザー情報
-    const loginUserInfo = LoginUserInfoContext.useCtx();
+    const loginUserInfo = useSelector((state: RootState) => state.loginUserInfoSlice);
     // 確認モーダルの表示フラグ
     const { flag: isOpenModal, on: openModal, off: closeModal } = useSwitch();
 

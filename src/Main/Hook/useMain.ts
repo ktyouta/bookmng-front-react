@@ -2,20 +2,18 @@ import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
 import ENV from "../../env.json";
 import { useEffect, useState } from "react";
-import { SetLoginUserInfoContext } from "../../QueryApp";
 import type { LoginUserInfoType } from "../../Common/Type/LoginUserInfoType";
 import type { resType } from "../../Common/Hook/useMutationWrapperBase";
 import { useDispatch, useSelector } from "react-redux";
-import { on } from "../Features/isCheckedAuthSlice";
-import { offLoginFlg, onLoginFlg } from "../../Login/Features/isLoginSlice";
+import { on } from "../../Features/isCheckedAuthSlice";
+import { offLoginFlg, onLoginFlg } from "../../Features/isLoginSlice";
 import type { RootState } from "../../store";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
+import { resetLoginUserInfoAction, setLoginUserInfoAction } from "../../Features/loginUserInfoSlice";
 
 
 export function useMain() {
 
-    // ログインユーザー情報(setter)
-    const setLoginUserInfo = SetLoginUserInfoContext.useCtx();
     const dispatch = useDispatch();
     // 認証チェック済みフラグ(setter)
     const setCheckedAuth = () => dispatch(on());
@@ -23,6 +21,9 @@ export function useMain() {
     const setLogin = () => dispatch(onLoginFlg());
     // ログイン(オフ)
     const setLogout = () => dispatch(offLoginFlg());
+    // ユーザー情報リセット
+    const resetLoginUserInfo = () => dispatch(resetLoginUserInfoAction());
+
 
     /**
      * 認証チェック
@@ -35,7 +36,7 @@ export function useMain() {
 
             const loginUserInfo = res.data;
 
-            setLoginUserInfo(loginUserInfo);
+            dispatch(setLoginUserInfoAction(loginUserInfo));
             setLogin();
             setCheckedAuth();
         },
@@ -44,6 +45,7 @@ export function useMain() {
 
             setLogout();
             setCheckedAuth();
+            resetLoginUserInfo();
         },
     });
 

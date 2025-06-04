@@ -1,7 +1,6 @@
 import { useRef, useState, type RefObject } from "react";
 import type { refType } from "../../Common/Component/BaseTextbox";
 import { useNavigate } from "react-router-dom";
-import { LoginUserInfoContext, SetLoginUserInfoContext } from "../../QueryApp";
 import { useCreateYearList } from "../../Common/Hook/useCreateYearList";
 import useSwitch from "../../Common/Hook/useSwitch";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
@@ -12,6 +11,9 @@ import { toast } from "react-toastify";
 import ENV from "../../env.json";
 import type { UpdateUserInfoRequestType } from "../Type/UpdateUserInfoRequestType";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store";
+import { setLoginUserInfoAction } from "../../Features/loginUserInfoSlice";
 
 
 export function useUpdateUserInfo() {
@@ -28,14 +30,13 @@ export function useUpdateUserInfo() {
     const navigate = useNavigate();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
-    // ログインユーザー情報(setter)
-    const setLoginUserInfo = SetLoginUserInfoContext.useCtx();
     // 年リスト
     const yearCoomboList = useCreateYearList();
-    // 更新前ユーザー情報
-    const loginUserInfo = LoginUserInfoContext.useCtx();
+    // ログインユーザー情報
+    const loginUserInfo = useSelector((state: RootState) => state.loginUserInfoSlice);
     // 確認モーダルの表示フラグ
     const { flag: isOpenModal, on: openModal, off: closeModal } = useSwitch();
+    const dispatch = useDispatch();
 
     /**
      * 更新リクエスト
@@ -49,7 +50,7 @@ export function useUpdateUserInfo() {
             const loginUserInfo = res.data;
 
             toast.success("ユーザー情報を更新しました。");
-            setLoginUserInfo(loginUserInfo);
+            dispatch(setLoginUserInfoAction(loginUserInfo));
             navigate(ROUTER_PATH.HOME);
         },
         // 失敗後の処理

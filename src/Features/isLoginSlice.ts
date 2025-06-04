@@ -6,12 +6,9 @@ const isLoginSlice = createSlice({
     initialState: false,
     reducers: {
         onLoginFlg(state) {
-            console.log(`aaaaaaaaaaa`);
             return true;
         },
         offLoginFlg(state) {
-            console.log(`bbbbbbbbb`);
-
             return false;
         },
     },
