@@ -1,4 +1,4 @@
-import React, { CSSProperties, forwardRef, useEffect, useState } from 'react';
+import React, { type CSSProperties, forwardRef, useEffect, useState } from 'react';
 import styled from "styled-components";
 
 //引数の型

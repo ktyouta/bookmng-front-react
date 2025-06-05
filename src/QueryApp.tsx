@@ -11,14 +11,24 @@ import { Login } from './Login/Component/Login';
 import { Siginup } from './Siginup/Component/Siginup';
 import Main from './Main/Component/Main';
 import useQueryApp from './useQueryApp';
+import { UpdateUserInfo } from './UpdateUserInfo/Component/UpdateUserInfo';
+import { UpdateUserPassword } from './UpdateUserPassword/Component/UpdateUserPassword';
+import LoadingBase from './Common/Component/LoadingBase';
+import styled from 'styled-components';
 
+const LoadingScreenDiv = styled.div`
+  height:100vh;
+  background-color:#DDE3E8;
+`;
 
 
 function QueryApp() {
 
   console.log(`QueryApp render`);
 
-  const { isLogin, } = useQueryApp();
+  const {
+    isLogin,
+    isCheckedAuth, } = useQueryApp();
 
   return (
     <React.Fragment>
@@ -48,11 +58,32 @@ function QueryApp() {
               <Siginup />
           }
         />
+        {/* ユーザー情報更新 */}
+        {
+          isLogin &&
+          <Route
+            path={ROUTER_PATH.UPDATE_USER_INFO}
+            element={<UpdateUserInfo />}
+          />
+        }
+        {/* パスワード変更 */}
+        {
+          isLogin &&
+          <Route
+            path={ROUTER_PATH.UPDATE_USER_PASSWORD}
+            element={<UpdateUserPassword />}
+          />
+        }
         {/* コンテンツ */}
         <Route
           path="/*"
           element={
-            <Main />
+            isCheckedAuth ?
+              <Main />
+              :
+              <LoadingScreenDiv>
+                <LoadingBase />
+              </LoadingScreenDiv>
           }
         />
       </Routes>
