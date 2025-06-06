@@ -47,6 +47,9 @@ const TmpImgDiv = styled.div`
     padding-top: 14px;
 `;
 
+const AuthorDiv = styled.div`
+    font-size: 11px;
+`;
 
 type propsType = {
     data: GoogleBooksAPIsModelItemsType,
@@ -69,6 +72,8 @@ export function HomeBookContent(props: propsType) {
     // 日付
     const dateList = volumeInfo.publishedDate?.split("T");
     const publishedDate = dateList && dateList.length > 0 ? dateList[0] : ``;
+    // 著者
+    const authors = volumeInfo.authors;
     // 本棚フラグ
     //const favoriteFlg = data.favoriteFlg;
 
@@ -113,6 +118,18 @@ export function HomeBookContent(props: propsType) {
                 <DateDiv>
                     {publishedDate}
                 </DateDiv>
+                {
+                    authors && authors.length > 0 &&
+                    authors.map((e: string, index) => {
+                        return (
+                            <AuthorDiv
+                                key={index}
+                            >
+                                {e}
+                            </AuthorDiv>
+                        )
+                    })
+                }
             </BookSection>
         </BookArticle>
     );

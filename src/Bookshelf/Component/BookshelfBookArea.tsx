@@ -12,12 +12,12 @@ const Parent = styled.div`
 
 const BookUl = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(182px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(121px, 1fr));
   margin: 0px;
   padding: 4% 5% 0px;
   width: 100%;
   box-sizing: border-box;
-  gap: 38px 4%;
+  gap: 20px 3%;
 `;
 
 const MessageDiv = styled.div`

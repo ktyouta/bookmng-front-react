@@ -1,6 +1,6 @@
-import { BookshelfBookTransactionType } from "./BookshelfBookTransactionType";
-import { YouTubeDataApiBookDetailItemType } from "./YouTubeDataApiBookDetailItemType";
+import type { GoogleBooksDetailResponseType } from "../../Home/Type/GoogleBooksDetailResponseType";
 
 // お気に入り書籍情報と外部APIの書籍情報をマージした型
-export type BookshelfBookListMergedType =
-    BookshelfBookTransactionType & YouTubeDataApiBookDetailItemType;
+export type BookshelfBookListMergedType = GoogleBooksDetailResponseType & {
+    bookId: string,
+};
