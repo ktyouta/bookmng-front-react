@@ -5,7 +5,7 @@ import { keywordAtom, selectedBookCategoryAtom, selectedBookTypeAtom, showMoreDa
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
 import { isEqual } from "lodash";
 import type { ShowMoreDataType } from "../Type/ShowMoreDataType";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SetBookApiUrlContext, BookApiUrlContext } from "../Component/Home";
 import { toast } from "react-toastify";
 import type { GoogleBooksAPIsModelType } from "../Type/GoogleBooksAPIsModelType";
@@ -32,7 +32,43 @@ export function useHomeBookArea() {
     const [startIndex, setStartIndex] = useAtom(startIndexAtom);
     //ルーティング用
     const navigate = useNavigate();
+    // 検索キーワード
+    const setKeyword = useSetAtom(keywordAtom);
 
+
+    // URL直打ち対応
+    useEffect(() => {
+
+        const pathArray = window.location.pathname.split("/");
+
+        if (pathArray.length < 2) {
+            return;
+        }
+
+        const query = window.location.search;
+
+        // 書籍一覧
+        if (pathArray.length == 2) {
+
+            // クエリパラメータが設定されている場合
+            if (query && query.length > 0 && query.charAt(0) === `?`) {
+
+                const params = new URLSearchParams(query);
+                const keywordValue = params.get(`q`);
+                const startIndexValue = params.get(`startIndex`);
+
+                const keyword = keywordValue !== null ? keywordValue : ``;
+                const startIndex = startIndexValue !== null && !isNaN(parseInt(startIndexValue)) ? startIndexValue : `0`;
+
+                // 検索条件の初期値設定
+                setKeyword(keyword);
+                setStartIndex(parseInt(startIndex));
+
+                const bookListApiUrlModel = BookListApiUrlModel.reConstruct(query);
+                setBookApiUrl(bookListApiUrlModel.url);
+            }
+        }
+    }, []);
 
     // 書籍一覧を取得
     const { isLoading } = useQueryWrapper<BookListResponseType>(

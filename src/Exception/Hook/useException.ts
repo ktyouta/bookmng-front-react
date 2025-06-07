@@ -14,7 +14,7 @@ export function useException() {
      */
     function backHome() {
         resetBoundary();
-        navigate(`${ROUTER_PATH.HOME}`);
+        navigate(`${ROUTER_PATH.HOME.ROOT}`);
     }
 
     return {

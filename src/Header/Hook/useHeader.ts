@@ -26,7 +26,7 @@ export function useHeader() {
             return;
         }
 
-        const mainPath = pathArray[1] ? pathArray[1] : ROUTER_PATH.HOME;
+        const mainPath = pathArray[1] ? pathArray[1] : ROUTER_PATH.HOME.ROOT;
         setNowPath(mainPath);
     }, [location]);
 

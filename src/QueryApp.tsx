@@ -38,12 +38,12 @@ function QueryApp() {
         autoClose={TOAST_DISPLAY_TIME}
       />
       <Routes>
-        <Route path="/" element={<Navigate to={`${ROUTER_PATH.HOME}`} />} />
+        <Route path="/" element={<Navigate to={`${ROUTER_PATH.HOME.ROOT}`} />} />
         {/* ログイン */}
         <Route
           path={ROUTER_PATH.LOGIN}
           element={isLogin ?
-            <Navigate to={ROUTER_PATH.HOME} />
+            <Navigate to={ROUTER_PATH.HOME.ROOT} />
             :
             <Login />
           }
@@ -53,7 +53,7 @@ function QueryApp() {
           path={ROUTER_PATH.SIGNUP}
           element={
             isLogin ?
-              <Navigate to={ROUTER_PATH.HOME} />
+              <Navigate to={ROUTER_PATH.HOME.ROOT} />
               :
               <Siginup />
           }

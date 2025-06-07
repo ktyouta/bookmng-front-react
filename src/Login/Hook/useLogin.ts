@@ -23,9 +23,9 @@ export function useLogin() {
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
     // 遷移先(戻る)
-    const [backPath, setBackPath] = useState(ROUTER_PATH.HOME);
+    const [backPath, setBackPath] = useState(ROUTER_PATH.HOME.ROOT);
     // 遷移先(ログイン後)
-    const [nextPath, setNextPath] = useState(ROUTER_PATH.HOME);
+    const [nextPath, setNextPath] = useState(ROUTER_PATH.HOME.ROOT);
     const dispatch = useDispatch();
     // ログイン
     const setLoggedIn = () => dispatch(onLoginFlg());

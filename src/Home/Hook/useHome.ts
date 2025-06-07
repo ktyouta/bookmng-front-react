@@ -2,6 +2,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { keywordAtom, startIndexAtom } from "../Atom/HomeAtom";
 import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
+import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 
 export function useHome() {
 
@@ -9,52 +10,6 @@ export function useHome() {
     const [bookId, setBookId] = useState(``);
     // 書籍取得用URL
     const [bookApiUrl, setBookApiUrl] = useState(``);
-    // 検索キーワード
-    const setKeyword = useSetAtom(keywordAtom);
-    // 書籍一覧検索条件選択値(書籍取得開始位置)
-    const setStartIndex = useSetAtom(startIndexAtom);
-
-
-    // URL直打ち対応
-    useEffect(() => {
-
-        const pathArray = window.location.pathname.split("/");
-
-        if (pathArray.length < 2) {
-            return;
-        }
-
-        const query = window.location.search;
-
-        // 書籍一覧
-        if (pathArray.length == 2) {
-
-            // クエリパラメータが設定されている場合
-            if (query && query.length > 0 && query.charAt(0) === `?`) {
-
-                const params = new URLSearchParams(query);
-                const keywordValue = params.get(`q`);
-                const startIndexValue = params.get(`startIndex`);
-
-                const keyword = keywordValue !== null ? keywordValue : ``;
-                const startIndex = startIndexValue !== null && !isNaN(parseInt(startIndexValue)) ? startIndexValue : `0`;
-
-                // 検索条件の初期値設定
-                setKeyword(keyword);
-                setStartIndex(parseInt(startIndex));
-
-                const bookListApiUrlModel = BookListApiUrlModel.reConstruct(query);
-                setBookApiUrl(bookListApiUrlModel.url);
-            }
-        }
-        // 書籍詳細
-        else if (pathArray.length == 3) {
-
-            // ID部分を取得
-            const bookId = pathArray[2];
-            setBookId(bookId);
-        }
-    }, []);
 
     return {
         bookId,

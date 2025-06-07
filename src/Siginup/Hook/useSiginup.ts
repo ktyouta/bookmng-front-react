@@ -52,7 +52,7 @@ export function useSiginup() {
 
             dispatch(setLoginUserInfoAction(loginUserInfo));
             setLoggedIn();
-            navigate(ROUTER_PATH.HOME);
+            navigate(ROUTER_PATH.HOME.ROOT);
         },
         // 失敗後の処理
         afErrorFn: (res: errResType) => {

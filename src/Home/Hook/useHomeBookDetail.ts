@@ -3,8 +3,8 @@ import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
 import { bookDetailItemAtom, keywordAtom, startIndexAtom } from "../Atom/HomeAtom";
 import { useNavigate } from "react-router-dom";
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
-import { BookIdContext } from "../Component/Home";
-import { useState } from "react";
+import { BookIdContext, SetBookIdContext } from "../Component/Home";
+import { useEffect, useState } from "react";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
 import type { BookDetailResponseType } from "../Type/BookDetailResponseType";
@@ -17,6 +17,8 @@ export function useHomeBookDetail() {
 
     // 本棚書籍ID
     const bookId = BookIdContext.useCtx();
+    // 本棚書籍ID(setter)
+    const setBookId = SetBookIdContext.useCtx();
     // 書籍詳細
     const [bookDetail, setBookDetail] = useAtom(bookDetailItemAtom);
     //ルーティング用
@@ -26,6 +28,20 @@ export function useHomeBookDetail() {
     // 検索キーワード
     const keyword = useAtomValue(keywordAtom);
 
+
+    // URL直打ち対応
+    useEffect(() => {
+
+        const pathArray = window.location.pathname.split("/");
+
+        // 書籍詳細
+        if (pathArray.length == 4 && `/${pathArray[2]}` === `${ROUTER_PATH.HOME.DETAIL}`) {
+
+            // ID部分を取得
+            const bookId = pathArray[3];
+            setBookId(bookId);
+        }
+    }, []);
 
     // 書籍詳細を取得
     const { isLoading } = useQueryWrapper<BookDetailResponseType>(
@@ -53,7 +69,7 @@ export function useHomeBookDetail() {
      * ホーム画面(書籍一覧)に戻る
      */
     function backHome() {
-        navigate(ROUTER_PATH.HOME);
+        navigate(ROUTER_PATH.HOME.ROOT);
     }
 
     /**
@@ -72,7 +88,7 @@ export function useHomeBookDetail() {
             query = bookListApiUrlModel.query;
         }
 
-        navigate(`${ROUTER_PATH.HOME}${query}`);
+        navigate(`${ROUTER_PATH.HOME.ROOT}${query}`);
     }
 
     return {

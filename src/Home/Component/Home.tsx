@@ -4,6 +4,8 @@ import { useHome } from "../Hook/useHome";
 import { createCtx } from "../../Common/Function/createCtx";
 import { HomeBookList } from "./HomeBookList";
 import { HomeBookDetail } from "./HomeBookDetail";
+import { ROUTER_PATH } from "../../Common/Const/RouterPath";
+import { NotFound } from "../../NotFound/Component/NotFound";
 
 // 書籍ID
 export const BookIdContext = createCtx<string>();
@@ -44,12 +46,20 @@ export function Home() {
                 />
                 {/* 書籍詳細 */}
                 <Route
-                    path={`${bookId}`}
+                    path={`${ROUTER_PATH.HOME.DETAIL}/*`}
                     element={
                         <BookIdContext.Provider value={bookId}>
-                            <HomeBookDetail />
+                            <SetBookIdContext.Provider value={setBookId}>
+                                <HomeBookDetail />
+                            </SetBookIdContext.Provider>
                         </BookIdContext.Provider>
                     }
+                />
+                {/* Not Found */}
+                <Route
+                    key={"*"}
+                    path="*"
+                    element={<NotFound backUrl={`${ROUTER_PATH.HOME.ROOT}`} />}
                 />
             </Routes>
         </React.Fragment>

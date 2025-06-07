@@ -44,10 +44,10 @@ export function HeaderMenuUl() {
     return (
         <NavUl>
             <NavLi
-                isActive={nowPath === ROUTER_PATH.HOME}
+                isActive={nowPath === ROUTER_PATH.HOME.ROOT}
             >
                 <Link
-                    to={ROUTER_PATH.HOME}
+                    to={ROUTER_PATH.HOME.ROOT}
                     style={{ color: "inherit", fontWeight: "inherit" }}
                 >
                     ホーム

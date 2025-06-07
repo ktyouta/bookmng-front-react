@@ -40,7 +40,7 @@ export function useHomeBookDetailInfo() {
                 toast.success(message);
             }
 
-            navigate(ROUTER_PATH.HOME);
+            navigate(ROUTER_PATH.HOME.ROOT);
         },
         // 失敗後の処理
         afErrorFn: (res: errResType) => {
@@ -81,7 +81,8 @@ export function useHomeBookDetailInfo() {
         let query = ``;
 
         if (bookId) {
-            query = `?backpath=${ROUTER_PATH.HOME}/${bookId}&nextpath=${ROUTER_PATH.HOME}/${bookId}`;
+            const path = `${ROUTER_PATH.HOME.ROOT}${ROUTER_PATH.HOME.DETAIL}/${bookId}`;
+            query = `?backpath=${path}&nextpath=${path}`;
         }
 
         navigate(`${ROUTER_PATH.LOGIN}${query}`);

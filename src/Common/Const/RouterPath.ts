@@ -1,7 +1,10 @@
 // ルーティングパスリスト
 export const ROUTER_PATH = {
     // ホーム画面ルートパス
-    HOME: `/book`,
+    HOME: {
+        ROOT: `/book`,
+        DETAIL: `/detail`,
+    },
     // 本棚画面ルートパス
     BOOKSHELF: `/bookshelf`,
     // ログイン

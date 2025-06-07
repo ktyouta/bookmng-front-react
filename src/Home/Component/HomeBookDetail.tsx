@@ -48,6 +48,10 @@ export function HomeBookDetail() {
     backPage } = useHomeBookDetail();
 
   // ローディング
+  if (!bookDetail) {
+    return <LoadingBase />;
+  }
+
   if (isLoading) {
     return <LoadingBase />;
   }

@@ -51,7 +51,7 @@ export function useUpdateUserInfo() {
 
             toast.success("ユーザー情報を更新しました。");
             dispatch(setLoginUserInfoAction(loginUserInfo));
-            navigate(ROUTER_PATH.HOME);
+            navigate(ROUTER_PATH.HOME.ROOT);
         },
         // 失敗後の処理
         afErrorFn: (res: errResType) => {
@@ -99,7 +99,7 @@ export function useUpdateUserInfo() {
      * キャンセルボタン押下
      */
     function clickCancel() {
-        navigate(ROUTER_PATH.HOME);
+        navigate(ROUTER_PATH.HOME.ROOT);
     }
 
     /**

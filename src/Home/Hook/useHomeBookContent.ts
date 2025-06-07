@@ -23,7 +23,7 @@ export function useHomeBookContent() {
         }
 
         setBookId(id);
-        navigate(`${ROUTER_PATH.HOME}/${id}`);
+        navigate(`${ROUTER_PATH.HOME.ROOT}${ROUTER_PATH.HOME.DETAIL}/${id}`);
     }
 
     return {
