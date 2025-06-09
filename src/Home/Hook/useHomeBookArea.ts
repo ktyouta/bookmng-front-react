@@ -10,7 +10,7 @@ import { SetBookApiUrlContext, BookApiUrlContext } from "../Component/Home";
 import { toast } from "react-toastify";
 import type { GoogleBooksAPIsModelType } from "../Type/GoogleBooksAPIsModelType";
 import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModelItemsType";
-import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
+import { BookListApiUrlModel } from "../Model/BookListApiUrlModel";
 import { BOOK_LIST_MAX_RESULT } from "../Const/HomeConst";
 import { useNavigate } from "react-router-dom";
 

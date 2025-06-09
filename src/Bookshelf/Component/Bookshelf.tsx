@@ -5,10 +5,12 @@ import { Provider } from "jotai";
 import { useBookshelf } from "../Hook/useBookshelf";
 import type { comboType } from "../../Common/Component/ComboComponent";
 import { BookshelfBookList } from "./BookshelfBookList";
+import { ROUTER_PATH } from "../../Common/Const/RouterPath";
+import { BookshelfBookDetail } from "./BookshelfBookDetail";
 
-// お気に入り書籍ID
+// 書籍ID
 export const BookshelfBookIdContext = createCtx<string>();
-// お気に入り書籍ID(setter)
+// 書籍ID(setter)
 export const SetBookshelfBookIdContext = createCtx<React.Dispatch<React.SetStateAction<string>>>();
 // 視聴状況リスト
 export const ViewStatusListContext = createCtx<comboType[]>();
@@ -24,7 +26,7 @@ export function Bookshelf() {
 
     return (
         <Routes>
-            {/* お気に入り書籍一覧 */}
+            {/* 本棚一覧 */}
             <Route
                 path={`/`}
                 element={
@@ -32,8 +34,18 @@ export function Bookshelf() {
                         <BookshelfBookList />
                     </SetBookshelfBookIdContext.Provider>
                 }
-            >
-            </Route>
+            />
+            {/* 本棚詳細 */}
+            <Route
+                path={`${ROUTER_PATH.BOOKSHELF.DETAIL}/*`}
+                element={
+                    <BookshelfBookIdContext.Provider value={bookshelfBookId}>
+                        <SetBookshelfBookIdContext.Provider value={setBookshelfBookId}>
+                            <BookshelfBookDetail />
+                        </SetBookshelfBookIdContext.Provider>
+                    </BookshelfBookIdContext.Provider>
+                }
+            />
         </Routes>
     );
 }

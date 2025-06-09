@@ -2,7 +2,7 @@ import { useAtom, useAtomValue } from "jotai";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
 import ENV from "../../env.json"
 import { useState } from "react";
-import type { BookshelfBookListResponseType } from "../Type/FavoriteVideoListResponseType";
+import type { BookshelfBookListResponseType } from "../Type/BookshelfBookListResponseType";
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
 import { bookshelfBookApiUrlAtom, bookshelfBookListAtom } from "../Atom/BookshelfAtom";
 

@@ -39,7 +39,7 @@ export function Content() {
         {
           isLogin &&
           <Route
-            path={`${ROUTER_PATH.BOOKSHELF}/*`}
+            path={`${ROUTER_PATH.BOOKSHELF.ROOT}/*`}
             element={
               <Provider>
                 <Bookshelf />

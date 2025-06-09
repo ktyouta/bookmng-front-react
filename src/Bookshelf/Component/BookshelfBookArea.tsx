@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useBookshelfBookArea } from "../Hook/useBookshelfBookArea";
 import LoadingBase from "../../Common/Component/LoadingBase";
-import type { BookshelfBookListMergedType } from "../Type/FavoriteVideoListMergedType";
+import type { BookshelfBookListMergedType } from "../Type/BookshelfBookListMergedType";
 import { BookshelfBookContent } from "./BookshelfBookContent";
 
 const Parent = styled.div`

@@ -56,10 +56,10 @@ export function HeaderMenuUl() {
             {
                 isLogin &&
                 <NavLi
-                    isActive={nowPath === ROUTER_PATH.BOOKSHELF}
+                    isActive={nowPath === ROUTER_PATH.BOOKSHELF.ROOT}
                 >
                     <Link
-                        to={ROUTER_PATH.BOOKSHELF}
+                        to={ROUTER_PATH.BOOKSHELF.ROOT}
                         style={{ color: "inherit", fontWeight: "inherit" }}
                     >
                         本棚

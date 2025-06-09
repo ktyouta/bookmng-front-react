@@ -22,7 +22,7 @@ export function useBookshelfBookContent() {
         }
 
         setBookshelfBookId(id);
-        navigate(`${ROUTER_PATH.FAVORITE}/${id}`);
+        navigate(`${ROUTER_PATH.BOOKSHELF.ROOT}${ROUTER_PATH.BOOKSHELF.DETAIL}/${id}`);
     }
 
     return {

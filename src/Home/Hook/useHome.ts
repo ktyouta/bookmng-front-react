@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { keywordAtom, startIndexAtom } from "../Atom/HomeAtom";
-import { BookListApiUrlModel } from "../Model/VideoListApiUrlModel";
+import { BookListApiUrlModel } from "../Model/BookListApiUrlModel";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 
 export function useHome() {

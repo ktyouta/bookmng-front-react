@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import type { BookshelfBookListMergedType } from "../Type/FavoriteVideoListMergedType";
+import type { BookshelfBookListMergedType } from "../Type/BookshelfBookListMergedType";
 import { useBookshelfBookContent } from "../Hook/useBookshelfBookContent";
 
 const BookArticle = styled.article`

@@ -1,32 +1,28 @@
 import { useAtom, useAtomValue } from "jotai";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
-import { bookDetailItemAtom, keywordAtom, startIndexAtom } from "../Atom/HomeAtom";
 import { useNavigate } from "react-router-dom";
 import type { errResType } from "../../Common/Hook/useMutationWrapperBase";
-import { BookIdContext, SetBookIdContext } from "../Component/Home";
 import { useEffect, useState } from "react";
 import { ROUTER_PATH } from "../../Common/Const/RouterPath";
 import { toast } from "react-toastify";
-import type { BookDetailResponseType } from "../Type/BookDetailResponseType";
-import { BookDetailApiUrlModel } from "../Model/BookDetailApiUrlModel";
-import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
-import type { BookDetailType } from "../Type/BookDetailType";
-import { BookListApiUrlModel } from "../Model/BookListApiUrlModel";
+import type { BookshelfBookDetailResponseType } from "../Type/BookshelfBookDetailResponseType";
+import { BookshelfBookIdContext, SetBookshelfBookIdContext } from "../Component/Bookshelf";
+import { bookshelfDetailItemAtom } from "../Atom/BookshelfAtom";
+import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
+import { BookshelfBookDetailApiUrlModel } from "../Model/BookshelfBookDetailApiUrlModel";
 
-export function useHomeBookDetail() {
+export function useBookshelfBookDetail() {
 
     // 本棚書籍ID
-    const bookId = BookIdContext.useCtx();
+    const bookId = BookshelfBookIdContext.useCtx();
     // 本棚書籍ID(setter)
-    const setBookId = SetBookIdContext.useCtx();
-    // 書籍詳細
-    const [bookDetail, setBookDetail] = useAtom(bookDetailItemAtom);
+    const setBookId = SetBookshelfBookIdContext.useCtx();
+    // 本棚詳細
+    const [bookDetail, setBookDetail] = useAtom(bookshelfDetailItemAtom);
     //ルーティング用
     const navigate = useNavigate();
     // エラーメッセージ
     const [errMessage, setErrMessage] = useState(``);
-    // 検索キーワード
-    const keyword = useAtomValue(keywordAtom);
 
 
     // URL直打ち対応
@@ -44,12 +40,12 @@ export function useHomeBookDetail() {
     }, []);
 
     // 書籍詳細を取得
-    const { isLoading } = useQueryWrapper<BookDetailResponseType>(
+    const { isLoading } = useQueryWrapper<BookshelfBookDetailResponseType>(
         {
-            url: bookId ? `${new BookDetailApiUrlModel(bookId).bookMngApiPath}` : ``,
-            afSuccessFn: (response: BookDetailResponseType) => {
+            url: bookId ? `${new BookshelfBookDetailApiUrlModel(bookId).bookMngApiPath}` : ``,
+            afSuccessFn: (response: BookshelfBookDetailResponseType) => {
 
-                const data: BookDetailType = response.data;
+                const data: BookshelfBookDetailMergedType = response.data;
 
                 if (!data) {
                     setErrMessage(`書籍情報を取得できませんでした。`);
@@ -73,22 +69,11 @@ export function useHomeBookDetail() {
     }
 
     /**
-     * 検索状態を維持してホーム画面(書籍一覧)に戻る
+     * 本棚一覧に戻る
      */
     function backPage() {
 
-        let query = ``;
-
-        if (keyword) {
-            const bookListApiUrlModel = BookListApiUrlModel.create({
-                keyword,
-                startIndex: 0
-            });
-
-            query = bookListApiUrlModel.query;
-        }
-
-        navigate(`${ROUTER_PATH.HOME.ROOT}${query}`);
+        navigate(`${ROUTER_PATH.BOOKSHELF.ROOT}`);
     }
 
     return {
