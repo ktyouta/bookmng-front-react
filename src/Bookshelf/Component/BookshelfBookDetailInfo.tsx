@@ -12,6 +12,7 @@ import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailM
 
 const BookInfoDiv = styled.div`
   width: 18%;
+  padding-top: 3%;
 `;
 
 const BookImg = styled.img`

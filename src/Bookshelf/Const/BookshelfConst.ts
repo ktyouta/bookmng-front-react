@@ -4,27 +4,15 @@ import ENV from "../../env.json";
 
 
 
-// お気に入り書籍詳細画面メニューリスト
-export const BOOK_DETIAL_MENU_LIST: comboType[] = [
+// 本棚詳細画面メニューリスト
+export const BOOKSHELF_DETAIL_MENU_LIST: comboType[] = [
     {
         label: `書籍情報`,
         value: `1`,
     },
     {
-        label: `メモ`,
+        label: `感想`,
         value: `2`,
-    },
-    {
-        label: `キーワード検索(コメント)`,
-        value: `3`,
-    },
-    {
-        label: `公開コメント`,
-        value: `4`,
-    },
-    {
-        label: `書籍詳細設定`,
-        value: `5`,
     },
     {
         label: `タグ`,
@@ -36,4 +24,11 @@ export const BOOK_DETIAL_MENU_LIST: comboType[] = [
 export const COMMENT_FAVORITE_STATUS = {
     NONE: "0",
     FAVORITE: "1",
+}
+
+// メニュー番号
+export const MENU_NO = {
+    INFO: `1`,
+    REVIEW: `2`,
+    TAG: `6`,
 }
