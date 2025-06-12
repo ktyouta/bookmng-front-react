@@ -5,6 +5,7 @@ import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailM
 import { BookshelfMetaInfo } from "./BookshelfMetaInfo";
 import { BOOKSHELF_DETAIL_MENU_LIST, MENU_NO } from "../Const/BookshelfConst";
 import { useBookshelfBookDetailMenu } from "../Hook/useBookshelfBookDetailMenu";
+import { BookshelfReview } from "./BookshelfReview";
 
 
 const MenuParentDiv = styled.div`
@@ -72,7 +73,7 @@ export function BookshelfBookDetailMenu(props: propsType) {
         {
           // 感想
           selectedMenuNo == MENU_NO.REVIEW &&
-          <BookshelfMetaInfo
+          <BookshelfReview
             bookDetail={bookDetail}
           />
         }

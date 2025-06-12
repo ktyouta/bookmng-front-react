@@ -1,0 +1,82 @@
+import React from "react";
+import { IconComponent } from "../../Common/Component/IconComponent";
+import { RxCross1 } from 'react-icons/rx';
+import styled from "styled-components";
+import AccordionComponent from "../../Common/Component/AccordionComponent";
+import parse from "html-react-parser";
+import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
+import { useBookshelfReview } from "../Hook/useBookshelfReview";
+import { REVIEW_EDIT_MODE } from "../Const/BookshelfConst";
+import { BookshelfReviewView } from "./BookshelfReviewView";
+import { FlexSpaceDiv } from "../../Common/StyledComponent/FlexSpaceDiv";
+import { BookshelfReviewEditIcon } from "./BookshelfReviewEditIcon";
+
+
+const Parent = styled.div`
+  box-sizing:border-box;
+  min-height: 502px;
+  background-color: #CAD4DB;
+  border-radius: 15px;
+  border: solid 1px;
+  padding:2%;
+  border-color: #A5B1BA;
+  color:#2C3E50;
+`;
+
+const ContentDiv = styled.div`
+`;
+
+const HeaderDiv = styled.div`
+  height:20px;
+  margin-bottom: 1%;
+  display: flex;
+  align-items: center;
+`;
+
+const MetaDiv = styled.div`
+  box-sizing:border-box;
+  display: flex;
+  text-align: center;
+  align-items: center;
+`;
+
+
+type propsType = {
+    bookDetail: BookshelfBookDetailMergedType | undefined,
+}
+
+export function BookshelfReview(props: propsType) {
+
+    console.log("BookshelfReview render");
+
+    const {
+        editMode,
+        changeEdit,
+    } = useBookshelfReview();
+
+    const bookDetail = props.bookDetail;
+    // 感想
+    const review = bookDetail?.review;
+
+    return (
+        <Parent>
+            <ContentDiv>
+                <HeaderDiv>
+                    <MetaDiv>
+                        感想
+                    </MetaDiv>
+                    <FlexSpaceDiv />
+                    <BookshelfReviewEditIcon
+                        changeEdit={changeEdit} />
+                </HeaderDiv>
+                {
+                    // 閲覧
+                    editMode === REVIEW_EDIT_MODE.VIEW &&
+                    <BookshelfReviewView
+                        review={review ?? ``}
+                    />
+                }
+            </ContentDiv>
+        </Parent>
+    );
+}

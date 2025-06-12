@@ -32,3 +32,9 @@ export const MENU_NO = {
     REVIEW: `2`,
     TAG: `6`,
 }
+
+// 感想画面編集モード
+export const REVIEW_EDIT_MODE = {
+    VIEW: `0`,
+    EIDT: `1`,
+}
