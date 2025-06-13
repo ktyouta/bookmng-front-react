@@ -4,6 +4,8 @@ import { HiOutlineInbox } from 'react-icons/hi';
 import React from "react";
 import { MdEdit } from "react-icons/md";
 import { useBookshelfReviewEditIcon } from "../Hook/useBookshelfReviewEditIcon";
+import { useBookshelfReviewCommitIcon } from "../Hook/useBookshelfReviewCommitIcon";
+import { FaCheck } from "react-icons/fa6";
 
 
 const BlockNavDiv = styled.div<{ isDisplay: boolean }>`
@@ -36,18 +38,18 @@ type propsType = {
 }
 
 
-export function BookshelfReviewEditIcon(props: propsType) {
+export function BookshelfReviewCommitIcon(props: propsType) {
 
   const {
     isOpenEditNav,
     openEditNav,
     closeEditNav,
-  } = useBookshelfReviewEditIcon();
+  } = useBookshelfReviewCommitIcon();
 
   return (
     <Parent>
       <IconComponent
-        icon={MdEdit}
+        icon={FaCheck}
         onclick={props.changeEdit}
         size="95%"
         style={{ color: "#2C3E50" }}
@@ -57,7 +59,7 @@ export function BookshelfReviewEditIcon(props: propsType) {
       <BlockNavDiv
         isDisplay={isOpenEditNav}
       >
-        編集
+        更新
       </BlockNavDiv>
     </Parent>
   );

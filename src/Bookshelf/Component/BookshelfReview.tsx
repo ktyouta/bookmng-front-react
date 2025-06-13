@@ -10,6 +10,9 @@ import { REVIEW_EDIT_MODE } from "../Const/BookshelfConst";
 import { BookshelfReviewView } from "./BookshelfReviewView";
 import { FlexSpaceDiv } from "../../Common/StyledComponent/FlexSpaceDiv";
 import { BookshelfReviewEditIcon } from "./BookshelfReviewEditIcon";
+import { BookshelfReviewEdit } from "./BookshelfReviewEdit";
+import { BookshelfReviewCancelIcon } from "./BookshelfReviewCancelIcon";
+import { BookshelfReviewCommitIcon } from "./BookshelfReviewCommitIcon";
 
 
 const Parent = styled.div`
@@ -31,6 +34,8 @@ const HeaderDiv = styled.div`
   margin-bottom: 1%;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
+  padding-right: 2%;
 `;
 
 const MetaDiv = styled.div`
@@ -42,7 +47,7 @@ const MetaDiv = styled.div`
 
 
 type propsType = {
-    bookDetail: BookshelfBookDetailMergedType | undefined,
+    bookDetail: BookshelfBookDetailMergedType,
 }
 
 export function BookshelfReview(props: propsType) {
@@ -52,28 +57,30 @@ export function BookshelfReview(props: propsType) {
     const {
         editMode,
         changeEdit,
+        cancel,
     } = useBookshelfReview();
 
     const bookDetail = props.bookDetail;
     // 感想
-    const review = bookDetail?.review;
+    const review = bookDetail.review;
 
     return (
         <Parent>
             <ContentDiv>
-                <HeaderDiv>
-                    <MetaDiv>
-                        感想
-                    </MetaDiv>
-                    <FlexSpaceDiv />
-                    <BookshelfReviewEditIcon
-                        changeEdit={changeEdit} />
-                </HeaderDiv>
                 {
                     // 閲覧
                     editMode === REVIEW_EDIT_MODE.VIEW &&
                     <BookshelfReviewView
-                        review={review ?? ``}
+                        review={review}
+                        changeEdit={changeEdit}
+                    />
+                }
+                {
+                    // 編集
+                    editMode === REVIEW_EDIT_MODE.EDIT &&
+                    <BookshelfReviewEdit
+                        initReview={review}
+                        cancel={cancel}
                     />
                 }
             </ContentDiv>

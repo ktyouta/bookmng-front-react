@@ -5,6 +5,8 @@ import styled from "styled-components";
 import AccordionComponent from "../../Common/Component/AccordionComponent";
 import parse from "html-react-parser";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
+import { FlexSpaceDiv } from "../../Common/StyledComponent/FlexSpaceDiv";
+import { BookshelfReviewEditIcon } from "./BookshelfReviewEditIcon";
 
 
 const Parent = styled.div`
@@ -18,30 +20,24 @@ const Parent = styled.div`
   color:#2C3E50;
 `;
 
-const ContentDiv = styled.div`
-`;
-
-const TitleDiv = styled.div`
-  box-sizing:border-box;
-  margin-bottom:1%;
-`;
-
-const MetaDiv = styled.div`
-  box-sizing:border-box;
-  margin-bottom: 1%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-`;
-
 const DescriptionDiv = styled.div`
   box-sizing:border-box;
   margin-bottom: 1%;
 `;
 
+const HeaderDiv = styled.div`
+  height:20px;
+  margin-bottom: 1%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-right: 2%;
+`;
+
 
 type propsType = {
   review: string,
+  changeEdit: () => void,
 }
 
 export function BookshelfReviewView(props: propsType) {
@@ -49,8 +45,16 @@ export function BookshelfReviewView(props: propsType) {
   console.log("BookshelfReviewView render");
 
   return (
-    <DescriptionDiv>
-      {props.review}
-    </DescriptionDiv>
+    <React.Fragment>
+      <HeaderDiv>
+        <FlexSpaceDiv />
+        <BookshelfReviewEditIcon
+          changeEdit={props.changeEdit}
+        />
+      </HeaderDiv>
+      <DescriptionDiv>
+        {props.review}
+      </DescriptionDiv>
+    </React.Fragment>
   );
 }

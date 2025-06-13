@@ -36,5 +36,5 @@ export const MENU_NO = {
 // 感想画面編集モード
 export const REVIEW_EDIT_MODE = {
     VIEW: `0`,
-    EIDT: `1`,
+    EDIT: `1`,
 }

@@ -28,7 +28,7 @@ const ComboTitleSpan = styled.span`
 `;
 
 type propsType = {
-  bookDetail: BookshelfBookDetailMergedType | undefined,
+  bookDetail: BookshelfBookDetailMergedType,
 }
 
 

@@ -6,13 +6,23 @@ export function useBookshelfReview() {
     // 編集モード
     const [editMode, setEditMode] = useState(REVIEW_EDIT_MODE.VIEW);
 
-    // 編集モード切替
+    /**
+     * 編集モードに切替
+     */
     function changeEdit() {
-        setEditMode(REVIEW_EDIT_MODE.EIDT);
+        setEditMode(REVIEW_EDIT_MODE.EDIT);
+    }
+
+    /**
+     * 編集キャンセル
+     */
+    function cancel() {
+        setEditMode(REVIEW_EDIT_MODE.VIEW);
     }
 
     return {
         editMode,
         changeEdit,
+        cancel,
     };
 }

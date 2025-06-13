@@ -4,6 +4,8 @@ import { HiOutlineInbox } from 'react-icons/hi';
 import React from "react";
 import { MdEdit } from "react-icons/md";
 import { useBookshelfReviewEditIcon } from "../Hook/useBookshelfReviewEditIcon";
+import { useBookshelfReviewCancelIcon } from "../Hook/useBookshelfReviewCancelIcon";
+import { RxCross1 } from "react-icons/rx";
 
 
 const BlockNavDiv = styled.div<{ isDisplay: boolean }>`
@@ -29,6 +31,8 @@ const Parent = styled.div`
     display: flex;
     align-items: center;
     position: relative;
+    margin-right: 1%;
+    box-sizing: border-box;
 `;
 
 type propsType = {
@@ -36,18 +40,18 @@ type propsType = {
 }
 
 
-export function BookshelfReviewEditIcon(props: propsType) {
+export function BookshelfReviewCancelIcon(props: propsType) {
 
   const {
     isOpenEditNav,
     openEditNav,
     closeEditNav,
-  } = useBookshelfReviewEditIcon();
+  } = useBookshelfReviewCancelIcon();
 
   return (
     <Parent>
       <IconComponent
-        icon={MdEdit}
+        icon={RxCross1}
         onclick={props.changeEdit}
         size="95%"
         style={{ color: "#2C3E50" }}
@@ -57,7 +61,7 @@ export function BookshelfReviewEditIcon(props: propsType) {
       <BlockNavDiv
         isDisplay={isOpenEditNav}
       >
-        編集
+        キャンセル
       </BlockNavDiv>
     </Parent>
   );
