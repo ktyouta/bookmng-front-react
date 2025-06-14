@@ -1,31 +1,32 @@
 import { useState } from "react";
 import useSwitch from "../../Common/Hook/useSwitch";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
-import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
-import { toast } from "react-toastify";
-import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
-import type { UpdateBookshelfReviewResponseType } from "../Type/UpdateBookshelfReviewResponseType";
-import type { UpdateBookshelfReviewRequestType } from "../Type/UpdateBookshelfReviewRequestType";
 import ENV from "../../env.json";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
+import { toast } from "react-toastify";
+import type { UpdateBookshelfSummaryResponseType } from "../Type/UpdateBookshelfSummaryResponseType";
+import type { UpdateBookshelfSummaryRequestType } from "../Type/UpdateBookshelfSummaryRequestType";
 
 
 type propsType = {
-    initReview: string,
+    initSummary: string,
 }
 
-export function useBookshelfReviewEdit(props: propsType) {
+export function useBookshelfSummaryEdit(props: propsType) {
 
-    // 感想入力値
-    const [review, setReview] = useState(props.initReview);
+    // 要約入力値
+    const [summary, setSummary] = useState(props.initSummary);
+
 
     /**
-     * 感想更新リクエスト
+     * 要約更新リクエスト
      */
     const putMutation = useMutationWrapper({
         url: `${BOOK_MNG_PATH}${ENV.BOOKSHELF}`,
         method: "PUT",
         // 正常終了後の処理
-        afSuccessFn: (res: resType<UpdateBookshelfReviewResponseType>) => {
+        afSuccessFn: (res: resType<UpdateBookshelfSummaryResponseType>) => {
 
             const message = res.message;
             if (message) {
@@ -45,10 +46,10 @@ export function useBookshelfReviewEdit(props: propsType) {
     /**
      * 要約更新
      */
-    function updateReview() {
+    function updateSummary() {
 
-        const body: UpdateBookshelfReviewRequestType = {
-            review
+        const body: UpdateBookshelfSummaryRequestType = {
+            summary
         };
 
         // 更新リクエスト呼び出し
@@ -56,8 +57,8 @@ export function useBookshelfReviewEdit(props: propsType) {
     }
 
     return {
-        review,
-        setReview,
-        updateReview,
+        summary,
+        setSummary,
+        updateSummary,
     }
 }

@@ -110,7 +110,7 @@ export function HomeBookDetailInfo(props: propsType) {
                                             "fontSize": "0.9rem",
                                             "height": "50px",
                                             "width": "90%",
-                                            "background": "#ff9f00",
+                                            "background": "#4CAF50",
                                             "color": "white",
                                             "borderRadius": "8px",
                                         }}
@@ -127,7 +127,7 @@ export function HomeBookDetailInfo(props: propsType) {
                                 "fontSize": "0.9rem",
                                 "height": "50px",
                                 "width": "90%",
-                                "background": "rgb(30, 90, 170)",
+                                "background": "#1976D2",
                                 "color": "white",
                                 "borderRadius": "8px",
                             }}

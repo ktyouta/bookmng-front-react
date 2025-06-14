@@ -7,9 +7,9 @@ import parse from "html-react-parser";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
 import BaseTextAreaComponent from "../../Common/Component/BaseTextAreaComponent";
 import { FlexSpaceDiv } from "../../Common/StyledComponent/FlexSpaceDiv";
-import { BookshelfReviewCancelIcon } from "./BookshelfReviewCancelIcon";
-import { BookshelfReviewCommitIcon } from "./BookshelfReviewCommitIcon";
-import { useBookshelfReviewEdit } from "../Hook/useBookshelfReviewEdit";
+import { BookshelfSummaryCancelIcon } from "./BookshelfSummaryCancelIcon";
+import { BookshelfSummaryCommitIcon } from "./BookshelfSummaryCommitIcon";
+import { useBookshelfSummaryEdit } from "../Hook/useBookshelfSummaryEdit";
 
 
 const Parent = styled.div`
@@ -28,36 +28,36 @@ const HeaderDiv = styled.div`
 `;
 
 type propsType = {
-  initReview: string,
+  initSummary: string,
   cancel: () => void
 }
 
-export function BookshelfReviewEdit(props: propsType) {
+export function BookshelfSummaryEdit(props: propsType) {
 
-  console.log("BookshelfReviewEdit render");
+  console.log("BookshelfSummaryEdit render");
 
   const {
-    review,
-    setReview,
-    updateReview,
-  } = useBookshelfReviewEdit({ ...props });
+    summary,
+    setSummary,
+    updateSummary,
+  } = useBookshelfSummaryEdit({ ...props });
 
   return (
     <React.Fragment>
       <HeaderDiv>
         <FlexSpaceDiv />
         {/* キャンセル */}
-        <BookshelfReviewCancelIcon
+        <BookshelfSummaryCancelIcon
           changeEdit={props.cancel}
         />
         {/* コミット */}
-        <BookshelfReviewCommitIcon
-          changeEdit={updateReview}
+        <BookshelfSummaryCommitIcon
+          changeEdit={updateSummary}
         />
       </HeaderDiv>
       <Parent>
         <BaseTextAreaComponent
-          value={review}
+          value={summary}
           style={{
             backgroundColor: "#E4EBF1",
             minHeight: "450px",
@@ -66,7 +66,7 @@ export function BookshelfReviewEdit(props: propsType) {
             outline: "none",
           }}
           textWidth="98%"
-          onChange={setReview}
+          onChange={setSummary}
         />
       </Parent>
     </React.Fragment>

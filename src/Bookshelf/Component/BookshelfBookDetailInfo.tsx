@@ -74,6 +74,19 @@ export function BookshelfBookDetailInfo(props: propsType) {
                 <BookTitle>
                     {title}
                 </BookTitle>
+                <ButtonComponent
+                    styleTypeNumber="BASE"
+                    title={"登録を解除"}
+                    onclick={() => { }}
+                    style={{
+                        "fontSize": "0.9rem",
+                        "height": "50px",
+                        "width": "90%",
+                        "background": "#455A64",
+                        "color": "white",
+                        "borderRadius": "8px",
+                    }}
+                />
             </BookMetaDiv>
         </BookInfoDiv>
     );

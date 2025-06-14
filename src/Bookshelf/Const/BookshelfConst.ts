@@ -11,12 +11,12 @@ export const BOOKSHELF_DETAIL_MENU_LIST: comboType[] = [
         value: `1`,
     },
     {
-        label: `感想`,
+        label: `要約`,
         value: `2`,
     },
     {
-        label: `タグ`,
-        value: `6`,
+        label: `感想`,
+        value: `3`,
     }
 ];
 
@@ -29,8 +29,8 @@ export const COMMENT_FAVORITE_STATUS = {
 // メニュー番号
 export const MENU_NO = {
     INFO: `1`,
-    REVIEW: `2`,
-    TAG: `6`,
+    SUMMARY: `2`,
+    REVIEW: `3`,
 }
 
 // 感想画面編集モード

@@ -6,6 +6,7 @@ import { BookshelfMetaInfo } from "./BookshelfMetaInfo";
 import { BOOKSHELF_DETAIL_MENU_LIST, MENU_NO } from "../Const/BookshelfConst";
 import { useBookshelfBookDetailMenu } from "../Hook/useBookshelfBookDetailMenu";
 import { BookshelfReview } from "./BookshelfReview";
+import { BookshelfSummary } from "./BookshelfSummary";
 
 
 const MenuParentDiv = styled.div`
@@ -67,6 +68,13 @@ export function BookshelfBookDetailMenu(props: propsType) {
           // 書籍情報
           selectedMenuNo == MENU_NO.INFO &&
           <BookshelfMetaInfo
+            bookDetail={bookDetail}
+          />
+        }
+        {
+          // 要約
+          selectedMenuNo == MENU_NO.SUMMARY &&
+          <BookshelfSummary
             bookDetail={bookDetail}
           />
         }

@@ -4,4 +4,5 @@ import type { GoogleBooksDetailResponseType } from "../../Home/Type/GoogleBooksD
 export type BookshelfBookDetailMergedType = GoogleBooksDetailResponseType & {
     bookId: string,
     review: string,
+    summary: string,
 };
