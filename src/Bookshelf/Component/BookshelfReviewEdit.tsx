@@ -64,6 +64,7 @@ export function BookshelfReviewEdit(props: propsType) {
             padding: "2%",
             boxSizing: "border-box",
             outline: "none",
+            borderRadius: "15px",
           }}
           textWidth="98%"
           onChange={setReview}

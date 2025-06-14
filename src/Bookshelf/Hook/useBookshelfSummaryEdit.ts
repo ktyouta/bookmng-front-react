@@ -7,6 +7,7 @@ import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBa
 import { toast } from "react-toastify";
 import type { UpdateBookshelfSummaryResponseType } from "../Type/UpdateBookshelfSummaryResponseType";
 import type { UpdateBookshelfSummaryRequestType } from "../Type/UpdateBookshelfSummaryRequestType";
+import { BookshelfBookIdContext } from "../Component/Bookshelf";
 
 
 type propsType = {
@@ -17,13 +18,15 @@ export function useBookshelfSummaryEdit(props: propsType) {
 
     // 要約入力値
     const [summary, setSummary] = useState(props.initSummary);
+    // 本棚書籍ID
+    const bookId = BookshelfBookIdContext.useCtx();
 
 
     /**
      * 要約更新リクエスト
      */
     const putMutation = useMutationWrapper({
-        url: `${BOOK_MNG_PATH}${ENV.BOOKSHELF}`,
+        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_SUMMARY}/${bookId}` : ``,
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<UpdateBookshelfSummaryResponseType>) => {

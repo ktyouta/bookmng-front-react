@@ -36,7 +36,7 @@ const HeaderDiv = styled.div`
 
 
 type propsType = {
-  review: string,
+  summary: string,
   changeEdit: () => void,
 }
 
@@ -53,7 +53,7 @@ export function BookshelfSummaryView(props: propsType) {
         />
       </HeaderDiv>
       <DescriptionDiv>
-        {props.review}
+        {props.summary}
       </DescriptionDiv>
     </React.Fragment>
   );

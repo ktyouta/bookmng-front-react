@@ -15,7 +15,7 @@ export const BOOKSHELF_DETAIL_MENU_LIST: comboType[] = [
         value: `2`,
     },
     {
-        label: `感想`,
+        label: `レビュー`,
         value: `3`,
     }
 ];
@@ -33,8 +33,14 @@ export const MENU_NO = {
     REVIEW: `3`,
 }
 
-// 感想画面編集モード
+// レビュー画面編集モード
 export const REVIEW_EDIT_MODE = {
+    VIEW: `0`,
+    EDIT: `1`,
+}
+
+// 要約画面編集モード
+export const SUMMARY_EDIT_MODE = {
     VIEW: `0`,
     EDIT: `1`,
 }

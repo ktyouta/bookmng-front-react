@@ -7,6 +7,7 @@ import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBa
 import type { UpdateBookshelfReviewResponseType } from "../Type/UpdateBookshelfReviewResponseType";
 import type { UpdateBookshelfReviewRequestType } from "../Type/UpdateBookshelfReviewRequestType";
 import ENV from "../../env.json";
+import { BookshelfBookIdContext } from "../Component/Bookshelf";
 
 
 type propsType = {
@@ -15,14 +16,16 @@ type propsType = {
 
 export function useBookshelfReviewEdit(props: propsType) {
 
-    // 感想入力値
+    // レビュー入力値
     const [review, setReview] = useState(props.initReview);
+    // 本棚書籍ID
+    const bookId = BookshelfBookIdContext.useCtx();
 
     /**
-     * 感想更新リクエスト
+     * レビュー更新リクエスト
      */
     const putMutation = useMutationWrapper({
-        url: `${BOOK_MNG_PATH}${ENV.BOOKSHELF}`,
+        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_REVIEW}/${bookId}` : ``,
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<UpdateBookshelfReviewResponseType>) => {

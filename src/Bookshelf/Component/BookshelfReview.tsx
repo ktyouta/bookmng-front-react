@@ -29,22 +29,6 @@ const Parent = styled.div`
 const ContentDiv = styled.div`
 `;
 
-const HeaderDiv = styled.div`
-  height:20px;
-  margin-bottom: 1%;
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  padding-right: 2%;
-`;
-
-const MetaDiv = styled.div`
-  box-sizing:border-box;
-  display: flex;
-  text-align: center;
-  align-items: center;
-`;
-
 
 type propsType = {
     bookDetail: BookshelfBookDetailMergedType,
@@ -61,7 +45,7 @@ export function BookshelfReview(props: propsType) {
     } = useBookshelfReview();
 
     const bookDetail = props.bookDetail;
-    // 感想
+    // レビュー
     const review = bookDetail.review;
 
     return (
