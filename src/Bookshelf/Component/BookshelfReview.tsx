@@ -42,11 +42,10 @@ export function BookshelfReview(props: propsType) {
         editMode,
         changeEdit,
         cancel,
-    } = useBookshelfReview();
+        initReview,
+        setInitReview,
+    } = useBookshelfReview({ ...props });
 
-    const bookDetail = props.bookDetail;
-    // レビュー
-    const review = bookDetail.review;
 
     return (
         <Parent>
@@ -55,7 +54,7 @@ export function BookshelfReview(props: propsType) {
                     // 閲覧
                     editMode === REVIEW_EDIT_MODE.VIEW &&
                     <BookshelfReviewView
-                        review={review}
+                        review={initReview}
                         changeEdit={changeEdit}
                     />
                 }
@@ -63,8 +62,9 @@ export function BookshelfReview(props: propsType) {
                     // 編集
                     editMode === REVIEW_EDIT_MODE.EDIT &&
                     <BookshelfReviewEdit
-                        initReview={review}
+                        initReview={initReview}
                         cancel={cancel}
+                        setInitReview={setInitReview}
                     />
                 }
             </ContentDiv>

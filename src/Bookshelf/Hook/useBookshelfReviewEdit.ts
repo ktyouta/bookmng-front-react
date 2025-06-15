@@ -12,6 +12,8 @@ import { BookshelfBookIdContext } from "../Component/Bookshelf";
 
 type propsType = {
     initReview: string,
+    cancel: () => void,
+    setInitReview: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export function useBookshelfReviewEdit(props: propsType) {
@@ -28,12 +30,20 @@ export function useBookshelfReviewEdit(props: propsType) {
         url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_REVIEW}/${bookId}` : ``,
         method: "PUT",
         // 正常終了後の処理
-        afSuccessFn: (res: resType<UpdateBookshelfReviewResponseType>) => {
+        afSuccessFn: (res: resType<string>) => {
 
             const message = res.message;
+            const data = res.data;
+
             if (message) {
                 toast.success(message);
             }
+
+            if (data) {
+                props.setInitReview(data);
+            }
+
+            props.cancel();
         },
         // 失敗後の処理
         afErrorFn: (res: errResType) => {

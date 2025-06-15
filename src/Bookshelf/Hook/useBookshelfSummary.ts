@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { REVIEW_EDIT_MODE } from "../Const/BookshelfConst";
+import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
 
-export function useBookshelfSummary() {
+
+type propsType = {
+    bookDetail: BookshelfBookDetailMergedType,
+}
+
+export function useBookshelfSummary(props: propsType) {
 
     // 編集モード
     const [editMode, setEditMode] = useState(REVIEW_EDIT_MODE.VIEW);
+    // 要約(初期値)
+    const [initSummary, setInitSummary] = useState(props.bookDetail.summary);
 
     /**
      * 編集モードに切替
@@ -24,5 +32,7 @@ export function useBookshelfSummary() {
         editMode,
         changeEdit,
         cancel,
+        initSummary,
+        setInitSummary,
     };
 }

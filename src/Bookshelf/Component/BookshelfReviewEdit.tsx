@@ -29,7 +29,8 @@ const HeaderDiv = styled.div`
 
 type propsType = {
   initReview: string,
-  cancel: () => void
+  cancel: () => void,
+  setInitReview: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export function BookshelfReviewEdit(props: propsType) {

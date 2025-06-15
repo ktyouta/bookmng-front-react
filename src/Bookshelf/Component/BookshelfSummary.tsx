@@ -44,11 +44,9 @@ export function BookshelfSummary(props: propsType) {
         editMode,
         changeEdit,
         cancel,
-    } = useBookshelfSummary();
-
-    const bookDetail = props.bookDetail;
-    // 要約
-    const summary = bookDetail.summary;
+        initSummary,
+        setInitSummary,
+    } = useBookshelfSummary({ ...props });
 
     return (
         <Parent>
@@ -57,7 +55,7 @@ export function BookshelfSummary(props: propsType) {
                     // 閲覧
                     editMode === SUMMARY_EDIT_MODE.VIEW &&
                     <BookshelfSummaryView
-                        summary={summary}
+                        summary={initSummary}
                         changeEdit={changeEdit}
                     />
                 }
@@ -65,8 +63,9 @@ export function BookshelfSummary(props: propsType) {
                     // 編集
                     editMode === SUMMARY_EDIT_MODE.EDIT &&
                     <BookshelfSummaryEdit
-                        initSummary={summary}
+                        initSummary={initSummary}
                         cancel={cancel}
+                        setInitSummary={setInitSummary}
                     />
                 }
             </ContentDiv>

@@ -73,7 +73,7 @@ export function HomeMetaInfo(props: propsType) {
                     タイトル : {title}
                 </MetaDiv>
                 <MetaDiv>
-                    著者名 : {authors?.join(`,`)}
+                    著者 : {authors?.join(`,`)}
                 </MetaDiv>
                 <MetaDiv>
                     出版社 : {publisher}

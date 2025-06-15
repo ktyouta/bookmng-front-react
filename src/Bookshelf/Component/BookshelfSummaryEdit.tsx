@@ -29,7 +29,8 @@ const HeaderDiv = styled.div`
 
 type propsType = {
   initSummary: string,
-  cancel: () => void
+  cancel: () => void,
+  setInitSummary: React.Dispatch<React.SetStateAction<string>>
 }
 
 export function BookshelfSummaryEdit(props: propsType) {
