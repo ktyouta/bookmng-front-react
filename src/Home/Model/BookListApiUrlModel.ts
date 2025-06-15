@@ -4,7 +4,7 @@ import ENV from "../../env.json";
 
 type porpsType = {
     keyword: string,
-    startIndex: number,
+    startIndex?: number,
 }
 
 export class BookListApiUrlModel {
@@ -35,7 +35,9 @@ export class BookListApiUrlModel {
 
         let queryParam = `?${BookListApiUrlModel.QUERY_KEY_KEYWORD}=${props.keyword}`;
 
-        queryParam += `&${BookListApiUrlModel.QUERY_KEY_START_INDEX}=${props.startIndex}`;
+        if (props.startIndex) {
+            queryParam += `&${BookListApiUrlModel.QUERY_KEY_START_INDEX}=${props.startIndex}`;
+        }
 
         return new BookListApiUrlModel(queryParam);
     }

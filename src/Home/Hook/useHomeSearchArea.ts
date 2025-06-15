@@ -32,7 +32,6 @@ export function useHomeSearchArea() {
 
         const bookListApiUrlModel = BookListApiUrlModel.create({
             keyword,
-            startIndex: 0
         });
 
         setBookApiUrl(bookListApiUrlModel.url);

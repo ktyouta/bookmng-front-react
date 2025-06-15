@@ -55,14 +55,11 @@ export function useHomeBookArea() {
 
                 const params = new URLSearchParams(query);
                 const keywordValue = params.get(`q`);
-                const startIndexValue = params.get(`startIndex`);
 
                 const keyword = keywordValue !== null ? keywordValue : ``;
-                const startIndex = startIndexValue !== null && !isNaN(parseInt(startIndexValue)) ? startIndexValue : `0`;
 
                 // 検索条件の初期値設定
                 setKeyword(keyword);
-                setStartIndex(parseInt(startIndex));
 
                 const bookListApiUrlModel = BookListApiUrlModel.reConstruct(query);
                 setBookApiUrl(bookListApiUrlModel.url);
@@ -137,7 +134,6 @@ export function useHomeBookArea() {
         const bookApiUrl = bookListApiUrlModel.url;
         setBookApiUrl(`${bookApiUrl}`);
         setStartIndex(nextStartIndex);
-        navigate(bookListApiUrlModel.query);
     }
 
     return {
