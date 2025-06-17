@@ -39,9 +39,17 @@ export function useHomeSearchArea() {
         navigate(bookListApiUrlModel.query);
     }
 
+    /**
+     * キーワードをクリアする
+     */
+    function clearInput() {
+        setKeyword(``);
+    }
+
     return {
         keyword,
         setKeyword,
         clickSearchBtn,
+        clearInput,
     }
 }

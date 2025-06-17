@@ -1,5 +1,5 @@
-import { IconType } from 'react-icons';
-import { CSSProperties } from 'styled-components';
+import type { IconType } from 'react-icons';
+import type { CSSProperties } from 'styled-components';
 
 //引数の型
 type propsType = {

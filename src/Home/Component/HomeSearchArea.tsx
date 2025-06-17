@@ -4,6 +4,7 @@ import BaseTextbox from "../../Common/Component/BaseTextbox";
 import { useHomeSearchArea } from "../Hook/useHomeSearchArea";
 import { IoSearch } from "react-icons/io5";
 import { IconComponent } from "../../Common/Component/IconComponent";
+import { ClearableTextbox } from "../../Common/Component/ClearableTextbox";
 
 const Parent = styled.div`
   width: 100%;
@@ -51,22 +52,23 @@ export function HomeSearchArea() {
     const {
         keyword,
         setKeyword,
-        clickSearchBtn, } = useHomeSearchArea();
+        clickSearchBtn,
+        clearInput, } = useHomeSearchArea();
 
     return (
         <Parent>
             <TextBoxAreaDiv>
-                <BaseTextbox
-                    textWidth="90%"
+                <ClearableTextbox
+                    width="90%"
+                    height="99%"
                     placeholder="キーワード"
                     value={keyword}
                     onChange={setKeyword}
                     style={{
-                        borderTopRightRadius: 0,
-                        borderBottomRightRadius: 0,
-                        height: "99%",
-                        boxSizing: "border-box",
+                        borderBottomLeftRadius: 5,
+                        borderTopLeftRadius: 5,
                     }}
+                    clear={clearInput}
                 />
                 <SearchIconAreaDiv>
                     <IconComponent

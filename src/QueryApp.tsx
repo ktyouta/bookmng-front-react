@@ -4,7 +4,6 @@ import { ROUTER_PATH } from './Common/Const/RouterPath';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TOAST_DISPLAY_TIME } from './Common/Const/CommonConst';
-import useApp from './useApp';
 import { createCtx } from './Common/Function/createCtx';
 import type { LoginUserInfoType } from './Common/Type/LoginUserInfoType';
 import { Login } from './Login/Component/Login';
