@@ -2,5 +2,5 @@ import type { GoogleBooksDetailResponseType } from "./GoogleBooksDetailResponseT
 
 // 書籍詳細情報の型
 export type BookDetailType = GoogleBooksDetailResponseType & {
-    favoriteFlg: string,
+    bookshelfFlg: string,
 }

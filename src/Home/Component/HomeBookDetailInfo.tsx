@@ -55,7 +55,7 @@ export function HomeBookDetailInfo(props: propsType) {
     // タイトル
     const title = volumeInfo?.title;
     // 本棚フラグ
-    const favoriteFlg = item?.favoriteFlg;
+    const bookshelfFlg = item?.bookshelfFlg;
 
     return (
         <BookInfoDiv>
@@ -84,7 +84,7 @@ export function HomeBookDetailInfo(props: propsType) {
                     isLogin ?
                         <React.Fragment>
                             {
-                                favoriteFlg === FLG.ON
+                                bookshelfFlg === FLG.ON
                                     ?
                                     // 本棚登録済み
                                     <ButtonComponent
@@ -98,6 +98,8 @@ export function HomeBookDetailInfo(props: propsType) {
                                             "background": "rgb(100, 100, 100)",
                                             "color": "white",
                                             "borderRadius": "8px",
+                                            "cursor": "default",
+                                            "outline": "none"
                                         }}
                                     />
                                     :
