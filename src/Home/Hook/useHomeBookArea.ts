@@ -13,6 +13,8 @@ import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModel
 import { BookListApiUrlModel } from "../Model/BookListApiUrlModel";
 import { BOOK_LIST_MAX_RESULT } from "../Const/HomeConst";
 import { useNavigate } from "react-router-dom";
+import type { BookListDataType } from "../Type/BookListDataType";
+import type { BookListItemType } from "../Type/BookListItemType";
 
 
 export function useHomeBookArea() {
@@ -82,15 +84,15 @@ export function useHomeBookArea() {
 
                 setBookListData((e) => {
 
-                    const bookListData: GoogleBooksAPIsModelType = response.data;
+                    const bookListData: BookListDataType = response.data;
                     // 現在画面表示されている書籍リスト
                     const nowBookItems = e?.items ?? [];
                     // 新たに取得した書籍リスト
-                    const newBookItems: GoogleBooksAPIsModelItemsType[] = bookListData.items;
+                    const newBookItems: BookListItemType[] = bookListData.items;
                     // 次に画面に表示する書籍リスト
                     const latestBookItems = isEqualShowMoreData ? [...nowBookItems, ...newBookItems] : newBookItems;
 
-                    const latestResponse: GoogleBooksAPIsModelType = {
+                    const latestResponse: BookListDataType = {
                         ...bookListData,
                         items: latestBookItems
                     }

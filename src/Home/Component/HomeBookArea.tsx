@@ -87,7 +87,7 @@ export function HomeBookArea() {
       }
       <BookUl>
         {
-          bookListItems?.map((e: GoogleBooksAPIsModelItemsType) => {
+          bookListItems?.map((e: BookListItemType) => {
             return (
               <HomeBookContent
                 data={e}

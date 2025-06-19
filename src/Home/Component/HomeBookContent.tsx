@@ -7,6 +7,7 @@ import { FaStar } from "react-icons/fa";
 import { FLG } from "../../Common/Const/CommonConst";
 import type { GoogleBooksAPIsModelItemsType } from "../Type/GoogleBooksAPIsModelItemsType";
 import { FaBook } from 'react-icons/fa';
+import { HomeBookshelfIconArea } from "./HomeBookshelfIconArea";
 
 
 const BookArticle = styled.article`
@@ -52,7 +53,7 @@ const AuthorDiv = styled.div`
 `;
 
 type propsType = {
-    data: GoogleBooksAPIsModelItemsType,
+    data: BookListItemType,
 }
 
 export function HomeBookContent(props: propsType) {
@@ -75,7 +76,7 @@ export function HomeBookContent(props: propsType) {
     // 著者
     const authors = volumeInfo.authors;
     // 本棚フラグ
-    //const favoriteFlg = data.favoriteFlg;
+    const bookshelfFlg = data.bookshelfFlg;
 
     return (
         <BookArticle>
@@ -89,9 +90,10 @@ export function HomeBookContent(props: propsType) {
                                     clickBook(bookId)
                                 }}
                             />
-                            {/* favoriteFlg === FLG.ON &&
-                            // 本棚アイコン
-                            <HomeBookContentFavoriteIconArea /> */}
+                            {bookshelfFlg === FLG.ON &&
+                                // 本棚アイコン
+                                <HomeBookshelfIconArea />
+                            }
                         </BookImgAreaDiv>
                         :
                         <TmpImgDiv

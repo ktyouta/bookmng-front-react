@@ -2,20 +2,20 @@ import React from "react";
 import { IconComponent } from "../../Common/Component/IconComponent";
 import { FaRegStar } from "react-icons/fa";
 import styled from "styled-components";
-import { useHomeBookContentFavoriteIconArea } from "../Hook/useHomeBookContentFavoriteIconArea";
-import { FaStar } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
+import { useHomeBookshelfIconArea } from "../Hook/useHomeBookshelfIconArea";
 
 
 const NavDiv = styled.div<{ isDisplay: boolean }>`
     display: ${({ isDisplay }) => (isDisplay ? "flex" : "none")};
-    width: 100px;
+    width: 83px;
     height: 25px;
-    top: 11%;
+    top: 1%;
     font-size: 10px;
     background-color: white;
     z-index: 10;
     position: absolute;
-    right: -3%;
+    right: -17%;
     box-sizing: border-box;
     color: black;
     -webkit-box-pack: center;
@@ -25,32 +25,32 @@ const NavDiv = styled.div<{ isDisplay: boolean }>`
 `;
 
 
-export function HomeBookContentFavoriteIconArea() {
+export function HomeBookshelfIconArea() {
 
-    console.log("HomeBookContentFavoriteIconArea render");
+    console.log("HomeBookshelfIconArea render");
 
     const {
-        isOpenFavoriteNav,
-        openFavoriteNav,
-        closeFavoriteNav, } = useHomeBookContentFavoriteIconArea();
+        isOpenBookshelfNav,
+        openBookshelfNav,
+        closeBookshelfNav, } = useHomeBookshelfIconArea();
 
     return (
         <React.Fragment>
             <IconComponent
-                icon={FaStar}
+                icon={FaBook}
                 onclick={() => { }}
                 size="17px"
                 style={{
-                    color: `yellow`,
+                    color: `#2C3E50`,
                     position: `absolute`,
-                    top: `1%`,
-                    right: `1%`
+                    top: `-12%`,
+                    right: `-5%`
                 }}
-                onMouseEnter={openFavoriteNav}
-                onMouseLeave={closeFavoriteNav}
+                onMouseEnter={openBookshelfNav}
+                onMouseLeave={closeBookshelfNav}
             />
             <NavDiv
-                isDisplay={isOpenFavoriteNav}
+                isDisplay={isOpenBookshelfNav}
             >
                 本棚登録済み
             </NavDiv>

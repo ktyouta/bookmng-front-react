@@ -1,12 +1,13 @@
 import { BOOK_LIST_MAX_RESULT, book_TYPE_LIST } from "../Const/HomeConst";
 import type { BookDetailType } from "../Type/BookDetailType";
+import type { BookListDataType } from "../Type/BookListDataType";
 import type { GoogleBooksAPIsModelType } from "../Type/GoogleBooksAPIsModelType";
 import type { GoogleBooksDetailResponseType } from "../Type/GoogleBooksDetailResponseType";
 import type { ShowMoreDataType } from "../Type/ShowMoreDataType";
 import { atom } from "jotai";
 
 // APIから取得した書籍リスト
-export const bookListDataAtom = atom<GoogleBooksAPIsModelType | undefined>();
+export const bookListDataAtom = atom<BookListDataType | undefined>();
 // 検索キーワード
 export const keywordAtom = atom<string>(``);
 // APIから取得した書籍詳細

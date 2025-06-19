@@ -3,14 +3,14 @@ import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
 import useSwitch from "../../Common/Hook/useSwitch";
 
 
-export function useHomeBookContentFavoriteIconArea() {
+export function useHomeBookshelfIconArea() {
 
     // 本棚ナビゲーション表示フラグ
-    const { flag: isOpenFavoriteNav, on: openFavoriteNav, off: closeFavoriteNav } = useSwitch();
+    const { flag: isOpenBookshelfNav, on: openBookshelfNav, off: closeBookshelfNav } = useSwitch();
 
     return {
-        isOpenFavoriteNav,
-        openFavoriteNav,
-        closeFavoriteNav,
+        isOpenBookshelfNav,
+        openBookshelfNav,
+        closeBookshelfNav,
     }
 }
