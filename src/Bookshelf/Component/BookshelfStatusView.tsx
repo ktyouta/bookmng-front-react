@@ -23,15 +23,24 @@ const HeaderDiv = styled.div`
   padding-right: 2%;
 `;
 
+const TitleDiv = styled.div`
+  box-sizing:border-box;
+  margin-bottom:1%;
+`;
+
+const MetaDiv = styled.div`
+  box-sizing:border-box;
+  margin-bottom:4%;
+`;
 
 type propsType = {
-  review: string,
+  bookDetail: BookshelfBookDetailMergedType,
   changeEdit: () => void,
 }
 
-export function BookshelfReviewView(props: propsType) {
+export function BookshelfStatusView(props: propsType) {
 
-  console.log("BookshelfReviewView render");
+  console.log("BookshelfStatusView render");
 
   return (
     <React.Fragment>
@@ -42,7 +51,30 @@ export function BookshelfReviewView(props: propsType) {
         />
       </HeaderDiv>
       <DescriptionDiv>
-        {props.review ?? `未登録`}
+        <TitleDiv>
+          【読書状況】
+        </TitleDiv>
+        <MetaDiv>
+
+        </MetaDiv>
+        <TitleDiv>
+          【購入日】
+        </TitleDiv>
+        <MetaDiv>
+
+        </MetaDiv>
+        <TitleDiv>
+          【読書開始日】
+        </TitleDiv>
+        <MetaDiv>
+
+        </MetaDiv>
+        <TitleDiv>
+          【読書終了日】
+        </TitleDiv>
+        <MetaDiv>
+
+        </MetaDiv>
       </DescriptionDiv>
     </React.Fragment>
   );

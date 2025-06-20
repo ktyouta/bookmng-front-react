@@ -5,4 +5,9 @@ export type BookshelfBookDetailMergedType = GoogleBooksDetailResponseType & {
     bookId: string,
     review: string,
     summary: string,
+    readStatus: string,
+    startDate: string,
+    endDate: string,
+    favoriteLevel: string,
+    purchaseDate: string;
 };

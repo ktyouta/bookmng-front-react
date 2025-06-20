@@ -53,7 +53,7 @@ export function BookshelfSummaryView(props: propsType) {
         />
       </HeaderDiv>
       <DescriptionDiv>
-        {props.summary}
+        {props.summary ?? `未登録`}
       </DescriptionDiv>
     </React.Fragment>
   );
