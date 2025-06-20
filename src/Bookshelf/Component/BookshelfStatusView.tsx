@@ -9,7 +9,7 @@ import { FlexSpaceDiv } from "../../Common/StyledComponent/FlexSpaceDiv";
 import { BookshelfReviewEditIcon } from "./BookshelfReviewEditIcon";
 
 
-const DescriptionDiv = styled.div`
+const MetaInfoAreaDiv = styled.div`
   box-sizing:border-box;
   margin-bottom: 1%;
 `;
@@ -50,32 +50,38 @@ export function BookshelfStatusView(props: propsType) {
           changeEdit={props.changeEdit}
         />
       </HeaderDiv>
-      <DescriptionDiv>
+      <MetaInfoAreaDiv>
         <TitleDiv>
           【読書状況】
         </TitleDiv>
         <MetaDiv>
-
+          {props.bookDetail.readStatus ?? `未登録`}
         </MetaDiv>
         <TitleDiv>
           【購入日】
         </TitleDiv>
         <MetaDiv>
-
+          {props.bookDetail.purchaseDate ?? `未登録`}
         </MetaDiv>
         <TitleDiv>
           【読書開始日】
         </TitleDiv>
         <MetaDiv>
-
+          {props.bookDetail.startDate ?? `未登録`}
         </MetaDiv>
         <TitleDiv>
           【読書終了日】
         </TitleDiv>
         <MetaDiv>
-
+          {props.bookDetail.endDate ?? `未登録`}
         </MetaDiv>
-      </DescriptionDiv>
+        <TitleDiv>
+          【お気に入り度】
+        </TitleDiv>
+        <MetaDiv>
+          {props.bookDetail.favoriteLevel ?? `未登録`}
+        </MetaDiv>
+      </MetaInfoAreaDiv>
     </React.Fragment>
   );
 }

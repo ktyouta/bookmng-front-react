@@ -9,6 +9,7 @@ import type { UpdateBookshelfReviewRequestType } from "../Type/UpdateBookshelfRe
 import ENV from "../../env.json";
 import { BookshelfBookIdContext } from "../Component/Bookshelf";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
+import { useCreateYearList } from "../../Common/Hook/useCreateYearList";
 
 
 type propsType = {
@@ -23,6 +24,8 @@ export function useBookshelfStatusEdit(props: propsType) {
     const [status, setStatus] = useState(props.initStatus);
     // 本棚書籍ID
     const bookId = BookshelfBookIdContext.useCtx();
+    // 年リスト
+    const yearCoomboList = useCreateYearList();
 
     /**
      * レビュー更新リクエスト
@@ -73,5 +76,6 @@ export function useBookshelfStatusEdit(props: propsType) {
         status,
         setStatus,
         updateReview,
+        yearCoomboList,
     }
 }
