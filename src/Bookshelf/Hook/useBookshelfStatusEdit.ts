@@ -7,7 +7,7 @@ import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBa
 import type { UpdateBookshelfReviewResponseType } from "../Type/UpdateBookshelfReviewResponseType";
 import type { UpdateBookshelfReviewRequestType } from "../Type/UpdateBookshelfReviewRequestType";
 import ENV from "../../env.json";
-import { BookshelfBookIdContext } from "../Component/Bookshelf";
+import { BookshelfBookIdContext, ReadStatusListContext } from "../Component/Bookshelf";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
 import { useCreateYearList } from "../../Common/Hook/useCreateYearList";
 
@@ -26,6 +26,8 @@ export function useBookshelfStatusEdit(props: propsType) {
     const bookId = BookshelfBookIdContext.useCtx();
     // 年リスト
     const yearCoomboList = useCreateYearList();
+    // 読書状況一覧
+    const readStatusList = ReadStatusListContext.useCtx();
 
     /**
      * レビュー更新リクエスト
@@ -72,10 +74,29 @@ export function useBookshelfStatusEdit(props: propsType) {
         // putMutation.mutate(body);
     }
 
+    /**
+     * お気に入り度アイコンクリックイベント
+     * @param favoriteLevel 
+     */
+    function clickFavoriteLevelIcon(selectFavoriteLevel: number) {
+
+        const newFavoriteLevel = status.favoriteLevel === 1 && selectFavoriteLevel === 1 ? 0 : selectFavoriteLevel;
+
+        setStatus((e) => {
+
+            return {
+                ...e,
+                favoriteLevel: newFavoriteLevel
+            }
+        });
+    }
+
     return {
         status,
         setStatus,
         updateReview,
         yearCoomboList,
+        readStatusList,
+        clickFavoriteLevelIcon,
     }
 }

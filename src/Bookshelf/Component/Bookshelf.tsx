@@ -12,8 +12,8 @@ import { BookshelfBookDetail } from "./BookshelfBookDetail";
 export const BookshelfBookIdContext = createCtx<string>();
 // 書籍ID(setter)
 export const SetBookshelfBookIdContext = createCtx<React.Dispatch<React.SetStateAction<string>>>();
-// 視聴状況リスト
-export const ViewStatusListContext = createCtx<comboType[]>();
+// 読書状況リスト
+export const ReadStatusListContext = createCtx<comboType[]>();
 
 
 export function Bookshelf() {
@@ -22,30 +22,33 @@ export function Bookshelf() {
 
     const {
         bookshelfBookId,
-        setBookshelfBookId, } = useBookshelf();
+        setBookshelfBookId,
+        readStatusList, } = useBookshelf();
 
     return (
-        <Routes>
-            {/* 本棚一覧 */}
-            <Route
-                path={`/`}
-                element={
-                    <SetBookshelfBookIdContext.Provider value={setBookshelfBookId}>
-                        <BookshelfBookList />
-                    </SetBookshelfBookIdContext.Provider>
-                }
-            />
-            {/* 本棚詳細 */}
-            <Route
-                path={`${ROUTER_PATH.BOOKSHELF.DETAIL}/*`}
-                element={
-                    <BookshelfBookIdContext.Provider value={bookshelfBookId}>
+        <ReadStatusListContext.Provider value={readStatusList}>
+            <Routes>
+                {/* 本棚一覧 */}
+                <Route
+                    path={`/`}
+                    element={
                         <SetBookshelfBookIdContext.Provider value={setBookshelfBookId}>
-                            <BookshelfBookDetail />
+                            <BookshelfBookList />
                         </SetBookshelfBookIdContext.Provider>
-                    </BookshelfBookIdContext.Provider>
-                }
-            />
-        </Routes>
+                    }
+                />
+                {/* 本棚詳細 */}
+                <Route
+                    path={`${ROUTER_PATH.BOOKSHELF.DETAIL}/*`}
+                    element={
+                        <BookshelfBookIdContext.Provider value={bookshelfBookId}>
+                            <SetBookshelfBookIdContext.Provider value={setBookshelfBookId}>
+                                <BookshelfBookDetail />
+                            </SetBookshelfBookIdContext.Provider>
+                        </BookshelfBookIdContext.Provider>
+                    }
+                />
+            </Routes>
+        </ReadStatusListContext.Provider>
     );
 }

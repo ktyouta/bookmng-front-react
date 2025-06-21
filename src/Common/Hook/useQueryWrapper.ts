@@ -47,13 +47,13 @@ const useQueryWrapper = <
         if (query.isSuccess && props.afSuccessFn) {
             props.afSuccessFn(query.data as RData);
         }
-    }, [query.isSuccess, query.data, props.afSuccessFn]);
+    }, [query.isSuccess, query.data]);
 
     useEffect(() => {
         if (query.isError && props.afErrorFn) {
             props.afErrorFn(query.error);
         }
-    }, [query.isError, query.error, props.afErrorFn]);
+    }, [query.isError, query.error]);
 
     return query;
 };

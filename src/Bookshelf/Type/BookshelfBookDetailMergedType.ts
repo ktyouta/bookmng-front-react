@@ -8,6 +8,6 @@ export type BookshelfBookDetailMergedType = GoogleBooksDetailResponseType & {
     readStatus: string,
     startDate: string,
     endDate: string,
-    favoriteLevel: string,
+    favoriteLevel: number,
     purchaseDate: string;
 };

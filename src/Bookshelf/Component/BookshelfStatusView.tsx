@@ -7,6 +7,9 @@ import parse from "html-react-parser";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
 import { FlexSpaceDiv } from "../../Common/StyledComponent/FlexSpaceDiv";
 import { BookshelfReviewEditIcon } from "./BookshelfReviewEditIcon";
+import { useBookshelfStatusView } from "../Hook/useBookshelfStatusView";
+import { FAVORITE_LEVEL_SETTING_LIST } from "../Const/BookshelfConst";
+import { FaStar } from "react-icons/fa";
 
 
 const MetaInfoAreaDiv = styled.div`
@@ -33,6 +36,14 @@ const MetaDiv = styled.div`
   margin-bottom:4%;
 `;
 
+const FavoriteLevelAreaDiv = styled.div`
+  box-sizing:border-box;
+  align-items: center;
+  display:flex;
+  flex-wrap: wrap;
+  grid-column-gap: 2%;
+`;
+
 type propsType = {
   bookDetail: BookshelfBookDetailMergedType,
   changeEdit: () => void,
@@ -41,6 +52,8 @@ type propsType = {
 export function BookshelfStatusView(props: propsType) {
 
   console.log("BookshelfStatusView render");
+
+  const { readStatusList } = useBookshelfStatusView();
 
   return (
     <React.Fragment>
@@ -55,7 +68,11 @@ export function BookshelfStatusView(props: propsType) {
           【読書状況】
         </TitleDiv>
         <MetaDiv>
-          {props.bookDetail.readStatus ?? `未登録`}
+          {
+            readStatusList.find((e) => {
+              return e.value === props.bookDetail.readStatus
+            })?.label ?? `未設定`
+          }
         </MetaDiv>
         <TitleDiv>
           【購入日】
@@ -81,6 +98,29 @@ export function BookshelfStatusView(props: propsType) {
         <MetaDiv>
           {props.bookDetail.favoriteLevel ?? `未登録`}
         </MetaDiv>
+        <TitleDiv>
+          【お気に入り度】
+        </TitleDiv>
+        <FavoriteLevelAreaDiv>
+          {
+            [...Array(FAVORITE_LEVEL_SETTING_LIST)].map((_, index) => {
+
+              const favoriteLevel = index + 1;
+              const color = props.bookDetail.favoriteLevel >= favoriteLevel ? `yellow` : ``;
+
+              return (
+                <IconComponent
+                  icon={FaStar}
+                  size="25px"
+                  style={{
+                    color,
+                  }}
+                  key={favoriteLevel}
+                />
+              )
+            })
+          }
+        </FavoriteLevelAreaDiv>
       </MetaInfoAreaDiv>
     </React.Fragment>
   );

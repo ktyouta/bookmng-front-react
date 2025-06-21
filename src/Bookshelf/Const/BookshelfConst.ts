@@ -55,3 +55,6 @@ export const STATUS_EDIT_MODE = {
     VIEW: `0`,
     EDIT: `1`,
 }
+
+// お気に入り度設定値
+export const FAVORITE_LEVEL_SETTING_LIST = 5;

@@ -13,6 +13,8 @@ import { useBookshelfReviewEdit } from "../Hook/useBookshelfReviewEdit";
 import { useBookshelfStatusEdit } from "../Hook/useBookshelfStatusEdit";
 import ComboComponent from "../../Common/Component/ComboComponent";
 import { DAY_LIST, MONTH_LIST } from "../../Common/Const/CommonConst";
+import { FAVORITE_LEVEL_SETTING_LIST } from "../Const/BookshelfConst";
+import { FaStar } from "react-icons/fa";
 
 
 const MetaInfoAreaDiv = styled.div`
@@ -48,6 +50,14 @@ const BirthDayLabelDiv = styled.div`
   margin-right:2px;
 `;
 
+const FavoriteLevelAreaDiv = styled.div`
+  box-sizing:border-box;
+  align-items: center;
+  display:flex;
+  flex-wrap: wrap;
+  grid-column-gap: 2%;
+`;
+
 type propsType = {
   initStatus: BookshelfBookDetailMergedType,
   cancel: () => void,
@@ -63,6 +73,8 @@ export function BookshelfStatusEdit(props: propsType) {
     setStatus,
     updateReview,
     yearCoomboList,
+    readStatusList,
+    clickFavoriteLevelIcon,
   } = useBookshelfStatusEdit({ ...props });
 
   return (
@@ -79,12 +91,34 @@ export function BookshelfStatusEdit(props: propsType) {
         />
       </HeaderDiv>
       <MetaInfoAreaDiv>
-        <TitleDiv>
-          【読書状況】
-        </TitleDiv>
-        <MetaDiv>
-
-        </MetaDiv>
+        {
+          readStatusList &&
+          <React.Fragment>
+            <TitleDiv>
+              【読書状況】
+            </TitleDiv>
+            <MetaDiv>
+              <ComboComponent
+                combo={readStatusList}
+                initValue={status.readStatus}
+                onChange={(value) => {
+                  setStatus((e) => {
+                    return {
+                      ...e,
+                      readStatus: value
+                    };
+                  })
+                }}
+                width="25%"
+                height="39px"
+                selectStyle={{
+                  backgroundColor: "#D3D9DE",
+                  color: "#2C3E50",
+                }}
+              />
+            </MetaDiv>
+          </React.Fragment>
+        }
         <TitleDiv>
           【購入日】
         </TitleDiv>
@@ -102,6 +136,10 @@ export function BookshelfStatusEdit(props: propsType) {
                   const newPurchaseDate = `${value}${purchaseDate.slice(4)}`;
                   return { ...e, purchaseDate: newPurchaseDate };
                 });
+              }}
+              selectStyle={{
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             <BirthDayLabelDiv>
@@ -123,7 +161,9 @@ export function BookshelfStatusEdit(props: propsType) {
                 });
               }}
               selectStyle={{
-                marginLeft: `1%`
+                marginLeft: `1%`,
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             <BirthDayLabelDiv>
@@ -144,7 +184,9 @@ export function BookshelfStatusEdit(props: propsType) {
                 });
               }}
               selectStyle={{
-                marginLeft: `1%`
+                marginLeft: `1%`,
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             日
@@ -168,6 +210,10 @@ export function BookshelfStatusEdit(props: propsType) {
                   return { ...e, startDate: newStartDate };
                 });
               }}
+              selectStyle={{
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
+              }}
             />
             <BirthDayLabelDiv>
               年
@@ -188,7 +234,9 @@ export function BookshelfStatusEdit(props: propsType) {
                 });
               }}
               selectStyle={{
-                marginLeft: `1%`
+                marginLeft: `1%`,
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             <BirthDayLabelDiv>
@@ -209,7 +257,9 @@ export function BookshelfStatusEdit(props: propsType) {
                 });
               }}
               selectStyle={{
-                marginLeft: `1%`
+                marginLeft: `1%`,
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             日
@@ -233,6 +283,10 @@ export function BookshelfStatusEdit(props: propsType) {
                   return { ...e, endDate: newEndDate };
                 });
               }}
+              selectStyle={{
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
+              }}
             />
             <BirthDayLabelDiv>
               年
@@ -253,7 +307,9 @@ export function BookshelfStatusEdit(props: propsType) {
                 });
               }}
               selectStyle={{
-                marginLeft: `1%`
+                marginLeft: `1%`,
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             <BirthDayLabelDiv>
@@ -274,7 +330,9 @@ export function BookshelfStatusEdit(props: propsType) {
                 });
               }}
               selectStyle={{
-                marginLeft: `1%`
+                marginLeft: `1%`,
+                backgroundColor: "#D3D9DE",
+                color: "#2C3E50",
               }}
             />
             日
@@ -283,8 +341,29 @@ export function BookshelfStatusEdit(props: propsType) {
         <TitleDiv>
           【お気に入り度】
         </TitleDiv>
-        <MetaDiv>
-        </MetaDiv>
+        <FavoriteLevelAreaDiv>
+          {
+            [...Array(FAVORITE_LEVEL_SETTING_LIST)].map((_, index) => {
+
+              const favoriteLevel = index + 1;
+              const color = status.favoriteLevel >= favoriteLevel ? `yellow` : ``;
+
+              return (
+                <IconComponent
+                  icon={FaStar}
+                  size="25px"
+                  style={{
+                    color,
+                  }}
+                  key={favoriteLevel}
+                  onclick={() => {
+                    clickFavoriteLevelIcon(favoriteLevel);
+                  }}
+                />
+              )
+            })
+          }
+        </FavoriteLevelAreaDiv>
       </MetaInfoAreaDiv>
     </React.Fragment>
   );
