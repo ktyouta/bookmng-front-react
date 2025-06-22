@@ -95,12 +95,6 @@ export function BookshelfStatusView(props: propsType) {
         <TitleDiv>
           【お気に入り度】
         </TitleDiv>
-        <MetaDiv>
-          {props.bookDetail.favoriteLevel ?? `未登録`}
-        </MetaDiv>
-        <TitleDiv>
-          【お気に入り度】
-        </TitleDiv>
         <FavoriteLevelAreaDiv>
           {
             [...Array(FAVORITE_LEVEL_SETTING_LIST)].map((_, index) => {
