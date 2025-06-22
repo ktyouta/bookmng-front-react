@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { REVIEW_EDIT_MODE } from "../Const/BookshelfConst";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
+import type { BookshelfStatusType } from "../Type/BookshelfStatusType";
 
 
 type propsType = {
@@ -11,14 +12,20 @@ export function useBookshelfStatus(props: propsType) {
 
     // 編集モード
     const [editMode, setEditMode] = useState(REVIEW_EDIT_MODE.VIEW);
-    // 要約(初期値)
-    const [initReview, setInitReview] = useState(props.bookDetail.review);
     // ステータス(初期値)
-    const [initStatus, setInitStatus] = useState<BookshelfBookDetailMergedType>();
+    const [initStatus, setInitStatus] = useState<BookshelfStatusType>();
 
-
+    /**
+     * 初期値設定
+     */
     useEffect(() => {
-        setInitStatus(props.bookDetail);
+        setInitStatus({
+            readStatus: props.bookDetail.readStatus,
+            startDate: props.bookDetail.startDate,
+            endDate: props.bookDetail.endDate,
+            favoriteLevel: props.bookDetail.favoriteLevel,
+            purchaseDate: props.bookDetail.purchaseDate,
+        });
     }, [props.bookDetail]);
 
 

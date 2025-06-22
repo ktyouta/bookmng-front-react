@@ -12,9 +12,9 @@ import { BookshelfReviewCommitIcon } from "./BookshelfReviewCommitIcon";
 import { useBookshelfReviewEdit } from "../Hook/useBookshelfReviewEdit";
 import { useBookshelfStatusEdit } from "../Hook/useBookshelfStatusEdit";
 import ComboComponent from "../../Common/Component/ComboComponent";
-import { DAY_LIST, MONTH_LIST } from "../../Common/Const/CommonConst";
 import { FAVORITE_LEVEL_SETTING_LIST } from "../Const/BookshelfConst";
 import { FaStar } from "react-icons/fa";
+import type { BookshelfStatusType } from "../Type/BookshelfStatusType";
 
 
 const MetaInfoAreaDiv = styled.div`
@@ -59,9 +59,9 @@ const FavoriteLevelAreaDiv = styled.div`
 `;
 
 type propsType = {
-  initStatus: BookshelfBookDetailMergedType,
+  initStatus: BookshelfStatusType,
   cancel: () => void,
-  setInitStatus: React.Dispatch<React.SetStateAction<BookshelfBookDetailMergedType | undefined>>
+  setInitStatus: React.Dispatch<React.SetStateAction<BookshelfStatusType | undefined>>
 }
 
 export function BookshelfStatusEdit(props: propsType) {
@@ -72,9 +72,11 @@ export function BookshelfStatusEdit(props: propsType) {
     status,
     setStatus,
     updateReview,
-    yearCoomboList,
     readStatusList,
     clickFavoriteLevelIcon,
+    yearSelectList,
+    monthSelectList,
+    daySelectList,
   } = useBookshelfStatusEdit({ ...props });
 
   return (
@@ -92,278 +94,385 @@ export function BookshelfStatusEdit(props: propsType) {
       </HeaderDiv>
       <MetaInfoAreaDiv>
         {
-          readStatusList &&
+          status &&
           <React.Fragment>
+            {
+              readStatusList &&
+              <React.Fragment>
+                <TitleDiv>
+                  【読書状況】
+                </TitleDiv>
+                <MetaDiv>
+                  <ComboComponent
+                    combo={readStatusList}
+                    initValue={status.readStatus}
+                    onChange={(value) => {
+                      setStatus((e) => {
+                        if (!e) {
+                          return e;
+                        }
+                        return {
+                          ...e,
+                          readStatus: value
+                        };
+                      })
+                    }}
+                    width="25%"
+                    height="39px"
+                    selectStyle={{
+                      backgroundColor: "#D3D9DE",
+                      color: "#2C3E50",
+                    }}
+                  />
+                </MetaDiv>
+              </React.Fragment>
+            }
             <TitleDiv>
-              【読書状況】
+              【購入日】
             </TitleDiv>
             <MetaDiv>
-              <ComboComponent
-                combo={readStatusList}
-                initValue={status.readStatus}
-                onChange={(value) => {
-                  setStatus((e) => {
-                    return {
-                      ...e,
-                      readStatus: value
-                    };
-                  })
-                }}
-                width="25%"
-                height="39px"
-                selectStyle={{
-                  backgroundColor: "#D3D9DE",
-                  color: "#2C3E50",
-                }}
-              />
+              <SelectAreaDiv>
+                {
+                  yearSelectList && yearSelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={yearSelectList}
+                      initValue={status.purchaseDate.year}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            purchaseDate: {
+                              ...e.purchaseDate,
+                              year: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    <BirthDayLabelDiv>
+                      年
+                    </BirthDayLabelDiv>
+                  </React.Fragment>
+                }
+                {
+                  monthSelectList && monthSelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={monthSelectList}
+                      initValue={status.purchaseDate.month}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            purchaseDate: {
+                              ...e.purchaseDate,
+                              month: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        marginLeft: `1%`,
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    <BirthDayLabelDiv>
+                      月
+                    </BirthDayLabelDiv>
+                  </React.Fragment>
+                }
+                {
+                  daySelectList && daySelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={daySelectList}
+                      initValue={status.purchaseDate.day}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            purchaseDate: {
+                              ...e.purchaseDate,
+                              day: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        marginLeft: `1%`,
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    日
+                  </React.Fragment>
+                }
+              </SelectAreaDiv>
             </MetaDiv>
+            <TitleDiv>
+              【読書開始日】
+            </TitleDiv>
+            <MetaDiv>
+              <SelectAreaDiv>
+                {
+                  yearSelectList && yearSelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={yearSelectList}
+                      initValue={status.startDate.year}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            startDate: {
+                              ...e.startDate,
+                              year: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    <BirthDayLabelDiv>
+                      年
+                    </BirthDayLabelDiv>
+                  </React.Fragment>
+                }
+                {
+                  monthSelectList && monthSelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={monthSelectList}
+                      initValue={status.startDate.month}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            startDate: {
+                              ...e.startDate,
+                              month: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        marginLeft: `1%`,
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    <BirthDayLabelDiv>
+                      月
+                    </BirthDayLabelDiv>
+                  </React.Fragment>
+                }
+                {
+                  daySelectList && daySelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={daySelectList}
+                      initValue={status.startDate.day}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            startDate: {
+                              ...e.startDate,
+                              day: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        marginLeft: `1%`,
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    日
+                  </React.Fragment>
+                }
+              </SelectAreaDiv>
+            </MetaDiv>
+            <TitleDiv>
+              【読書終了日】
+            </TitleDiv>
+            <MetaDiv>
+              <SelectAreaDiv>
+                {
+                  yearSelectList && yearSelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={yearSelectList}
+                      initValue={status.endDate.year}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            endDate: {
+                              ...e.endDate,
+                              year: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    <BirthDayLabelDiv>
+                      年
+                    </BirthDayLabelDiv>
+                  </React.Fragment>
+                }
+                {
+                  monthSelectList && monthSelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={monthSelectList}
+                      initValue={status.endDate.month}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            endDate: {
+                              ...e.endDate,
+                              month: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        marginLeft: `1%`,
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    <BirthDayLabelDiv>
+                      月
+                    </BirthDayLabelDiv>
+                  </React.Fragment>
+                }
+                {
+                  daySelectList && daySelectList.length > 0 &&
+                  <React.Fragment>
+                    <ComboComponent
+                      combo={daySelectList}
+                      initValue={status.endDate.day}
+                      width="13%"
+                      minWidth="8%"
+                      height="39px"
+                      onChange={(value) => {
+                        setStatus((e) => {
+                          if (!e) {
+                            return e;
+                          }
+                          return {
+                            ...e,
+                            endDate: {
+                              ...e.endDate,
+                              day: value
+                            }
+                          };
+                        });
+                      }}
+                      selectStyle={{
+                        marginLeft: `1%`,
+                        backgroundColor: "#D3D9DE",
+                        color: "#2C3E50",
+                      }}
+                    />
+                    日
+                  </React.Fragment>
+                }
+              </SelectAreaDiv>
+            </MetaDiv>
+            <TitleDiv>
+              【お気に入り度】
+            </TitleDiv>
+            <FavoriteLevelAreaDiv>
+              {
+                [...Array(FAVORITE_LEVEL_SETTING_LIST)].map((_, index) => {
+
+                  const favoriteLevel = index + 1;
+                  const color = status.favoriteLevel >= favoriteLevel ? `#F5A623` : ``;
+
+                  return (
+                    <IconComponent
+                      icon={FaStar}
+                      size="25px"
+                      style={{
+                        color,
+                      }}
+                      key={favoriteLevel}
+                      onclick={() => {
+                        clickFavoriteLevelIcon(favoriteLevel);
+                      }}
+                    />
+                  )
+                })
+              }
+            </FavoriteLevelAreaDiv>
           </React.Fragment>
         }
-        <TitleDiv>
-          【購入日】
-        </TitleDiv>
-        <MetaDiv>
-          <SelectAreaDiv>
-            <ComboComponent
-              combo={yearCoomboList}
-              initValue={yearCoomboList[0].value}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const purchaseDate = e.purchaseDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const newPurchaseDate = `${value}${purchaseDate.slice(4)}`;
-                  return { ...e, purchaseDate: newPurchaseDate };
-                });
-              }}
-              selectStyle={{
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            <BirthDayLabelDiv>
-              年
-            </BirthDayLabelDiv>
-            <ComboComponent
-              combo={MONTH_LIST}
-              initValue={MONTH_LIST && MONTH_LIST.length > 0 ? MONTH_LIST[0].value : ``}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const purchaseDate = e.purchaseDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const year = purchaseDate.slice(4);
-                  const day = purchaseDate.slice(6, 8);
-                  const newPurchaseDate = `${year}${value}${day}`;
-                  return { ...e, purchaseDate: newPurchaseDate };
-                });
-              }}
-              selectStyle={{
-                marginLeft: `1%`,
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            <BirthDayLabelDiv>
-              月
-            </BirthDayLabelDiv>
-            <ComboComponent
-              combo={DAY_LIST}
-              initValue={DAY_LIST && DAY_LIST.length > 0 ? DAY_LIST[0].value : ``}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const purchaseDate = e.purchaseDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const yearDay = purchaseDate.slice(6);
-                  const newPurchaseDate = `${yearDay}${value}`;
-                  return { ...e, purchaseDate: newPurchaseDate };
-                });
-              }}
-              selectStyle={{
-                marginLeft: `1%`,
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            日
-          </SelectAreaDiv>
-        </MetaDiv>
-        <TitleDiv>
-          【読書開始日】
-        </TitleDiv>
-        <MetaDiv>
-          <SelectAreaDiv>
-            <ComboComponent
-              combo={yearCoomboList}
-              initValue={yearCoomboList[0].value}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const startDate = e.startDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const newStartDate = `${value}${startDate.slice(4)}`;
-                  return { ...e, startDate: newStartDate };
-                });
-              }}
-              selectStyle={{
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            <BirthDayLabelDiv>
-              年
-            </BirthDayLabelDiv>
-            <ComboComponent
-              combo={MONTH_LIST}
-              initValue={MONTH_LIST && MONTH_LIST.length > 0 ? MONTH_LIST[0].value : ``}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const startDate = e.startDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const year = startDate.slice(4);
-                  const day = startDate.slice(6, 8);
-                  const newStartDate = `${year}${value}${day}`;
-                  return { ...e, startDate: newStartDate };
-                });
-              }}
-              selectStyle={{
-                marginLeft: `1%`,
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            <BirthDayLabelDiv>
-              月
-            </BirthDayLabelDiv>
-            <ComboComponent
-              combo={DAY_LIST}
-              initValue={DAY_LIST && DAY_LIST.length > 0 ? DAY_LIST[0].value : ``}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const startDate = e.startDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const yearDay = startDate.slice(6);
-                  const newStartDate = `${yearDay}${value}`;
-                  return { ...e, startDate: newStartDate };
-                });
-              }}
-              selectStyle={{
-                marginLeft: `1%`,
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            日
-          </SelectAreaDiv>
-        </MetaDiv>
-        <TitleDiv>
-          【読書終了日】
-        </TitleDiv>
-        <MetaDiv>
-          <SelectAreaDiv>
-            <ComboComponent
-              combo={yearCoomboList}
-              initValue={yearCoomboList[0].value}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const endDate = e.endDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const newEndDate = `${value}${endDate.slice(4)}`;
-                  return { ...e, endDate: newEndDate };
-                });
-              }}
-              selectStyle={{
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            <BirthDayLabelDiv>
-              年
-            </BirthDayLabelDiv>
-            <ComboComponent
-              combo={MONTH_LIST}
-              initValue={MONTH_LIST && MONTH_LIST.length > 0 ? MONTH_LIST[0].value : ``}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const endDate = e.endDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const year = endDate.slice(4);
-                  const day = endDate.slice(6, 8);
-                  const newEndDate = `${year}${value}${day}`;
-                  return { ...e, endDate: newEndDate };
-                });
-              }}
-              selectStyle={{
-                marginLeft: `1%`,
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            <BirthDayLabelDiv>
-              月
-            </BirthDayLabelDiv>
-            <ComboComponent
-              combo={DAY_LIST}
-              initValue={DAY_LIST && DAY_LIST.length > 0 ? DAY_LIST[0].value : ``}
-              width="13%"
-              minWidth="8%"
-              height="39px"
-              onChange={(value) => {
-                setStatus((e) => {
-                  const endDate = e.endDate ?? `${yearCoomboList[0].value}${MONTH_LIST[0].value}${DAY_LIST[0].value}`;
-                  const yearDay = endDate.slice(6);
-                  const newEndDate = `${yearDay}${value}`;
-                  return { ...e, endDate: newEndDate };
-                });
-              }}
-              selectStyle={{
-                marginLeft: `1%`,
-                backgroundColor: "#D3D9DE",
-                color: "#2C3E50",
-              }}
-            />
-            日
-          </SelectAreaDiv>
-        </MetaDiv>
-        <TitleDiv>
-          【お気に入り度】
-        </TitleDiv>
-        <FavoriteLevelAreaDiv>
-          {
-            [...Array(FAVORITE_LEVEL_SETTING_LIST)].map((_, index) => {
-
-              const favoriteLevel = index + 1;
-              const color = status.favoriteLevel >= favoriteLevel ? `yellow` : ``;
-
-              return (
-                <IconComponent
-                  icon={FaStar}
-                  size="25px"
-                  style={{
-                    color,
-                  }}
-                  key={favoriteLevel}
-                  onclick={() => {
-                    clickFavoriteLevelIcon(favoriteLevel);
-                  }}
-                />
-              )
-            })
-          }
-        </FavoriteLevelAreaDiv>
       </MetaInfoAreaDiv>
     </React.Fragment>
   );

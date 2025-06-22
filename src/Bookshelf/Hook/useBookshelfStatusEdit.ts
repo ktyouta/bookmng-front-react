@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useSwitch from "../../Common/Hook/useSwitch";
 import useMutationWrapper from "../../Common/Hook/useMutationWrapper";
-import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { BOOK_MNG_PATH, DAY_LIST, MONTH_LIST } from "../../Common/Const/CommonConst";
 import { toast } from "react-toastify";
 import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
 import type { UpdateBookshelfReviewResponseType } from "../Type/UpdateBookshelfReviewResponseType";
@@ -10,18 +10,21 @@ import ENV from "../../env.json";
 import { BookshelfBookIdContext, ReadStatusListContext } from "../Component/Bookshelf";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
 import { useCreateYearList } from "../../Common/Hook/useCreateYearList";
+import type { UpdateBookshelfStatusRequestType } from "../Type/UpdateBookshelfStatusRequestType";
+import type { BookshelfStatusType } from "../Type/BookshelfStatusType";
+import type { BookshelfStatusEditType } from "../Type/BookshelfStatusEditType";
 
 
 type propsType = {
-    initStatus: BookshelfBookDetailMergedType,
+    initStatus: BookshelfStatusType,
     cancel: () => void,
-    setInitStatus: React.Dispatch<React.SetStateAction<BookshelfBookDetailMergedType | undefined>>
+    setInitStatus: React.Dispatch<React.SetStateAction<BookshelfStatusType | undefined>>
 }
 
 export function useBookshelfStatusEdit(props: propsType) {
 
-    // レビュー入力値
-    const [status, setStatus] = useState(props.initStatus);
+    // ステータス
+    const [status, setStatus] = useState<BookshelfStatusEditType>();
     // 本棚書籍ID
     const bookId = BookshelfBookIdContext.useCtx();
     // 年リスト
@@ -29,14 +32,92 @@ export function useBookshelfStatusEdit(props: propsType) {
     // 読書状況一覧
     const readStatusList = ReadStatusListContext.useCtx();
 
+
     /**
-     * レビュー更新リクエスト
+     * ステータス初期設定
+     */
+    useEffect(() => {
+
+        const initStatus = props.initStatus;
+        const startDateYear = initStatus.startDate && initStatus.startDate.length > 3 ? initStatus.startDate.slice(4) : ``;
+        const startDateMonth = initStatus.startDate && initStatus.startDate.length > 5 ? initStatus.startDate.slice(4, 6) : ``;
+        const startDateDay = initStatus.startDate && initStatus.startDate.length > 7 ? initStatus.startDate.slice(6, 8) : ``;
+        const endDateYear = initStatus.endDate && initStatus.endDate.length > 3 ? initStatus.endDate.slice(4) : ``;
+        const endDateMonth = initStatus.endDate && initStatus.endDate.length > 5 ? initStatus.endDate.slice(4, 6) : ``;
+        const endDateDay = initStatus.endDate && initStatus.endDate.length > 7 ? initStatus.endDate.slice(6, 8) : ``;
+        const purchaseDateYear = initStatus.purchaseDate && initStatus.purchaseDate.length > 3 ? initStatus.purchaseDate.slice(4) : ``;
+        const purchaseDateMonth = initStatus.purchaseDate && initStatus.purchaseDate.length > 5 ? initStatus.purchaseDate.slice(4, 6) : ``;
+        const purchaseDateDay = initStatus.purchaseDate && initStatus.purchaseDate.length > 7 ? initStatus.purchaseDate.slice(6, 8) : ``;
+
+        setStatus({
+            readStatus: initStatus.readStatus,
+            startDate: {
+                year: startDateYear,
+                month: startDateMonth,
+                day: startDateDay,
+            },
+            endDate: {
+                year: endDateYear,
+                month: endDateMonth,
+                day: endDateDay
+            },
+            favoriteLevel: initStatus.favoriteLevel,
+            purchaseDate: {
+                year: purchaseDateYear,
+                month: purchaseDateMonth,
+                day: purchaseDateDay,
+            },
+        });
+
+    }, [props.initStatus]);
+
+    // 年リスト
+    const yearSelectList = useMemo(() => {
+
+        return [
+            {
+                label: ``,
+                value: ``
+            },
+            ...yearCoomboList
+        ];
+
+    }, [yearCoomboList]);
+
+    // 月リスト
+    const monthSelectList = useMemo(() => {
+
+        return [
+            {
+                label: ``,
+                value: ``
+            },
+            ...MONTH_LIST
+        ];
+
+    }, []);
+
+    // 日リスト
+    const daySelectList = useMemo(() => {
+
+        return [
+            {
+                label: ``,
+                value: ``
+            },
+            ...DAY_LIST
+        ];
+
+    }, []);
+
+    /**
+     * ステータス更新リクエスト
      */
     const putMutation = useMutationWrapper({
         url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_REVIEW}/${bookId}` : ``,
         method: "PUT",
         // 正常終了後の処理
-        afSuccessFn: (res: resType<string>) => {
+        afSuccessFn: (res: resType<BookshelfBookDetailMergedType>) => {
 
             const message = res.message;
             const data = res.data;
@@ -46,7 +127,7 @@ export function useBookshelfStatusEdit(props: propsType) {
             }
 
             if (data) {
-                //props.setStatus(data);
+                props.setInitStatus(data);
             }
 
             props.cancel();
@@ -62,16 +143,25 @@ export function useBookshelfStatusEdit(props: propsType) {
     });
 
     /**
-     * 要約更新
+     * ステータス更新
      */
     function updateReview() {
 
-        // const body: UpdateBookshelfReviewRequestType = {
-        //     status
-        // };
+        if (!status) {
+            return;
+        }
 
-        // // 更新リクエスト呼び出し
-        // putMutation.mutate(body);
+        const body: UpdateBookshelfStatusRequestType = {
+            readStatus: status.readStatus,
+            startDate: `${status.startDate.year}${status.startDate.month}${status.startDate.day}`,
+            endDate: `${status.endDate.year}${status.endDate.month}${status.endDate.day}`,
+            favoriteLevel: props.initStatus.favoriteLevel,
+            purchaseDate: `${status.purchaseDate.year}${status.purchaseDate.month}${status.purchaseDate.day}`,
+        };
+
+        console.log(body);
+        // 更新リクエスト呼び出し
+        //putMutation.mutate(body);
     }
 
     /**
@@ -80,9 +170,17 @@ export function useBookshelfStatusEdit(props: propsType) {
      */
     function clickFavoriteLevelIcon(selectFavoriteLevel: number) {
 
+        if (!status) {
+            return;
+        }
+
         const newFavoriteLevel = status.favoriteLevel === 1 && selectFavoriteLevel === 1 ? 0 : selectFavoriteLevel;
 
         setStatus((e) => {
+
+            if (!e) {
+                return e;
+            }
 
             return {
                 ...e,
@@ -98,5 +196,8 @@ export function useBookshelfStatusEdit(props: propsType) {
         yearCoomboList,
         readStatusList,
         clickFavoriteLevelIcon,
+        yearSelectList,
+        monthSelectList,
+        daySelectList,
     }
 }
