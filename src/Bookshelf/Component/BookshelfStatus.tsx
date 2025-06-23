@@ -60,7 +60,7 @@ export function BookshelfStatus(props: propsType) {
                             // 閲覧
                             editMode === STATUS_EDIT_MODE.VIEW &&
                             <BookshelfStatusView
-                                bookDetail={props.bookDetail}
+                                initStatus={initStatus}
                                 changeEdit={changeEdit}
                             />
                         }

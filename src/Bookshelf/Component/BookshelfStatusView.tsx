@@ -10,6 +10,7 @@ import { BookshelfReviewEditIcon } from "./BookshelfReviewEditIcon";
 import { useBookshelfStatusView } from "../Hook/useBookshelfStatusView";
 import { FAVORITE_LEVEL_SETTING_LIST } from "../Const/BookshelfConst";
 import { FaStar } from "react-icons/fa";
+import type { BookshelfStatusType } from "../Type/BookshelfStatusType";
 
 
 const MetaInfoAreaDiv = styled.div`
@@ -45,7 +46,7 @@ const FavoriteLevelAreaDiv = styled.div`
 `;
 
 type propsType = {
-  bookDetail: BookshelfBookDetailMergedType,
+  initStatus: BookshelfStatusType,
   changeEdit: () => void,
 }
 
@@ -54,6 +55,10 @@ export function BookshelfStatusView(props: propsType) {
   console.log("BookshelfStatusView render");
 
   const { readStatusList } = useBookshelfStatusView();
+
+  const purchaseDate = props.initStatus.purchaseDate;
+  const startDate = props.initStatus.startDate;
+  const endDate = props.initStatus.endDate;
 
   return (
     <React.Fragment>
@@ -70,7 +75,7 @@ export function BookshelfStatusView(props: propsType) {
         <MetaDiv>
           {
             readStatusList.find((e) => {
-              return e.value === props.bookDetail.readStatus
+              return e.value === props.initStatus.readStatus
             })?.label ?? `未設定`
           }
         </MetaDiv>
@@ -78,19 +83,33 @@ export function BookshelfStatusView(props: propsType) {
           【購入日】
         </TitleDiv>
         <MetaDiv>
-          {props.bookDetail.purchaseDate ?? `未登録`}
+          {purchaseDate && purchaseDate.length === 8 ?
+            `${purchaseDate.slice(0, 4)}年${purchaseDate.slice(4, 6)}月${purchaseDate.slice(6, 8)}日`
+            :
+            `未登録`
+          }
         </MetaDiv>
         <TitleDiv>
           【読書開始日】
         </TitleDiv>
         <MetaDiv>
-          {props.bookDetail.startDate ?? `未登録`}
+          {
+            startDate && startDate.length === 8 ?
+              `${startDate.slice(0, 4)}年${startDate.slice(4, 6)}月${startDate.slice(6, 8)}日`
+              :
+              `未登録`
+          }
         </MetaDiv>
         <TitleDiv>
           【読書終了日】
         </TitleDiv>
         <MetaDiv>
-          {props.bookDetail.endDate ?? `未登録`}
+          {
+            endDate && endDate.length === 8 ?
+              `${endDate.slice(0, 4)}年${endDate.slice(4, 6)}月${endDate.slice(6, 8)}日`
+              :
+              `未登録`
+          }
         </MetaDiv>
         <TitleDiv>
           【お気に入り度】
@@ -100,7 +119,7 @@ export function BookshelfStatusView(props: propsType) {
             [...Array(FAVORITE_LEVEL_SETTING_LIST)].map((_, index) => {
 
               const favoriteLevel = index + 1;
-              const color = props.bookDetail.favoriteLevel >= favoriteLevel ? `yellow` : ``;
+              const color = props.initStatus.favoriteLevel >= favoriteLevel ? `yellow` : ``;
 
               return (
                 <IconComponent
