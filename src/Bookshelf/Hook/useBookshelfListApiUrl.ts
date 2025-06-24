@@ -1,26 +1,24 @@
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import ENV from "../../env.json";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
-import { bookshelfBookApiUrlAtom, selectedBookshelfBookBookshelfLevelAtom, selectedBookshelfBookCategoryAtom, selectedBookshelfBookSortKeyAtom, selectedBookshelfBookTagAtom, selectedBookshelfBookviewStatusAtom } from "../Atom/BookshelfAtom";
+import { bookshelfBookApiUrlAtom, selectedBookshelfFavoriteLevelAtom, selectedBookshelfReadStatusAtom, selectedBookshelfSortKeyAtom, selectedBookshelfTagAtom } from "../Atom/BookshelfAtom";
 
 type CreateUrlPropsType = {
-    viewStatus?: string,
+    readStatus?: string,
     bookCategory?: string,
     bookTag?: string,
     sortKey?: string,
-    bookshelfLevel?: string,
+    favoriteLevel?: string,
     callback?: () => void,
 }
 
 
 // 書籍一覧取得エンドポイント
 const BOOK_INFO_PATH = `${BOOK_MNG_PATH}${ENV.BOOKSHELF}`;
-// クエリパラメータのキー(視聴状況)
+// クエリパラメータのキー(読書状況)
 const QUERY_KEY_VIEW_STATUS = `viewstatus`;
-// クエリパラメータのキー(カテゴリ)
-const QUERY_KEY_CATEGORY = `bookcategory`;
 // クエリパラメータのキー(タグ)
 const QUERY_KEY_TAG = `booktag`;
 // クエリパラメータのキー(ソート)
@@ -34,10 +32,18 @@ const QUERY_KEY_FAVORITE_LEVEL = `bookshelflevel`;
  */
 export function useBookshelfListApiUrl() {
 
-    // お気に入り書籍リスト取得URL
-    const setBookshelfBookUrl = useSetAtom(bookshelfBookApiUrlAtom);
+    // 本棚リスト取得URL
+    const [bookshelfBookUrl, setBookshelfBookUrl] = useAtom(bookshelfBookApiUrlAtom);
     //ルーティング用
     const navigate = useNavigate();
+    // 動画一覧検索条件選択値(読書状況)
+    const [selectedBookshelfReadStatus, setSelectedBookshelfReadStatus] = useAtom(selectedBookshelfReadStatusAtom);
+    // 動画一覧検索条件選択値(タグ)
+    const [selectedBookshelfTag, setSelectedBookshelfTagAtom] = useAtom(selectedBookshelfTagAtom);
+    // 動画一覧検索条件選択値(お気に入り度)
+    const [selectedFavoriteVideoFavoriteLevel, setSelectedFavoriteVideoFavoriteLevel] = useAtom(selectedBookshelfFavoriteLevelAtom);
+    // 動画一覧検索ソートキー
+    const [selectedFavoriteVideoSortKey, setSelectedFavoriteVideoSortKey] = useAtom(selectedBookshelfSortKeyAtom);
 
     /**
      * お気に入り書籍一覧取得URLの切り替え
@@ -46,6 +52,11 @@ export function useBookshelfListApiUrl() {
     function changeUrl(props: CreateUrlPropsType) {
 
         let queryParam = ``;
+
+        queryParam = appendQuery(queryParam, QUERY_KEY_VIEW_STATUS, props.readStatus, selectedBookshelfReadStatus, setSelectedBookshelfReadStatus);
+        queryParam = appendQuery(queryParam, QUERY_KEY_TAG, props.bookTag, selectedBookshelfTag, setSelectedBookshelfTagAtom);
+        queryParam = appendQuery(queryParam, QUERY_KEY_SORT, props.sortKey, selectedFavoriteVideoSortKey, setSelectedFavoriteVideoSortKey);
+        queryParam = appendQuery(queryParam, QUERY_KEY_FAVORITE_LEVEL, props.favoriteLevel, selectedFavoriteVideoFavoriteLevel, setSelectedFavoriteVideoFavoriteLevel);
 
         if (queryParam) {
             queryParam = `?${queryParam.slice(1)}`;
@@ -67,6 +78,10 @@ export function useBookshelfListApiUrl() {
      */
     function resetCondition() {
 
+        setSelectedBookshelfReadStatus(``);
+        setSelectedBookshelfTagAtom(``);
+        setSelectedFavoriteVideoSortKey(``);
+        setSelectedFavoriteVideoFavoriteLevel(``);
     }
 
     /**
@@ -99,8 +114,25 @@ export function useBookshelfListApiUrl() {
         return retQuery;
     }
 
+    /**
+     * クエリパラメータ
+     */
+    const queryParam = useMemo(() => {
+
+        const urlArray = bookshelfBookUrl.split(`?`);
+        const query = urlArray.length > 1 ? `?${urlArray[1]}` : ``;
+
+        return query;
+    }, [bookshelfBookUrl]);
+
     return {
+        bookshelfBookUrl,
         changeUrl,
         resetCondition,
+        selectedFavoriteVideoFavoriteLevel,
+        selectedFavoriteVideoSortKey,
+        queryParam,
+        selectedBookshelfTag,
+        selectedBookshelfReadStatus,
     }
 }

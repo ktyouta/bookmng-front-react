@@ -1,12 +1,12 @@
 import React from "react";
 import { BookshelfBookArea } from "./BookshelfBookArea";
 import styled from "styled-components";
+import { BookshelfSearchArea } from "./BookshelfSearchArea";
 
 
 const Parent = styled.div`
   width: 100%;
   box-sizing:border-box;
-  padding-top:1%;
 `;
 
 
@@ -17,7 +17,7 @@ export function BookshelfBookList() {
     return (
         <Parent>
             {/* 検索条件エリア */}
-            {/* <BookshelfSearchArea /> */}
+            <BookshelfSearchArea />
             {/* 書籍表示エリア */}
             <BookshelfBookArea />
         </Parent>

@@ -10,15 +10,15 @@ export const searchKeywordCommentUrlAtom = atom<string>(``);
 export const searchKeywordCommentKeywordAtom = atom<string>(``);
 // 書籍一覧検索条件選択値(カテゴリ)
 export const selectedBookshelfBookCategoryAtom = atom<string>(``);
-// 書籍一覧検索条件選択値(視聴状況)
-export const selectedBookshelfBookviewStatusAtom = atom<string>(``);
+// 書籍一覧検索条件選択値(読書状況)
+export const selectedBookshelfReadStatusAtom = atom<string>(``);
 // 書籍取得用URL
 export const bookshelfBookApiUrlAtom = atom<string>(``);
 // 書籍一覧検索条件選択値(タグ)
-export const selectedBookshelfBookTagAtom = atom<string>(``);
+export const selectedBookshelfTagAtom = atom<string>(``);
 // 書籍一覧ソートキー
-export const selectedBookshelfBookSortKeyAtom = atom<string>(``);
+export const selectedBookshelfSortKeyAtom = atom<string>(``);
 // 書籍一覧検索条件選択値(お気に入り度)
-export const selectedBookshelfBookBookshelfLevelAtom = atom<string>(``);
+export const selectedBookshelfFavoriteLevelAtom = atom<string>(``);
 // 本棚詳細
 export const bookshelfDetailItemAtom = atom<BookshelfBookDetailMergedType>();
