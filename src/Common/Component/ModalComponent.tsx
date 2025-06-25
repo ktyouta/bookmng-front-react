@@ -1,7 +1,8 @@
-import React, { ReactElement, ReactNode } from 'react';
-import Modal from 'react-modal';
-import { IconType } from 'react-icons';
-import { CSSProperties } from 'styled-components';
+import { useEffect, type ReactNode } from 'react';
+import type { CSSProperties } from 'styled-components';
+import Modal from "react-modal";
+import "../css/ModalComponent.css";
+import { Z_INDEX_PARAM } from '../Const/CommonConst';
 
 
 //引数の型
@@ -18,6 +19,20 @@ type propsType = {
 
 function ModalComponent(props: propsType) {
 
+    useEffect(() => {
+        const className = "html-modal-open";
+
+        if (props.modalIsOpen) {
+            document.documentElement.classList.add(className);
+        } else {
+            document.documentElement.classList.remove(className);
+        }
+
+        return () => {
+            document.documentElement.classList.remove(className);
+        };
+    }, [props.modalIsOpen]);
+
     return (
         <Modal
             isOpen={props.modalIsOpen}
@@ -33,6 +48,7 @@ function ModalComponent(props: propsType) {
                     marginRight: '-50%',
                     width: props.width ?? '70%',
                     height: props.height ?? '85%',
+                    zIndex: Z_INDEX_PARAM.MODAL,
                     ...props.style
                 }
             }}

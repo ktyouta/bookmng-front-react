@@ -18,13 +18,13 @@ type CreateUrlPropsType = {
 // 書籍一覧取得エンドポイント
 const BOOK_INFO_PATH = `${BOOK_MNG_PATH}${ENV.BOOKSHELF}`;
 // クエリパラメータのキー(読書状況)
-const QUERY_KEY_VIEW_STATUS = `viewstatus`;
+const QUERY_KEY_READ_STATUS = `readStatus`;
 // クエリパラメータのキー(タグ)
-const QUERY_KEY_TAG = `booktag`;
+const QUERY_KEY_TAG = `bookTag`;
 // クエリパラメータのキー(ソート)
-const QUERY_KEY_SORT = `sortkey`;
+const QUERY_KEY_SORT = `sortKey`;
 // クエリパラメータのキー(お気に入り度)
-const QUERY_KEY_FAVORITE_LEVEL = `bookshelflevel`;
+const QUERY_KEY_FAVORITE_LEVEL = `favoriteLevel`;
 
 
 /**
@@ -53,7 +53,7 @@ export function useBookshelfListApiUrl() {
 
         let queryParam = ``;
 
-        queryParam = appendQuery(queryParam, QUERY_KEY_VIEW_STATUS, props.readStatus, selectedBookshelfReadStatus, setSelectedBookshelfReadStatus);
+        queryParam = appendQuery(queryParam, QUERY_KEY_READ_STATUS, props.readStatus, selectedBookshelfReadStatus, setSelectedBookshelfReadStatus);
         queryParam = appendQuery(queryParam, QUERY_KEY_TAG, props.bookTag, selectedBookshelfTag, setSelectedBookshelfTagAtom);
         queryParam = appendQuery(queryParam, QUERY_KEY_SORT, props.sortKey, selectedFavoriteVideoSortKey, setSelectedFavoriteVideoSortKey);
         queryParam = appendQuery(queryParam, QUERY_KEY_FAVORITE_LEVEL, props.favoriteLevel, selectedFavoriteVideoFavoriteLevel, setSelectedFavoriteVideoFavoriteLevel);
