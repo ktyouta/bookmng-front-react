@@ -8,6 +8,7 @@ import { useBookshelfBookDetailMenu } from "../Hook/useBookshelfBookDetailMenu";
 import { BookshelfReview } from "./BookshelfReview";
 import { BookshelfSummary } from "./BookshelfSummary";
 import { BookshelfStatus } from "./BookshelfStatus";
+import { BookshelfMemo } from "./BookshelfMemo";
 
 
 const MenuParentDiv = styled.div`
@@ -92,6 +93,11 @@ export function BookshelfBookDetailMenu(props: propsType) {
           <BookshelfStatus
             bookDetail={bookDetail}
           />
+        }
+        {
+          // メモ
+          selectedMenuNo == MENU_NO.MEMO &&
+          <BookshelfMemo />
         }
       </MenuParentDiv>
     </React.Fragment>
