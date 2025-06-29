@@ -40,7 +40,7 @@ export function BookshelfMemoEditIconArea(props: propsType) {
                 icon={MdEdit}
                 onclick={props.openEdit}
                 size="45%"
-                style={{ color: "white" }}
+                style={{ color: "#2C3E50" }}
                 onMouseEnter={openEditNav}
                 onMouseLeave={closeEditNav}
             />

@@ -31,7 +31,7 @@ const EditIconAreaDiv = styled.div`
 
 
 type propsType = {
-    videoMemoSeq: number,
+    memoSeq: number,
     closeEdit: () => void,
     inputMemo: string,
 }
@@ -56,6 +56,7 @@ export function BookshelfMemoEditInput(props: propsType) {
                 onChange={setInputMemo}
                 style={{
                     height: "34px",
+                    backgroundColor: "#E4EBF1",
                 }}
             />
             <EditIconAreaDiv>
@@ -65,7 +66,7 @@ export function BookshelfMemoEditInput(props: propsType) {
                 />
                 {/* 更新 */}
                 <BookshelfMemoUpdateIconArea
-                    updateMemo={() => { updateMemo(props.videoMemoSeq); }}
+                    updateMemo={updateMemo}
                 />
             </EditIconAreaDiv>
         </MemoInputAreaDiv>

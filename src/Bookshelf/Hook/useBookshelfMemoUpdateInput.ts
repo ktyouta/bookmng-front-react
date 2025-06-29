@@ -8,9 +8,11 @@ import { BookshelfBookIdContext } from "../Component/Bookshelf";
 import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
 import type { UpdateToBookshelfMemoReqestType } from "../Type/UpdateToBookshelfMemoReqestType";
 import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 
 
 type propsType = {
+    memoSeq: number,
     inputMemo: string,
     closeEdit: () => void,
 }
@@ -26,10 +28,10 @@ export function useBookshelfMemoUpdateInput(props: propsType) {
 
 
     /**
-     * お気に入り動画メモ更新リクエスト
+     * 本棚メモ更新リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOKSHELF_MEMO}`,
+        url: bookId && props.memoSeq ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO_ID.replace(`:bookId`, bookId).replace(`:memoId`, `${props.memoSeq}`)}` : ``,
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfMemoType>) => {
@@ -66,7 +68,7 @@ export function useBookshelfMemoUpdateInput(props: propsType) {
      * メモを更新する
      * @param videoId 
      */
-    function updateMemo(videoMemoSeq: number) {
+    function updateMemo() {
 
         if (!inputMemo) {
             toast.warn(`メモが入力されていません。`);

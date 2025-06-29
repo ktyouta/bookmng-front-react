@@ -57,12 +57,13 @@ export function BookshelfMemoList() {
                         {
                             bookshelfMemoList.map((e: BookshelfMemoType) => {
 
-                                const memoId = e.seq
+                                const memoSeq = e.seq
 
                                 return (
                                     <BookshelfMemoContent
                                         bookshelfMemo={e}
-                                        key={memoId}
+                                        memoSeq={memoSeq}
+                                        key={memoSeq}
                                     />
                                 )
                             })

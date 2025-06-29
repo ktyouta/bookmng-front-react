@@ -50,7 +50,9 @@ export function BookshelfMemoCreateInput() {
                 style={{
                     borderTopRightRadius: 0,
                     borderBottomRightRadius: 0,
-                    height: "33px",
+                    height: "37px",
+                    backgroundColor: "#E4EBF1",
+                    boxSizing: "border-box",
                 }}
             />
             <SearchIconAreaDiv>

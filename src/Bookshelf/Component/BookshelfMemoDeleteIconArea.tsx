@@ -42,7 +42,7 @@ export function BookshelfMemoDeleteIconArea(props: propsType) {
                 icon={FaRegTrashAlt}
                 onclick={props.deleteMemo}
                 size="45%"
-                style={{ color: "white" }}
+                style={{ color: "#2C3E50" }}
                 onMouseEnter={openDeleteNav}
                 onMouseLeave={closeDeleteNav}
             />

@@ -48,6 +48,7 @@ const MetaDiv = styled.div`
 
 type propsType = {
     bookshelfMemo: BookshelfMemoType,
+    memoSeq: number,
 }
 
 export function BookshelfMemoContent(props: propsType) {
@@ -62,7 +63,7 @@ export function BookshelfMemoContent(props: propsType) {
         isOpenModal,
         closeModal,
         executeDelete,
-    } = useBookshelfMemoContent();
+    } = useBookshelfMemoContent({ ...props });
 
     const data = props.bookshelfMemo;
     const memo = data.memo;
@@ -76,7 +77,7 @@ export function BookshelfMemoContent(props: propsType) {
                     <React.Fragment>
                         {/* 編集中 */}
                         <BookshelfMemoEditInput
-                            videoMemoSeq={memoSeq}
+                            memoSeq={memoSeq}
                             closeEdit={closeEdit}
                             inputMemo={memo}
                         />
@@ -98,7 +99,7 @@ export function BookshelfMemoContent(props: propsType) {
                                 />
                                 {/* 削除 */}
                                 <BookshelfMemoDeleteIconArea
-                                    deleteMemo={() => { deleteMemo() }}
+                                    deleteMemo={deleteMemo}
                                 />
                             </IconDiv>
                         </LowerDiv>
@@ -106,9 +107,7 @@ export function BookshelfMemoContent(props: propsType) {
                             isOpenModal={isOpenModal}
                             closeModal={closeModal}
                             titleMessage={`メモを削除しますか？`}
-                            clickOk={() => {
-                                executeDelete(memoSeq);
-                            }}
+                            clickOk={executeDelete}
                         />
                     </React.Fragment>
             }

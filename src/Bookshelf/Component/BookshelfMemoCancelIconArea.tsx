@@ -42,6 +42,7 @@ export function BookshelfMemoCancelIconArea(props: propsType) {
                 icon={RxCross1}
                 onclick={props.closeEdit}
                 size="50%"
+                style={{ color: "#2C3E50" }}
                 onMouseEnter={openCancelNav}
                 onMouseLeave={closeCancelNav}
             />

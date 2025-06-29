@@ -8,6 +8,7 @@ import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBa
 import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
 import type { CreateToBookshelfMemoReqestType } from "../Type/CreateToBookshelfMemoReqestType";
 import { BookshelfBookIdContext } from "../Component/Bookshelf";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 
 
 export function useBookshelfMemoCreateInput() {
@@ -24,7 +25,7 @@ export function useBookshelfMemoCreateInput() {
      * 本棚メモ登録リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOKSHELF_MEMO}`,
+        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO.replace(`:bookId`, bookId)}` : ``,
         method: "POST",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfMemoType>) => {

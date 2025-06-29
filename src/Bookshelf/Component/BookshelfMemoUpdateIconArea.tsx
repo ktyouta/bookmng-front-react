@@ -43,6 +43,7 @@ export function BookshelfMemoUpdateIconArea(props: propsType) {
                 icon={FaCheck}
                 onclick={props.updateMemo}
                 size="50%"
+                style={{ color: "#2C3E50" }}
                 onMouseEnter={openUpdateNav}
                 onMouseLeave={closeUpdateNav}
             />

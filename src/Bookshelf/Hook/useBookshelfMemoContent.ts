@@ -8,10 +8,13 @@ import { BookshelfBookIdContext } from "../Component/Bookshelf";
 import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
 import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
 import { bookshelfMemoListAtom } from "../Atom/BookshelfAtom";
+import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 
+type propsType = {
+    memoSeq: number,
+}
 
-
-export function useBookshelfMemoContent() {
+export function useBookshelfMemoContent(props: propsType) {
 
     // メモ情報
     const setVideoListItemAtom = useSetAtom(bookshelfMemoListAtom);
@@ -27,7 +30,7 @@ export function useBookshelfMemoContent() {
      * メモ削除リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: `${ENV.PROTOCOL}${ENV.DOMAIN}${ENV.PORT}${ENV.BOOKSHELF_MEMO}`,
+        url: bookId && props.memoSeq ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO_ID.replace(`:bookId`, bookId).replace(`:memoId`, `${props.memoSeq}`)}` : ``,
         method: "DELETE",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfMemoType>) => {
@@ -65,7 +68,7 @@ export function useBookshelfMemoContent() {
     /**
      * メモ削除実行
      */
-    function executeDelete(videoMemoSeq: number) {
+    function executeDelete() {
 
         // リクエスト送信
         postMutation.mutate();

@@ -17,6 +17,7 @@ const Parent = styled.div`
   border-radius: 1%;
   border: solid 1px;
   border-color: #A5B1BA;
+  color:#2C3E50;
 `;
 
 
