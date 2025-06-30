@@ -13,11 +13,9 @@ import { BookshelfMemoList } from "./BookshelfMemoList";
 const Parent = styled.div`
   box-sizing:border-box;
   height: 502px;
-  background-color: #CAD4DB;
+  background-color: #181a1e;
   border-radius: 1%;
   border: solid 1px;
-  border-color: #A5B1BA;
-  color:#2C3E50;
 `;
 
 

@@ -24,7 +24,6 @@ const BookUl = styled.ul`
 `;
 
 const MessageDiv = styled.div`
-  color:black;
   position: absolute;
   top: 32%;
   left: 42%;

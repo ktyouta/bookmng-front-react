@@ -52,7 +52,6 @@ export function BookshelfSummaryCommitIcon(props: propsType) {
         icon={FaCheck}
         onclick={props.changeEdit}
         size="95%"
-        style={{ color: "#2C3E50" }}
         onMouseEnter={openEditNav}
         onMouseLeave={closeEditNav}
       />

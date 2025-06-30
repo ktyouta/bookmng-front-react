@@ -64,7 +64,7 @@ const OverlayDiv = styled.div`
 
 // ユーザー名のスタイル
 const UserNameSpan = styled.span`
-  color:white;
+  color:#9fb3c8;
   display: inline-flex;
   align-items: center;
 `;
@@ -104,6 +104,7 @@ export function HeaderUserMenu() {
                                         icon={IoPersonCircleOutline}
                                         onclick={isOpenUserMenu ? closeUserMenu : oepnUserMenu}
                                         size='80%'
+                                        style={{ color: "#657483" }}
                                     />
                                     <NavDiv
                                         isDisplay={isOpenUserMenu}

@@ -41,7 +41,6 @@ const SearchIconAreaDiv = styled.div`
 `;
 
 
-
 /**
  * 検索条件エリア
  */
@@ -75,6 +74,7 @@ export function HomeSearchArea() {
                         icon={IoSearch}
                         onclick={clickSearchBtn}
                         size="75%"
+                        style={{ color: "black" }}
                     />
                 </SearchIconAreaDiv>
             </TextBoxAreaDiv>

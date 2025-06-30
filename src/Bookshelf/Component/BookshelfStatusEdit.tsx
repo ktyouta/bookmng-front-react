@@ -120,8 +120,8 @@ export function BookshelfStatusEdit(props: propsType) {
                     width="25%"
                     height="39px"
                     selectStyle={{
-                      backgroundColor: "#D3D9DE",
-                      color: "#2C3E50",
+                      backgroundColor: "rgb(24, 26, 30)",
+                      color: "white",
                     }}
                   />
                 </MetaDiv>
@@ -156,8 +156,8 @@ export function BookshelfStatusEdit(props: propsType) {
                         });
                       }}
                       selectStyle={{
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     <BirthDayLabelDiv>
@@ -190,8 +190,8 @@ export function BookshelfStatusEdit(props: propsType) {
                       }}
                       selectStyle={{
                         marginLeft: `1%`,
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     <BirthDayLabelDiv>
@@ -224,8 +224,8 @@ export function BookshelfStatusEdit(props: propsType) {
                       }}
                       selectStyle={{
                         marginLeft: `1%`,
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     日
@@ -262,8 +262,8 @@ export function BookshelfStatusEdit(props: propsType) {
                         });
                       }}
                       selectStyle={{
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     <BirthDayLabelDiv>
@@ -296,8 +296,8 @@ export function BookshelfStatusEdit(props: propsType) {
                       }}
                       selectStyle={{
                         marginLeft: `1%`,
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     <BirthDayLabelDiv>
@@ -330,8 +330,8 @@ export function BookshelfStatusEdit(props: propsType) {
                       }}
                       selectStyle={{
                         marginLeft: `1%`,
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     日
@@ -368,8 +368,8 @@ export function BookshelfStatusEdit(props: propsType) {
                         });
                       }}
                       selectStyle={{
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     <BirthDayLabelDiv>
@@ -402,8 +402,8 @@ export function BookshelfStatusEdit(props: propsType) {
                       }}
                       selectStyle={{
                         marginLeft: `1%`,
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     <BirthDayLabelDiv>
@@ -436,8 +436,8 @@ export function BookshelfStatusEdit(props: propsType) {
                       }}
                       selectStyle={{
                         marginLeft: `1%`,
-                        backgroundColor: "#D3D9DE",
-                        color: "#2C3E50",
+                        backgroundColor: "rgb(24, 26, 30)",
+                        color: "white",
                       }}
                     />
                     日

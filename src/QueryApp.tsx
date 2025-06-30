@@ -17,7 +17,7 @@ import styled from 'styled-components';
 
 const LoadingScreenDiv = styled.div`
   height:100vh;
-  background-color:#DDE3E8;
+  background-color:rgb(0, 5, 13);
 `;
 
 

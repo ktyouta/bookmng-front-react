@@ -18,12 +18,10 @@ import { BookshelfReviewCommitIcon } from "./BookshelfReviewCommitIcon";
 const Parent = styled.div`
   box-sizing:border-box;
   min-height: 502px;
-  background-color: #CAD4DB;
+  background-color: #181a1e;
   border-radius: 15px;
   border: solid 1px;
   padding:2%;
-  border-color: #A5B1BA;
-  color:#2C3E50;
 `;
 
 const ContentDiv = styled.div`

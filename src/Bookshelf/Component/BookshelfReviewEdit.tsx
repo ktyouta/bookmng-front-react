@@ -60,12 +60,13 @@ export function BookshelfReviewEdit(props: propsType) {
         <BaseTextAreaComponent
           value={review}
           style={{
-            backgroundColor: "#E4EBF1",
+            backgroundColor: "#1f2329",
             minHeight: "450px",
             padding: "2%",
             boxSizing: "border-box",
             outline: "none",
             borderRadius: "15px",
+            color: "white",
           }}
           textWidth="98%"
           onChange={setReview}

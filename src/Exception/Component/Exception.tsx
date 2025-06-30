@@ -11,8 +11,7 @@ const Parent = styled.div`
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
-  background-color:#DDE3E8;
-  color:black;
+  color: white;
 `;
 
 const HomeLinkSpan = styled.span`

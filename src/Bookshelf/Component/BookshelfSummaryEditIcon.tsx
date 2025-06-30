@@ -52,7 +52,6 @@ export function Summary(props: propsType) {
         icon={MdEdit}
         onclick={props.changeEdit}
         size="95%"
-        style={{ color: "#2C3E50" }}
         onMouseEnter={openEditNav}
         onMouseLeave={closeEditNav}
       />

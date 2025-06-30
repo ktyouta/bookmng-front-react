@@ -14,7 +14,7 @@ const Parent = styled.div`
   top: 0;
   left: 0;
   position: fixed;
-  background-color:#2C3E50;
+  background-color:rgb(8, 12, 20);
   z-index: 2;
 `;
 

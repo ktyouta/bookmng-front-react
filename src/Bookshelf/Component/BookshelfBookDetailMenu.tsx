@@ -26,7 +26,7 @@ const ComboAreaDiv = styled.div`
 
 const ComboTitleSpan = styled.span`
   margin-right:2%;
-  color: #2C3E50;
+  color: white;
   font-size: 18px;
 `;
 
@@ -61,8 +61,8 @@ export function BookshelfBookDetailMenu(props: propsType) {
             minWidth="8%"
             height="39px"
             selectStyle={{
-              "backgroundColor": "#CAD4DB",
-              "color": "#2C3E50",
+              backgroundColor: "rgb(24, 26, 30)",
+              color: "white",
             }}
           />
         </ComboAreaDiv>

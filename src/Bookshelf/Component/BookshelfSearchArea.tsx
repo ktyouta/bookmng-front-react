@@ -83,7 +83,7 @@ export function BookshelfSearchArea() {
           "fontSize": "0.9rem",
           "height": "41px",
           "width": "13%",
-          "background": "#4A90E2",
+          "background": "#29323c",
           "color": "white",
           "borderRadius": "5",
         }}
@@ -95,7 +95,7 @@ export function BookshelfSearchArea() {
           modalIsOpen={isOpenFilterModal}
           closeModal={closeFilterModal}
           style={{
-            backgroundColor: "#2C3E50",
+            backgroundColor: "#181a1e",
             borderRadius: "1%",
             border: "solid 1px",
             color: "white",
