@@ -13,7 +13,7 @@ const OuterDiv = styled.div`
     box-sizing: border-box;
     padding-left: 8%;
     padding-top: 4%;
-    color:black;
+    color:white;
 `;
 
 export function NotFound(props: porpType) {

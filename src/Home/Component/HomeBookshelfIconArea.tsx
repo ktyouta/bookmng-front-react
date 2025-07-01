@@ -4,6 +4,7 @@ import { FaRegStar } from "react-icons/fa";
 import styled from "styled-components";
 import { FaBook } from "react-icons/fa";
 import { useHomeBookshelfIconArea } from "../Hook/useHomeBookshelfIconArea";
+import { FaStar } from "react-icons/fa";
 
 
 const NavDiv = styled.div<{ isDisplay: boolean }>`
@@ -37,14 +38,14 @@ export function HomeBookshelfIconArea() {
     return (
         <React.Fragment>
             <IconComponent
-                icon={FaBook}
+                icon={FaStar}
                 onclick={() => { }}
                 size="17px"
                 style={{
-                    color: `#2C3E50`,
                     position: `absolute`,
                     top: `-12%`,
-                    right: `-5%`
+                    right: `-5%`,
+                    color: `yellow`
                 }}
                 onMouseEnter={openBookshelfNav}
                 onMouseLeave={closeBookshelfNav}

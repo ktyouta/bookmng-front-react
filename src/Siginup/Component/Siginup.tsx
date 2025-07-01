@@ -12,6 +12,7 @@ const Parent = styled.div`
   width: 100vw;
   background-color: #dcdcdc;
   height: 100vh;
+  color: black;
 `;
 
 const SiginupFormDiv = styled.div`

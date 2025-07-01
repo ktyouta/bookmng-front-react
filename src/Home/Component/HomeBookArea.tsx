@@ -106,9 +106,9 @@ export function HomeBookArea() {
               clickShowMore();
             }}
             style={{
-              "fontSize": "0.9rem",
-              "height": "7%",
-              "background": "#5A6B7A"
+              fontSize: "0.9rem",
+              height: "7%",
+              background: "rgb(41, 50, 60)",
             }}
           />
         </NextGetBtnAreaDiv>
