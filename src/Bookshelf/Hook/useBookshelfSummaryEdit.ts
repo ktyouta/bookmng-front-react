@@ -28,7 +28,7 @@ export function useBookshelfSummaryEdit(props: propsType) {
      * 要約更新リクエスト
      */
     const putMutation = useMutationWrapper({
-        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_SUMMARY}/${bookId}` : ``,
+        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_SUMMARY}`.replace(`:bookId`, bookId) : ``,
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<string>) => {
