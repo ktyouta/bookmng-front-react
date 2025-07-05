@@ -6,6 +6,7 @@ import { BookshelfBookIdContext } from "../Component/Bookshelf";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
 import useQueryWrapper from "../../Common/Hook/useQueryWrapper";
 import type { BookshelfMemoResponseType } from "../Type/BookshelfMemoResponseType";
+import { useBookshelfMemoEndpoint } from "./useBookshelfMemoEndpoint";
 
 
 export function useBookshelfMemoList() {
@@ -21,7 +22,7 @@ export function useBookshelfMemoList() {
     // メモ情報を取得
     const { isLoading } = useQueryWrapper<BookshelfMemoResponseType>(
         {
-            url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO.replace(`:bookId`, bookId)}` : ``,
+            url: useBookshelfMemoEndpoint(bookId),
             afSuccessFn: (response: BookshelfMemoResponseType) => {
                 setListItemAtom(response.data);
             },

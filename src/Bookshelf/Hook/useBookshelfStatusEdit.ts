@@ -13,6 +13,7 @@ import { useCreateYearList } from "../../Common/Hook/useCreateYearList";
 import type { UpdateBookshelfStatusRequestType } from "../Type/UpdateBookshelfStatusRequestType";
 import type { BookshelfStatusType } from "../Type/BookshelfStatusType";
 import type { BookshelfStatusEditType } from "../Type/BookshelfStatusEditType";
+import { useBookshelfStatusEndpoint } from "./useBookshelfStatusEndpoint";
 
 
 type propsType = {
@@ -114,7 +115,7 @@ export function useBookshelfStatusEdit(props: propsType) {
      * ステータス更新リクエスト
      */
     const putMutation = useMutationWrapper({
-        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_STATUS}/${bookId}` : ``,
+        url: useBookshelfStatusEndpoint(bookId),
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfBookDetailMergedType>) => {
@@ -217,7 +218,6 @@ export function useBookshelfStatusEdit(props: propsType) {
             purchaseDate: purchaseDate,
         };
 
-        //console.log(body);
         // 更新リクエスト呼び出し
         putMutation.mutate(body);
     }

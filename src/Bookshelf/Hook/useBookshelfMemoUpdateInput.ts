@@ -9,6 +9,7 @@ import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBa
 import type { UpdateToBookshelfMemoReqestType } from "../Type/UpdateToBookshelfMemoReqestType";
 import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { useBookshelfMemoUpdEndpoint } from "./useBookshelfMemoUpdEndpoint";
 
 
 type propsType = {
@@ -31,7 +32,10 @@ export function useBookshelfMemoUpdateInput(props: propsType) {
      * 本棚メモ更新リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: bookId && props.memoSeq ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO_ID.replace(`:bookId`, bookId).replace(`:memoId`, `${props.memoSeq}`)}` : ``,
+        url: useBookshelfMemoUpdEndpoint({
+            bookId,
+            memoSeq: props.memoSeq
+        }),
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfMemoType>) => {

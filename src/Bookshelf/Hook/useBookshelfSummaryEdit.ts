@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import type { UpdateBookshelfSummaryResponseType } from "../Type/UpdateBookshelfSummaryResponseType";
 import type { UpdateBookshelfSummaryRequestType } from "../Type/UpdateBookshelfSummaryRequestType";
 import { BookshelfBookIdContext } from "../Component/Bookshelf";
+import { useBookshelfSummaryEndpoint } from "./useBookshelfSummaryEndpoint";
 
 
 type propsType = {
@@ -28,7 +29,7 @@ export function useBookshelfSummaryEdit(props: propsType) {
      * 要約更新リクエスト
      */
     const putMutation = useMutationWrapper({
-        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_SUMMARY}`.replace(`:bookId`, bookId) : ``,
+        url: useBookshelfSummaryEndpoint(bookId),
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<string>) => {

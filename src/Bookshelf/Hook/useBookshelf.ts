@@ -17,7 +17,7 @@ export function useBookshelf() {
     // 読書状況
     const [readStatusList, setReadStatusList] = useState<comboType[]>([]);
 
-    // 視聴状況リストを取得
+    // 読書状況リストを取得
     useQueryWrapper<ReadStatusResponseType>(
         {
             url: `${BOOK_MNG_PATH}${ENV.READ_STATUS}`,

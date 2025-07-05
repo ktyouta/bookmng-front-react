@@ -9,6 +9,7 @@ import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
 import type { CreateToBookshelfMemoReqestType } from "../Type/CreateToBookshelfMemoReqestType";
 import { BookshelfBookIdContext } from "../Component/Bookshelf";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { useBookshelfMemoEndpoint } from "./useBookshelfMemoEndpoint";
 
 
 export function useBookshelfMemoCreateInput() {
@@ -25,7 +26,7 @@ export function useBookshelfMemoCreateInput() {
      * 本棚メモ登録リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO.replace(`:bookId`, bookId)}` : ``,
+        url: useBookshelfMemoEndpoint(bookId),
         method: "POST",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfMemoType>) => {

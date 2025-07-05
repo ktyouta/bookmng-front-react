@@ -8,6 +8,7 @@ import type { UpdateBookshelfReviewResponseType } from "../Type/UpdateBookshelfR
 import type { UpdateBookshelfReviewRequestType } from "../Type/UpdateBookshelfReviewRequestType";
 import ENV from "../../env.json";
 import { BookshelfBookIdContext } from "../Component/Bookshelf";
+import { useBookshelfReviewEndpoint } from "./useBookshelfReviewEndpoint";
 
 
 type propsType = {
@@ -27,7 +28,7 @@ export function useBookshelfReviewEdit(props: propsType) {
      * レビュー更新リクエスト
      */
     const putMutation = useMutationWrapper({
-        url: bookId ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_REVIEW}`.replace(`:bookId`, bookId) : ``,
+        url: useBookshelfReviewEndpoint(bookId),
         method: "PUT",
         // 正常終了後の処理
         afSuccessFn: (res: resType<string>) => {

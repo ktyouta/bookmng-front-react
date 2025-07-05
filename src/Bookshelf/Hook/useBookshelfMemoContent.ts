@@ -9,6 +9,7 @@ import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
 import type { errResType, resType } from "../../Common/Hook/useMutationWrapperBase";
 import { bookshelfMemoListAtom } from "../Atom/BookshelfAtom";
 import { BOOK_MNG_PATH } from "../../Common/Const/CommonConst";
+import { useBookshelfMemoUpdEndpoint } from "./useBookshelfMemoUpdEndpoint";
 
 type propsType = {
     memoSeq: number,
@@ -30,7 +31,10 @@ export function useBookshelfMemoContent(props: propsType) {
      * メモ削除リクエスト
      */
     const postMutation = useMutationWrapper({
-        url: bookId && props.memoSeq ? `${BOOK_MNG_PATH}${ENV.BOOKSHELF_MEMO_ID.replace(`:bookId`, bookId).replace(`:memoId`, `${props.memoSeq}`)}` : ``,
+        url: useBookshelfMemoUpdEndpoint({
+            bookId,
+            memoSeq: props.memoSeq
+        }),
         method: "DELETE",
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfMemoType>) => {
