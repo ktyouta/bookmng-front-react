@@ -63,3 +63,9 @@ export const STATUS_EDIT_MODE = {
 
 // お気に入り度設定値
 export const FAVORITE_LEVEL_SETTING_LIST = 5;
+
+// タグ画面編集モード
+export const TAG_EDIT_MODE = {
+    VIEW: `1`,
+    EDIT: `2`,
+}

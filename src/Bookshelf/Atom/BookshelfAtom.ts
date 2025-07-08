@@ -2,6 +2,8 @@ import { atom } from "jotai";
 import type { BookshelfBookListMergedType } from "../Type/BookshelfBookListMergedType";
 import type { BookshelfBookDetailMergedType } from "../Type/BookshelfBookDetailMergedType";
 import type { BookshelfMemoType } from "../Type/BookshelfMemoType";
+import type { BookshelfTagType } from "../Type/BookshelfTagType";
+import type { tagType } from "../../Common/Component/TagsComponent";
 
 // APIから取得した書籍リスト
 export const bookshelfBookListAtom = atom<BookshelfBookListMergedType[] | undefined>();
@@ -25,3 +27,7 @@ export const selectedBookshelfFavoriteLevelAtom = atom<string>(``);
 export const bookshelfDetailItemAtom = atom<BookshelfBookDetailMergedType>();
 // 本棚メモ一覧
 export const bookshelfMemoListAtom = atom<BookshelfMemoType[]>();
+// タグリスト
+export const bookshelfTagListAtom = atom<BookshelfTagType[]>();
+// タグ編集リスト
+export const bookshelfTagEditListAtom = atom<tagType[]>([]);
