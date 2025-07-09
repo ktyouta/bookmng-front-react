@@ -70,8 +70,8 @@ export function useBookshelfTagEditUpdateIcon(props: propsType) {
                 }
 
                 prev.push({
-                    id: value ?? undefined,
-                    name: e.label
+                    tagId: value ?? undefined,
+                    tagName: e.label
                 });
 
                 return prev;

@@ -9,6 +9,7 @@ import { BookshelfReview } from "./BookshelfReview";
 import { BookshelfSummary } from "./BookshelfSummary";
 import { BookshelfStatus } from "./BookshelfStatus";
 import { BookshelfMemo } from "./BookshelfMemo";
+import { BookshelfTag } from "./BookshelfTag";
 
 
 const MenuParentDiv = styled.div`
@@ -98,6 +99,11 @@ export function BookshelfBookDetailMenu(props: propsType) {
           // メモ
           selectedMenuNo == MENU_NO.MEMO &&
           <BookshelfMemo />
+        }
+        {
+          // タグ
+          selectedMenuNo == MENU_NO.TAG &&
+          <BookshelfTag />
         }
       </MenuParentDiv>
     </React.Fragment>
