@@ -9,9 +9,6 @@ import { BookshelfTagViewHeader } from "./BookshelfTagViewHeader";
 const Parent = styled.div`
   box-sizing:border-box;
   height: 502px;
-  background-color: #181a1e;
-  border-radius: 1%;
-  border: solid 1px;
 `;
 
 

@@ -65,12 +65,12 @@ export function useBookshelfTagEditUpdateIcon(props: propsType) {
 
                 const value = e.value;
 
-                if (typeof value === `string` || typeof value === `symbol`) {
+                if (typeof value === `number` || typeof value === `symbol`) {
                     return prev;
                 }
 
                 prev.push({
-                    tagId: value ?? undefined,
+                    tagId: value ?? ``,
                     tagName: e.label
                 });
 

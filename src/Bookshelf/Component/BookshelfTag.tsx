@@ -10,9 +10,9 @@ import { useBookshelfTag } from "../Hook/useBookshelfTag";
 
 const Parent = styled.div`
   box-sizing:border-box;
-  height: 502px;
+  min-height: 502px;
   background-color: #181a1e;
-  border-radius: 1%;
+  border-radius: 15px;
   border: solid 1px;
 `;
 
