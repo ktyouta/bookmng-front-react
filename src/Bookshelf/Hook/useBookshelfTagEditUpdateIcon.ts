@@ -38,6 +38,8 @@ export function useBookshelfTagEditUpdateIcon(props: propsType) {
         // 正常終了後の処理
         afSuccessFn: (res: resType<BookshelfTagType[]>) => {
             setBookshelfTagList(res.data);
+            // 閲覧画面に遷移する
+            props.changeView();
         },
         // 失敗後の処理
         afErrorFn: (res: errResType) => {
@@ -65,12 +67,12 @@ export function useBookshelfTagEditUpdateIcon(props: propsType) {
 
                 const value = e.value;
 
-                if (typeof value === `number` || typeof value === `symbol`) {
+                if (typeof value === `symbol`) {
                     return prev;
                 }
 
                 prev.push({
-                    tagId: value ?? ``,
+                    tagId: value ? value.toString() : ``,
                     tagName: e.label
                 });
 
@@ -80,9 +82,6 @@ export function useBookshelfTagEditUpdateIcon(props: propsType) {
 
         // リクエスト送信
         postMutation.mutate(body);
-
-        // 閲覧画面に遷移する
-        props.changeView();
     }
 
     return {

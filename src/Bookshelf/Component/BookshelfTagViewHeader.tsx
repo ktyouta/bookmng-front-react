@@ -13,7 +13,7 @@ const HeaderDiv = styled.div`
   align-items: center;
   color: white;
   padding-left: 1%;
-  height:10%;
+  height:52px;
   padding-right: 2%;
 `;
 

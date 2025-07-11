@@ -23,7 +23,7 @@ export function useBookshelfTag() {
     const setBookshelfTagList = useSetAtom(bookshelfTagListAtom);
 
 
-    // タグリストを取得
+    // 本棚タグリストを取得
     const { isLoading } = useQueryWrapper<BookshelfTagResponseType>(
         {
             url: useBookshelfTagEndpoint(bookId),

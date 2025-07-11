@@ -9,15 +9,12 @@ import { BookshelfTagEditUpdateIcon } from "./BookshelfTagEditUpdateIcon";
 
 
 const MemoInputAreaDiv = styled.div`
-  position: sticky;
-  bottom: 0;
-  left: 0;
   width: 100%;
   box-sizing: border-box;
   padding-left: 3%;
   display:flex;
   align-items: center;
-  height:4%;
+  height:37px;
   padding-right: 2%;
 `;
 

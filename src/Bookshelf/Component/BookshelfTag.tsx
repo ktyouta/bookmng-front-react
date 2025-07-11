@@ -14,6 +14,8 @@ const Parent = styled.div`
   background-color: #181a1e;
   border-radius: 15px;
   border: solid 1px;
+  display: flex;
+  flex-direction: column;
 `;
 
 

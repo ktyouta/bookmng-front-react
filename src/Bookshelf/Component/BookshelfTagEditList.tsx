@@ -7,7 +7,6 @@ import { useBookshelfTagEditList } from "../Hook/useBookshelfTagEditList";
 
 const Parent = styled.div`
   width: 100%;
-  height: 81%;
   box-sizing: border-box;
   padding-left: 2%;
   padding-top: 2%;
@@ -17,7 +16,6 @@ const Parent = styled.div`
 
 const TagListAreaDiv = styled.div`
   width: 97%;
-  height: 90%;
   overflow: auto;
   overflow-x: hidden;
   box-sizing: border-box;

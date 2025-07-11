@@ -8,7 +8,6 @@ import { BookshelfTagViewHeader } from "./BookshelfTagViewHeader";
 
 const Parent = styled.div`
   box-sizing:border-box;
-  height: 502px;
 `;
 
 
@@ -21,13 +20,13 @@ export function BookshelfTagView(props: propsType) {
   console.log("BookshelfTagView render");
 
   return (
-    <Parent>
+    <React.Fragment>
       {/* 入力欄 */}
       <BookshelfTagViewHeader
         changeEdit={props.changeEdit}
       />
       {/* タグリスト */}
       <BookshelfTagList />
-    </Parent>
+    </React.Fragment>
   );
 }
